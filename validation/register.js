@@ -16,6 +16,10 @@ module.exports = function validateRegisterInput(data) {
         errors.username = 'Username field is required';
     }
 
+    // if (Validator.isLowercase(data.username)) {
+    //     errors.username = 'Username field must be all lowercase';
+    // }
+
     if (Validator.isEmpty(data.password)) {
         errors.password = 'Password field is required';
     }

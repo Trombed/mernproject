@@ -1,0 +1,39 @@
+.memeGenerator {
+    height: 500px;
+    width: 500px;
+}
+#canvas {
+    object-fit: contain;
+
+    position: absolute;
+    z-index: 0;
+}
+
+.upper {
+    display: flex;
+ 
+
+    position: absolute;
+    z-index: 10;
+    width: 300px;
+    font-size: 20px;
+    font-family: "Impact";
+    color: white;
+    text-shadow: black 0px 0px 10px;
+    top: 200;
+}
+
+.lower {
+    display: flex;
+    position: absolute;
+    z-index: 10;
+    width: 300px;
+    font-size: 20px;
+    font-family: "Impact";
+    color: white;
+    
+    text-shadow: black 0px 0px 10px;
+
+
+
+}

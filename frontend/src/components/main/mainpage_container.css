@@ -1,0 +1,5 @@
+.MainPage-Container {
+    display: flex;
+    flex-direction: row;
+    font-family: Arial, Helvetica, sans-serif;
+}

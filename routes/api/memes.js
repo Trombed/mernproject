@@ -37,9 +37,9 @@ router.post("/",
         
         const newMeme = new Meme({
             user: req.user.id,
-            text: req.body.text,
-            category: req.body.category
-            // text field might be changed in the future
+            image: req.body.image,
+            category: req.body.category,
+            imageTitle: req.body.imageTitle
         });
         newMeme.save()
             .then(meme => res.json(meme));

@@ -6,16 +6,18 @@ const MemeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    text: {
+    image: {
         type: String,
         required: true
     },
-    // text field might be changed soon
+    imageTitle: {
+        type: String,
+        required: true
+    },
     category: {
         type: String,
         required: true
     },
-    // added category to "tag"
     date: {
         type: Date,
         default: Date.now

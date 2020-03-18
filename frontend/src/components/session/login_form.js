@@ -15,12 +15,13 @@ class LoginForm extends React.Component {
         this.renderErrors = this.renderErrors.bind(this);
     }
 
-    // componentWillReceiveProps(nextProps) {
+  
+    // UNSAFE_componentWillReceiveProps(nextProps) {
     //     if (nextProps.currentUser === true) {
     //         this.props.history.push('/tweets');
     //     }
 
-        
+    //     // Set or clear errors
     //     this.setState({ errors: nextProps.errors })
     // }
 
@@ -31,7 +32,7 @@ class LoginForm extends React.Component {
         });
     }
 
-    
+
     handleSubmit(e) {
         e.preventDefault();
 
@@ -42,7 +43,6 @@ class LoginForm extends React.Component {
 
         this.props.login(user);
     }
-
 
     renderErrors() {
         return (

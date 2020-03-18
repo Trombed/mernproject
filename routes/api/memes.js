@@ -38,8 +38,8 @@ router.post("/",
         const newMeme = new Meme({
             user: req.user.id,
             image: req.body.image,
-            category: req.body.category,
-            imageTitle: req.body.imageTitle
+            // category: req.body.category,
+            // imageTitle: req.body.imageTitle
         });
         newMeme.save()
             .then(meme => res.json(meme));

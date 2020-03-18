@@ -9,15 +9,15 @@ const MemeSchema = new Schema({
     image: {
         type: String,
         required: true
-    },
-    imageTitle: {
-        type: String,
-        required: true
-    },
-    category: {
-        type: String,
-        required: true
-    },
+    // },
+    // imageTitle: {
+    //     type: String,
+    //     required: true
+    // },
+    // category: {
+    //     type: String,
+    //     required: true
+    // },
     date: {
         type: Date,
         default: Date.now

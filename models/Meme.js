@@ -9,7 +9,7 @@ const MemeSchema = new Schema({
     image: {
         type: String,
         required: true
-    // },
+    },
     // imageTitle: {
     //     type: String,
     //     required: true

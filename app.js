@@ -3,8 +3,10 @@ const app = express();
 const mongoose = require('mongoose');
 const db = require("./config/keys").mongoURI;
 const users = require('./routes/api/users');
+const memes = require('./routes/api/memes');
 
 const User = require('./models/User');
+const Meme = require('./models/Meme');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
@@ -42,6 +44,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/users', users);
+app.use('/api/memes', memes);
 
 const port = process.env.PORT || 5000;
 

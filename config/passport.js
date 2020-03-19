@@ -6,13 +6,14 @@ const keys = require('./keys');
 
 const options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+
 options.secretOrKey = keys.secretOrKey;
 
 module.exports = passport => {
-    // passport.use(new JwtStrategy(options, (jwt_payload, done) => {
-    //     // This payload includes the items we specified earlier
-    //     console.log(jwt_payload);
-    // }));
+    passport.use(new JwtStrategy(options, (jwt_payload, done) => {
+        // This payload includes the items we specified earlier
+        console.log(jwt_payload);
+    }));
     passport.use(new JwtStrategy(options, (jwt_payload, done) => {
         User.findById(jwt_payload.id)
             .then(user => {
@@ -24,5 +25,5 @@ module.exports = passport => {
                 return done(null, false);
             })
             .catch(err => console.log(err));
-    }));
+    }));    
 }

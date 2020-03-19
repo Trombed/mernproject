@@ -17,6 +17,9 @@ router.get("/", (req, res) => {
         .catch(err => res.status(400).json(err));
 })
 
+// 5e72ccdae837d562bf2eb967 - id
+
+// "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNzJkMDk4MmNjM2RiNjU1OTA2M2RlZSIsInVzZXJuYW1lIjoidGg5IiwiaWF0IjoxNTg0NTgyODM4LCJleHAiOjE1ODQ1ODY0Mzh9.vsiM0ACECePVRhtzrEhMt-wD3AzweG_yulP0MTdIQ9w"
 router.get("/users/:user_id", (req, res) => {
     Meme
         .find({ user: req.params.user_id })
@@ -31,8 +34,8 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(400).json(err));
 })
 
-router.post("/api/memes",
-    passport.authenticate("jwt", { session: false }),
+router.post("/",
+    // passport.authenticate("jwt", { session: false }),
     (req, res) => {
         
         const newMeme = new Meme({

@@ -12,6 +12,7 @@ const Meme = require("../../models/Meme");
 router.get("/", (req, res) => {
     Meme
         .find()
+        .limit(3)
         .sort({ date: -1 })
         .then(memes => res.json(memes))
         .catch(err => res.status(400).json(err));

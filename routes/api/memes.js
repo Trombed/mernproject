@@ -44,7 +44,6 @@ router.post("/",
             // category: req.body.category,
             // imageTitle: req.body.imageTitle
         });
-        debugger
         newMeme.save()
             .then(meme => res.json(meme));
     }

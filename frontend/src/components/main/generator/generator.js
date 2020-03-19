@@ -53,6 +53,10 @@ class Generator extends React.Component {
         }
     }
 
+    linkImage() {
+
+    }
+
   
     
     upperInput(e) {
@@ -69,39 +73,29 @@ class Generator extends React.Component {
         html2canvas(element[0],{backgroundColor: null})
         .then( (canvas) => {
             const base64image = canvas.toDataURL("image/png");
-            
-            // var win = window.open();
-            // win.document.write('<iframe src="' + this.base64image  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>')
-                let image = {
-                    image: base64image
-                };
-          
-                self.props.composeMemes(image)
+            let image = { image: base64image };
+            self.props.composeMemes(image)
                 
         })  
     }
 
-    saveFileToDB(image) {
-
-    }
 
    
     
 
 
     render() {
-        console.log(this.props)
+
         return (
                 
             <div className="memeContainer">
                 
                 Upper-Text
                 <input type="text" className='upper-text' onChange={this.upperInput}/>
-                <input type="file" id="fileinput" accept = "image/*" 
-                onChange={this.uploadImage}/>  
-                Lower-Text
-                <input type="text" className='upper-text' onChange={this.lowerInput} />
-                <button onClick={this.saveFile}>GENERATE</button>
+  
+                <input type="file" id="fileinput" accept = "image/*" onChange={this.uploadImage} />  
+               
+                <button onClick={this.saveFile}>Save</button>
                 <br/>
                     <div className="memeGenerator">
                     <canvas id="canvas" >

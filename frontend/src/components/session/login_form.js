@@ -16,14 +16,14 @@ class LoginForm extends React.Component {
     }
 
   
-    // UNSAFE_componentWillReceiveProps(nextProps) {
-    //     if (nextProps.currentUser === true) {
-    //         this.props.history.push('/tweets');
-    //     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.currentUser === true) {
+            this.props.history.push('/memes');
+        }
 
-    //     // Set or clear errors
-    //     this.setState({ errors: nextProps.errors })
-    // }
+        // Set or clear errors
+        this.setState({ errors: nextProps.errors })
+    }
 
 
     update(field) {

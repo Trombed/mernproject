@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Generator from './generator';
-import { composeMemes } from '../../../actions/meme_action'
+import { composeMemes } from '../../../actions/memes_action'
 
 
 

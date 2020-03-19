@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const MemeSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'User'
     },
     image: {
         type: String,

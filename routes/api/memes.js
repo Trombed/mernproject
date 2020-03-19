@@ -39,7 +39,8 @@ router.post("/",
     (req, res) => {
         
         const newMeme = new Meme({
-            user: req.user.id,
+            // user: req.user.id,
+            user: '5e72d13a602b3566600668ac',
             image: req.body.image,
             // category: req.body.category,
             // imageTitle: req.body.imageTitle

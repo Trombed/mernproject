@@ -18,6 +18,9 @@ class Generator extends React.Component {
         this.saveFile = this.saveFile.bind(this)
     }
 
+    componentDidMount(){
+        
+    }
     
 
     uploadImage(file) {
@@ -53,9 +56,6 @@ class Generator extends React.Component {
         }
     }
 
-    linkImage() {
-
-    }
 
   
     
@@ -76,7 +76,9 @@ class Generator extends React.Component {
             let image = { image: base64image };
             self.props.composeMemes(image)
                 
-        })  
+        }) 
+        this.setState({uppertext: ""})
+        this.setState({lowertext: ""})
     }
 
 

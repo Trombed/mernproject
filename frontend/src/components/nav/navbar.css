@@ -1,0 +1,29 @@
+.NavBar-Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1%;
+    border-bottom: 1px solid grey;
+    align-items: center;
+}
+
+.NavBar-Title {
+    font-weight: 700;
+}
+
+.NavBar-Sessions {
+    display: flex;
+    flex-direction: row;
+}
+
+.NavBar-Session-Links {
+    padding: 5px;
+}
+
+
+.NavBar-Button {
+    border: none;
+    cursor: pointer;
+    background-color: grey;
+
+}

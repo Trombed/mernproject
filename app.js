@@ -31,7 +31,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}))
 
 app.get("/", (req, res) => {
     const user = new User({

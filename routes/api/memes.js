@@ -31,7 +31,7 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(400).json(err));
 })
 
-router.post("/",
+router.post("/api/memes",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         
@@ -41,6 +41,7 @@ router.post("/",
             // category: req.body.category,
             // imageTitle: req.body.imageTitle
         });
+        debugger
         newMeme.save()
             .then(meme => res.json(meme));
     }

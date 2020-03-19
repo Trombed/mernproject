@@ -1,12 +1,11 @@
 import { saveMeme } from "../util/memes_util"
 
 
-
 export const RECEIVE_NEW_MEMES = 'RECEIVE_NEW_MEMES'
 
-export const receiveNewMemes = meme => ({
+export const receiveNewMemes = data => ({
     type: RECEIVE_NEW_MEMES,
-    meme
+    data
 })
 
 export const composeMemes = data => dispatch => {

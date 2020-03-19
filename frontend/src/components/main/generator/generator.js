@@ -1,7 +1,7 @@
 import React from 'react'
 import './generator.css'
 import html2canvas from 'html2canvas';
-
+import axios from 'axios'
 
 class Generator extends React.Component {
     constructor(props) {
@@ -64,22 +64,21 @@ class Generator extends React.Component {
     }
 
     saveFile() {
+        var self = this;
         var element = document.getElementsByClassName("memeGenerator");
-        html2canvas(element[0],{
-             backgroundColor: null
-        }).then( (canvas) => {
+        html2canvas(element[0],{backgroundColor: null})
+        .then( (canvas) => {
             const base64image = canvas.toDataURL("image/png");
-            debugger
+            
             // var win = window.open();
             // win.document.write('<iframe src="' + this.base64image  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>')
-            this.saveFileToDB()
-            
-        })      
-                // let image = {
-                //     image: this.base64image
-                // };
-                // debugger
-                // this.props.composeMemes(image)
+                let image = {
+                    image: base64image
+                };
+          
+                self.props.composeMemes(image)
+                
+        })  
     }
 
     saveFileToDB(image) {

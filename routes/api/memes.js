@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
         .limit(3)
         .sort({ date: -1 })
         .populate('user', '-password')
+        .populate('likes', '-password')
         .then(memes => res.json(memes))
         .catch(err => res.status(400).json(err));
 })

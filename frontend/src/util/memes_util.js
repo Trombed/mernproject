@@ -16,3 +16,11 @@ export const getMemes = () => {
 export const deleteMeme = (id) => {
     return axios.delete(`api/memes/${id}`);
 }
+
+export const createLike = (id) => {
+    return axios.post(`api/memes/${id}/like`)
+}
+
+export const deleteLike = (id) => {
+    return axios.delete(`api/memes/${id}/like`)
+}

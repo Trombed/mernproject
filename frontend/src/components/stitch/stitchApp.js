@@ -49,7 +49,7 @@ class StitchApp extends React.Component {
             return
         }
 
-        const memes = this.mongodb.db('memeDB').collection('memes')
+        const memes = this.mongodb.db('test').collection('memes')
         const key = `${this.theUser.id}-${file.name}`
         const bucket = 'mongo-meme-maker-dev'
         const url = `http://${bucket}.s3.amazonaws.com/${encodeURIComponent(key)}`

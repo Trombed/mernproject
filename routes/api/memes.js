@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require("passport");
 const Meme = require("../../models/Meme");
 const Like = require('../../models/Like');
+const Comment = require('../../models/Comment');
 
 
 // router.get("/test", (req, res) => {
@@ -15,8 +16,9 @@ router.get("/", (req, res) => {
         .find()
         .limit(3)
         .sort({ date: -1 })
-        .populate('user', '-password')
+        .populate('comments', '-password')
         .populate('likes', '-password')
+        .populate('user', '-password')
         .then(memes => res.json(memes))
         .catch(err => res.status(400).json(err));
 })
@@ -33,8 +35,9 @@ router.get("/users/:user_id", (req, res) => {
 router.get("/:id", (req, res) => {
     Meme
         .findById(req.params.id)
-        .populate('user', '-password')
+        .populate('comments', '-password')
         .populate('likes', '-password')
+        .populate('user', '-password')
         .then(meme => res.json(meme))
         .catch(err => res.status(400).json(err));
 })
@@ -77,6 +80,52 @@ router.delete("/:id/like",
             }
         );
     })
+
+
+
+// add a comment
+router.post("/:id/comment",
+    // passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+
+
+        const newComment = new Comment({
+            user: req.user.id,
+            // user: '5e72d13a602b3566600668ac',
+            body: req.body.body
+        });
+        newComment.save()
+            .then(comment => {
+                Meme.findByIdAndUpdate(req.id,
+                    { "$push": { "comments": comment._id } },
+                    // { "$push": { "likes": '5e72d13a602b3566600668ac'} },
+                    { "new": true, "upsert": true },
+                    function (err, meme) {
+                        if (err) return res.status(500).send("There was a problem adding a comment.");
+                        res.status(200).send("Comment was added!");
+                    }
+                );
+            });
+    })
+
+
+// delete a comment
+router.delete("/:id/comment",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+
+        Meme.findByIdAndUpdate(req.id,
+            { "$pull": { "likes": req.user.id } },
+            // { "$pull": { "likes": '5e72d13a602b3566600668ac' } },
+            { "new": true, "upsert": true },
+            function (err, meme) {
+                if (err) return res.status(500).send("There was a problem deleting a like.");
+                res.status(200).send("Like was deleted successfully!");
+            }
+        );
+    })    
+
+
 
 
 router.delete('/:id', (req, res) => {

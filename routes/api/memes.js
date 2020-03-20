@@ -29,7 +29,6 @@ router.get("/", (req, res) => {
         .catch(err => res.status(400).json(err));
 })
 
-// 5e72ccdae837d562bf2eb967 - id
 
 router.get("/users/:user_id", (req, res) => {
     Meme
@@ -147,7 +146,6 @@ router.delete('/:id', (req, res) => {
 router.post("/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        // meme id to test delete 5e740d19ba9a128406f85ae7
         const newMeme = new Meme({
             user: req.user.id,
             // user: '5e72d13a602b3566600668ac',

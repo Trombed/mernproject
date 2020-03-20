@@ -35,11 +35,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json({limit: '50mb'}))
 
 app.get("/", (req, res) => {
-    const user = new User({
-        username: "jimster",
-        password: "123456"
-    })
-    user.save();
 
     res.send("Hello world~~~ root page");
 });

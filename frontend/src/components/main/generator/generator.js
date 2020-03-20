@@ -12,7 +12,7 @@ class Generator extends React.Component {
             lowertext: "",
             
         }
-
+        //I WANNA DRINK
         this.upperInput = this.upperInput.bind(this)
         this.lowerInput = this.lowerInput.bind(this)
         this.uploadImage = this.uploadImage.bind(this)

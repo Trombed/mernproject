@@ -85,12 +85,12 @@ router.delete("/:id/like",
 
 // add a comment
 router.post("/:id/comment",
-    // passport.authenticate("jwt", { session: false }),
+    passport.authenticate("jwt", { session: false }),
     (req, res) => {
 
         const newComment = new Comment({
-            // user: req.user.id,
-            user: '5e72d13a602b3566600668ac',
+            user: req.user.id,
+            // user: '5e72d13a602b3566600668ac',
             body: req.body.body
         });
 
@@ -114,12 +114,11 @@ router.delete("/:id/comment",
     (req, res) => {
 
         Meme.findByIdAndUpdate(req.id,
-            { "$pull": { "likes": req.user.id } },
-            // { "$pull": { "likes": '5e72d13a602b3566600668ac' } },
+            { "$pull": { "comments": req.comment_id } },
             { "new": true, "upsert": true },
             function (err, meme) {
-                if (err) return res.status(500).send("There was a problem deleting a like.");
-                res.status(200).send("Like was deleted successfully!");
+                if (err) return res.status(500).send("There was a problem deleting a comment.");
+                res.status(200).send("Comment is no longer here!");
             }
         );
     })    

@@ -35,19 +35,19 @@ router.get("/:id", (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    User.findByIdAndRemove(req.params.id, function (err, user) {
+    Meme.findByIdAndRemove(req.params.id, function (err, meme) {
         if (err) return res.status(500).send("There was a problem deleting the meme.");
         res.status(200).send("Meme was deleted.");
     });
 });
 
 router.post("/",
-    passport.authenticate("jwt", { session: false }),
+    // passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        
+        // meme id to test delete 5e740d19ba9a128406f85ae7
         const newMeme = new Meme({
-            user: req.user.id,
-            // user: '5e72d13a602b3566600668ac',
+            // user: req.user.id,
+            user: '5e72d13a602b3566600668ac',
             image: req.body.image,
             // category: req.body.category,
             // imageTitle: req.body.imageTitle

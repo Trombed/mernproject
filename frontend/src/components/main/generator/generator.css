@@ -24,8 +24,10 @@
 #canvas2 {
     position: absolute;
     background-image:url('');
-    background-size:cover;
-    background-position: center;
+    /* background-size: cover; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
     min-height: 500px; 
     min-width: 500px;
     border: 1px solid #bbb;

@@ -44,13 +44,13 @@ class Generator extends React.Component {
     saveFile() {
         var self = this;
         var screenshot = document.getElementsByClassName("memeGenerator");
-       
+        
         html2canvas(screenshot[0],{
             width: this.width,
             height: this.height,
             backgroundColor: null})
         .then( (canvas) => {
-            debugger
+      
             const base64image = canvas.toDataURL("image/png");
             let image = { image: base64image };
             // self.props.composeMemes(image)

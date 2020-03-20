@@ -16,8 +16,8 @@ class ShowPage extends React.Component {
     render() {
         let content = this.props.allMemes.map( meme => (
             <div key={meme._id} className="Individual-Meme-Container">
-                {meme._id}
-                <img src={`${meme.image}`} />
+                {meme.username}
+                <img src={`${meme.url}`} />
             </div>
         ))
 

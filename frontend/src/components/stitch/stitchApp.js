@@ -76,6 +76,7 @@ class StitchApp extends React.Component {
                     return memes.insertOne({
                         // owner_id: this.client.auth.user.id,
                         author_id: this.theUser.id,
+                        username: this.theUser.username,
                         url,
                         file: {
                             name: file.name,

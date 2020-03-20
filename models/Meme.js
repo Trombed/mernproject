@@ -10,14 +10,7 @@ const MemeSchema = new Schema({
         type: String,
         required: true
     },
-    // imageTitle: {
-    //     type: String,
-    //     required: true
-    // },
-    // category: {
-    //     type: String,
-    //     required: true
-    // },
+    likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     date: {
         type: Date,
         default: Date.now

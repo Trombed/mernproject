@@ -46,29 +46,36 @@ router.param('id', function (req, res, next, id) {
 
 // route to like a specific meme for the current user
 router.post("/:id/like", 
-// passport.authenticate("jwt", { session: false }),
+passport.authenticate("jwt", { session: false }),
 (req, res) => {
     
-        // const newLike = new Like({
-        //     // user: req.user.id,
-        //     // user: '5e72d13a602b3566600668ac',
-        //     // meme: req.id
-        // });
-        // newLike.save()
-        //     .then(like => res.json(like));
-
-
     Meme.findByIdAndUpdate(req.id,
-        // { "$push": { "likes": req.user.id } },
-        { "$push": { "likes": '5e72d13a602b3566600668ac'} },
+        { "$push": { "likes": req.user.id } },
+        // { "$push": { "likes": '5e72d13a602b3566600668ac'} },
         { "new": true, "upsert": true },
         function (err, meme) {
             if (err) return res.status(500).send("There was a problem creating a like.");
             res.status(200).send("Like was added!");
         }
     );
-    
 })
+
+// delete (unlike) a meme
+
+router.delete("/:id/like",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+
+        Meme.findByIdAndUpdate(req.id,
+            { "$pull": { "likes": req.user.id } },
+            // { "$pull": { "likes": '5e72d13a602b3566600668ac' } },
+            { "new": true, "upsert": true },
+            function (err, meme) {
+                if (err) return res.status(500).send("There was a problem deleting a like.");
+                res.status(200).send("Like was deleted successfully!");
+            }
+        );
+    })
 
 
 router.delete('/:id', (req, res) => {
@@ -86,8 +93,6 @@ router.post("/",
             user: req.user.id,
             // user: '5e72d13a602b3566600668ac',
             image: req.body.image
-            // category: req.body.category,
-            // imageTitle: req.body.imageTitle
         });
         newMeme.save()
             .then(meme => res.json(meme));

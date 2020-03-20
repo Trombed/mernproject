@@ -24,3 +24,12 @@ export const createLike = (id) => {
 export const deleteLike = (id) => {
     return axios.delete(`api/memes/${id}/like`)
 }
+
+
+export const addComment = (id, data) => {
+    return axios.post(`api/memes/${id}/comment`, data)
+}
+
+export const removeComment = (id) => {
+    return axios.delete(`api/memes/${id}/comment`)
+}

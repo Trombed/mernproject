@@ -12,7 +12,7 @@ const Meme = require("../../models/Meme");
 router.get("/", (req, res) => {
     Meme
         .find()
-        .limit(3)
+        .limit(1)
         .sort({ date: -1 })
         .then(memes => res.json(memes))
         .catch(err => res.status(400).json(err));
@@ -33,6 +33,13 @@ router.get("/:id", (req, res) => {
         .then(meme => res.json(meme))
         .catch(err => res.status(400).json(err));
 })
+
+router.delete('/:id', (req, res) => {
+    User.findByIdAndRemove(req.params.id, function (err, user) {
+        if (err) return res.status(500).send("There was a problem deleting the meme.");
+        res.status(200).send("Meme was deleted.");
+    });
+});
 
 router.post("/",
     passport.authenticate("jwt", { session: false }),

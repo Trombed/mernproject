@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require("passport");
 const Meme = require("../../models/Meme");
+const Like = require('../../models/Like');
 
 
 // router.get("/test", (req, res) => {
@@ -34,6 +35,26 @@ router.get("/:id", (req, res) => {
         .populate('user')
         .then(meme => res.json(meme))
         .catch(err => res.status(400).json(err));
+})
+
+
+router.param('id', function (req, res, next, id) {
+    req.id = id;
+    next();
+})
+
+router.post("/:id/like", 
+// passport.authenticate("jwt", { session: false }),
+(req, res) => {
+    
+        const newLike = new Like({
+            // user: req.user.id,
+            user: '5e72d13a602b3566600668ac',
+            meme: req.id
+        });
+        newLike.save()
+            .then(like => res.json(like));
+    
 })
 
 router.delete('/:id', (req, res) => {

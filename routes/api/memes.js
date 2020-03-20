@@ -16,7 +16,13 @@ router.get("/", (req, res) => {
         .find()
         .limit(3)
         .sort({ date: -1 })
-        .populate('comments', '-password')
+        .populate({path: 'comments',
+            populate: {
+                path: 'user',
+                model: 'User',
+                select: 'username'
+            }
+        })
         .populate('likes', '-password')
         .populate('user', '-password')
         .then(memes => res.json(memes))
@@ -35,7 +41,13 @@ router.get("/users/:user_id", (req, res) => {
 router.get("/:id", (req, res) => {
     Meme
         .findById(req.params.id)
-        .populate('comments', '-password')
+        .populate({path: 'comments', 
+        populate: {
+            path: 'user',
+            model: 'User',
+            select: 'username'
+        }})
+        // .populate('comments.user', '-password')
         .populate('likes', '-password')
         .populate('user', '-password')
         .then(meme => res.json(meme))
@@ -50,12 +62,12 @@ router.param('id', function (req, res, next, id) {
 
 // route to like a specific meme for the current user
 router.post("/:id/like", 
-passport.authenticate("jwt", { session: false }),
+// passport.authenticate("jwt", { session: false }),
 (req, res) => {
     
     Meme.findByIdAndUpdate(req.id,
-        { "$push": { "likes": req.user.id } },
-        // { "$push": { "likes": '5e72d13a602b3566600668ac'} },
+        // { "$push": { "likes": req.user.id } },
+        { "$push": { "likes": '5e72d13a602b3566600668ac'} },
         { "new": true, "upsert": true },
         function (err, meme) {
             if (err) return res.status(500).send("There was a problem creating a like.");
@@ -85,12 +97,12 @@ router.delete("/:id/like",
 
 // add a comment
 router.post("/:id/comment",
-    passport.authenticate("jwt", { session: false }),
+    // passport.authenticate("jwt", { session: false }),
     (req, res) => {
 
         const newComment = new Comment({
-            user: req.user.id,
-            // user: '5e72d13a602b3566600668ac',
+            // user: req.user.id,
+            user: '5e72d13a602b3566600668ac',
             body: req.body.body
         });
 

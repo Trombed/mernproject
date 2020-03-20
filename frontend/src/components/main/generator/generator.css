@@ -1,39 +1,75 @@
+.memeContainer {
+    display: flex;
+    flex-direction: row;
+
+}
+
+
 .memeGenerator {
     height: 500px;
-        width: 50%;
+    width: 500px;
+
+    top: 20vh;
+    overflow: hidden;
+    flex-wrap: wrap;
 }
+
 #canvas {
-    object-fit: contain;
+    /* object-fit: contain; */
 
     position: absolute;
     z-index: 0;
 }
 
-.upper {
-    display: flex;
- 
-
+#canvas2 {
     position: absolute;
+    background-image:url('');
+    background-size:cover;
+    background-position: center;
+    min-height: 500px; 
+    min-width: 500px;
+    border: 1px solid #bbb;
+    z-index: -5;
+    
+}
+
+.input {
+    resize: none;
+}
+
+.upper-text {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    justify-content: center;
+    align-items: center;
     z-index: 10;
-    width: 300px;
+    width: 200;
     font-size: 20px;
     font-family: "Impact";
+    color: white;
+    text-shadow: black 0px 0px 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.lower-text {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 10;
+    width: inherit;
+    overflow: hidden;
+    font-size: 20px;
+    font-family: "Impact";
+
     color: white;
     text-shadow: black 0px 0px 10px;
     top: 200;
 }
 
-.lower {
-    display: flex;
-    position: absolute;
-    z-index: 10;
-    width: 300px;
-    font-size: 20px;
-    font-family: "Impact";
-    color: white;
-    
-    text-shadow: black 0px 0px 10px;
 
 
-
-}

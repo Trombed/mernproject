@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
         .find()
         .limit(3)
         .sort({ date: -1 })
-        .populate('user')
+        .populate('user', '-password')
         .then(memes => res.json(memes))
         .catch(err => res.status(400).json(err));
 })
@@ -32,8 +32,8 @@ router.get("/users/:user_id", (req, res) => {
 router.get("/:id", (req, res) => {
     Meme
         .findById(req.params.id)
-        .populate('user')
-        .populate('likes')
+        .populate('user', '-password')
+        .populate('likes', '-password')
         .then(meme => res.json(meme))
         .catch(err => res.status(400).json(err));
 })

@@ -88,17 +88,16 @@ router.post("/:id/comment",
     // passport.authenticate("jwt", { session: false }),
     (req, res) => {
 
-
         const newComment = new Comment({
-            user: req.user.id,
-            // user: '5e72d13a602b3566600668ac',
+            // user: req.user.id,
+            user: '5e72d13a602b3566600668ac',
             body: req.body.body
         });
+
         newComment.save()
             .then(comment => {
                 Meme.findByIdAndUpdate(req.id,
                     { "$push": { "comments": comment._id } },
-                    // { "$push": { "likes": '5e72d13a602b3566600668ac'} },
                     { "new": true, "upsert": true },
                     function (err, meme) {
                         if (err) return res.status(500).send("There was a problem adding a comment.");

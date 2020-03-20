@@ -16,7 +16,7 @@ export const composeMemes = data => dispatch => {
     )
 }
 
-export const RECEIVE_MEMES = 'RECEIVE_NEW_MEMES'
+export const RECEIVE_MEMES = 'RECEIVE_MEMES'
 
 export const receiveMemes = data => ({
     type: RECEIVE_MEMES,

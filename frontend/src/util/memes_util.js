@@ -12,3 +12,7 @@ export const getMemes = () => {
         }
     })
 }
+
+export const deleteMeme = (id) => {
+    return axios.delete(`api/memes/${id}`);
+}

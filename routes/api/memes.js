@@ -42,13 +42,13 @@ router.delete('/:id', (req, res) => {
 });
 
 router.post("/",
-    // passport.authenticate("jwt", { session: false }),
+    passport.authenticate("jwt", { session: false }),
     (req, res) => {
         // meme id to test delete 5e740d19ba9a128406f85ae7
         const newMeme = new Meme({
-            // user: req.user.id,
-            user: '5e72d13a602b3566600668ac',
-            image: req.body.image,
+            user: req.user.id,
+            // user: '5e72d13a602b3566600668ac',
+            image: req.body.image
             // category: req.body.category,
             // imageTitle: req.body.imageTitle
         });

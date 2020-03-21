@@ -8,10 +8,9 @@ class RandomMeme extends React.Component {
 
     render() {
         return (
-            <div className = "random-meme-image">
-                <li><img src={this.props.image} alt=""></img></li>
-                <li>{this.props.title}</li>
-                {/* {this.props.image} */}
+            <div className = "random-meme">
+                <li className = "random-meme-image"><img src={this.props.image} alt=""></img></li>
+                {/* <li>{this.props.title}</li> */}
             </div>
         )
     }

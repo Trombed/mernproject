@@ -18,6 +18,12 @@
 
 .NavBar-Session-Links {
     padding: 5px;
+    border: 1px solid black;
+}
+
+.NavBar-Session-Links a {
+    color: black;
+    text-decoration: none;
 }
 
 
@@ -26,4 +32,16 @@
     cursor: pointer;
     background-color: grey;
 
+}
+
+.login-signup {
+    text-align: right;
+
+}
+
+.login-signup-button {
+    font-size: 16px;
+    border-radius: 0.5em;
+    background-color: lightgray;
+    cursor: pointer;
 }

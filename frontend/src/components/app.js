@@ -1,15 +1,27 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { Switch } from 'react-router-dom';
+import {
+    Route,
+    Redirect,
+    Switch,
+    Link,
+    HashRouter
+} from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import MainPage from './main/main_page';
+import GreetingContainer from './greeting/greeting_container';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import "./app_container.css"
 import StitchAppContainer from '../components/stitch/stitchApp_container'
+import Modal from '../../src/components/modal/modal';
 
 const App = () => (
     <div className="App-Container">
+        <Modal/>
+        <header>
+            <GreetingContainer />
+        </header>
         <NavBarContainer />
         <MainPage />
         <StitchAppContainer appId='stitchcraft-meme-maker-lxnid' />

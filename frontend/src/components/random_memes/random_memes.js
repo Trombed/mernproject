@@ -1,5 +1,4 @@
 import React from 'react';
-import RandromMeme from './random_meme';
 import RandomMeme from './random_meme';
 
 class RandomMemes extends React.Component {
@@ -29,9 +28,14 @@ class RandomMemes extends React.Component {
 
     }
     render() {
+        // debugger
         return (
-            <div> {
-                this.state.memes.map(meme => (
+            
+            <div> 
+                <h1>fjgfjhjhfdjhfdhjahfdjhfjhaj</h1>
+                {
+                this.state.memes.filter(meme => meme.images_count > 0).map(meme => (
+                  
                     <RandomMeme 
                     key={meme.id}
                     title={meme.title}

@@ -14,11 +14,21 @@ class RandomMemes extends React.Component {
     }
 
     componentDidMount() {
-        // this.getMemes();
+        this.getMemes();
 
-        this.refs.iScroll.addEventListener("scroll", () => {
-            if (this.refs.iScroll.scrollTop + this.refs.iScroll.clientHeight >= this.refs.iScroll.scrollHeight) {
-                this.getMemes();
+        window.addEventListener("scroll", (event) => {
+            // debugger
+
+            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            let scrollHeight = event.srcElement.body.scrollHeight;
+
+            console.log(scrollTop, window.outerHeight, scrollHeight, document.body.scrollTop, document.documentElement.scrollTop)
+            if (scrollTop + window.outerHeight >= scrollHeight) {
+                // this.getMemes();
+                this.setState({ loading: true });
+                setTimeout(() => {
+                    this.getMemes();
+                }, 2000);
             }
         });
     }
@@ -45,7 +55,8 @@ class RandomMemes extends React.Component {
         const result = await response.json();
 
         newMemes = result.data.filter(meme => meme.images_count > 0 && meme.images[0].type.startsWith('image/'));
-    }
+        }
+
         memes = memes.concat(newMemes.slice(0,10));
         newMemes = newMemes.slice(10);
 
@@ -56,7 +67,8 @@ class RandomMemes extends React.Component {
         // debugger
         return (
             
-            <div className="memes"> 
+            <div>
+                <div className="memes" ref="iScroll" style={{ overflow: "auto" }}> 
                 {
                 this.state.memes
                             // .filter(meme => meme.images_count > 0 && meme.images[0].type.startsWith('image/'))
@@ -69,7 +81,8 @@ class RandomMemes extends React.Component {
                                 image={meme.images[0].link}/>
                                 ))
                 }
-                {this.state.loading ? <p className="loading"> loading More Items..</p> : ""}
+                </div>
+                {this.state.loading ? <div className="loading"> Loading More Items...</div> : ""}
             </div>
         )
     }

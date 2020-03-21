@@ -28,6 +28,8 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-draggable": "^4.2.0",
+    "react-infinite-scroll-component": "^5.0.4",
+    "react-iscroll": "^2.0.3",
     "validator": "^12.2.0"
   },
   "devDependencies": {

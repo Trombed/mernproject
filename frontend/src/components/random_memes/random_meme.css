@@ -1,14 +1,13 @@
-.random-meme {
-    /* min-height: 100vh; */
+.memes {
     background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: 10px;
 }
 
 .random-meme li {
     list-style: none;
+    margin: 10px;
 }
 
 .random-meme img{

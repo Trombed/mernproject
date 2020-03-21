@@ -1,5 +1,6 @@
 import React from 'react';
 import RandomMeme from './random_meme';
+import './random_meme.css';
 
 class RandomMemes extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class RandomMemes extends React.Component {
         // debugger
         return (
             
-            <div> 
+            <div className="memes"> 
                 {
                 
                 this.state.memes

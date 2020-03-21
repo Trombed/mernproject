@@ -33,6 +33,7 @@ class RandomMemes extends React.Component {
             
             <div> 
                 {
+                
                 this.state.memes
                             .filter(meme => meme.images_count > 0 && meme.images[0].type.startsWith('image/'))
                             .sort(() => 0.5 - Math.random())

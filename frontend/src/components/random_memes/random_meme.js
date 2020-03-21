@@ -1,4 +1,5 @@
 import React from 'react';
+import './random_meme.css';
 
 class RandomMeme extends React.Component {
 

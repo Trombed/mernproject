@@ -32,16 +32,18 @@ class RandomMemes extends React.Component {
         return (
             
             <div> 
-                <h1>fjgfjhjhfdjhfdhjahfdjhfjhaj</h1>
                 {
-                this.state.memes.filter(meme => meme.images_count > 0).map(meme => (
-                  
-                    <RandomMeme 
-                    key={meme.id}
-                    title={meme.title}
-                    image={meme.images[0].link}/>
-                ))
-            }
+                this.state.memes
+                            .filter(meme => meme.images_count > 0 && meme.images[0].type.startsWith('image/'))
+                            .sort(() => 0.5 - Math.random())
+                            .slice(0, 10)
+                            .map(meme => (
+                                <RandomMeme 
+                                key={meme.id}
+                                title={meme.title}
+                                image={meme.images[0].link}/>
+                                ))
+                }
             </div>
         )
     }

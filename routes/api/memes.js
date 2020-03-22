@@ -144,11 +144,11 @@ router.delete('/:id', (req, res) => {
 });
 
 router.post("/",
-    // passport.authenticate("jwt", { session: false }),
+    passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const newMeme = new Meme({
-            // user: req.user.id,
-            user: '5e7504c9770593980286d9cd',
+            user: req.user.id,
+            // user: '5e7504c9770593980286d9cd',
             image: req.body.image
         });
         newMeme.save()

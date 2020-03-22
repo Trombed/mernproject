@@ -12,7 +12,7 @@ class Generator extends React.Component {
             lowertext: "",
             
         }
-
+        //I WANNA DRINK
         this.upperInput = this.upperInput.bind(this)
         this.lowerInput = this.lowerInput.bind(this)
         this.uploadImage = this.uploadImage.bind(this)
@@ -44,13 +44,13 @@ class Generator extends React.Component {
     saveFile() {
         var self = this;
         var screenshot = document.getElementsByClassName("memeGenerator");
-       
+        
         html2canvas(screenshot[0],{
             width: this.width,
             height: this.height,
             backgroundColor: null})
         .then( (canvas) => {
-            debugger
+      
             const base64image = canvas.toDataURL("image/png");
             let image = { image: base64image };
             // self.props.composeMemes(image)

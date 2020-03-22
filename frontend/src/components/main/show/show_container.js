@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Show from './show';
 import { fetchMemes } from '../../../actions/memes_action';
-import {openModal} from "../../../actions/modal_actions"
+import {openModal} from "../../../actions/image_modal_actions"
 import {createNewLike, deleteOldLike} from "../../../actions/like_action"
 import {composeReply, deleteComment} from "../../../actions/reply_action"
 

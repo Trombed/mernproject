@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
   
     componentWillReceiveProps(nextProps) {
         if (nextProps.currentUser === true) {
-            this.props.history.push('/memes');
+            this.props.history.push('/');
         }
 
         // Set or clear errors

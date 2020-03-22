@@ -54,7 +54,9 @@ class RandomMemes extends React.Component {
         );
         const result = await response.json();
 
-        newMemes = result.data.filter(meme => meme.images_count > 0 && meme.images[0].type.startsWith('image/'));
+        newMemes = result.data.filter(meme => meme.images_count > 0 && 
+                                      meme.images[0].type.startsWith('image/') && 
+                                      meme.images[0].height < 1.6 * meme.images[0].width);
         }
 
         memes = memes.concat(newMemes.slice(0,10));

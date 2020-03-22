@@ -85,21 +85,22 @@ class Generator extends React.Component {
             <div className="memeContainer">
 
                     <div>
-                        <input type="file" id="fileinput" accept = "image/*" onChange={this.uploadImage} /> 
+                        <input className="select-file" type="file" id="fileinput" accept = "image/*" onChange={this.uploadImage} /> 
                         <br/>
 
-                        Text
+                        <h1 className="text-input-label">Text 1:  </h1>
                         <textarea className='input' onChange={this.upperInput}/>
                         <br/>
-                        <input type="range" min="10" max="100" onChange={this.upperSizeChange} defaultValue="20" />
+                        <input className="text-size-bar" type="range" min="10" max="100" onChange={this.upperSizeChange} defaultValue="20" />
                         <br/>
 
+                        <h1 className="text-input-label">Text 2:  </h1>
                         <textarea className='input' onChange={this.lowerInput}/>
                         <br/>
-                        <input type="range" min="10" max="100" onChange={this.lowerSizeChange} defaultValue="20" />
+                        <input className="text-size-bar" type="range" min="10" max="100" onChange={this.lowerSizeChange} defaultValue="20" />
                         <br/>
                     
-                        <button onClick={this.saveFile}>Save</button>
+                        <button className="save-upload-button" onClick={this.saveFile}>Save</button>
                      </div>
                 
                     <div className="memeGenerator">

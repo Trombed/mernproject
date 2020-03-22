@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './session.css';
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -55,44 +56,60 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div className="signup-form-container">
-                <form onSubmit={this.handleSubmit} className="login-form-box">
-                    {/* Please {this.props.formType} or {this.props.otherForm} */}
-                    <div onClick={this.props.closeModal} className="close-x">X</div>
-                   Sign Up
+            <div className="session-form-container">
+                <div className="form-header-container">
+                    <div className="form-header-text">Sign Up</div>
+                    <div className="icon-container">
+                        <div onClick={this.props.closeModal} className="close-x">X</div>
+                    </div>
+
+                </div>
+                <form onSubmit={this.handleSubmit} className="session-form-box">
+
                     {this.renderErrors()}
                     <div className="signup-form">
-                        <br />
-                         <label> Username: 
-                            <input type="text"
-                            id="signup-input"
-                            value={this.state.username}
-                            onChange={this.update('username')}
-                            placeholder="Username"
+                        <div className="form-text-container">
+                            <label className="form-text"> Username:
+                            </label>
+                        </div>
+
+                        <div className="form-input-container">
+                            <input className="form-input" type="text"
+                                value={this.state.username}
+                                onChange={this.update('username')}
+                                placeholder="Username"
                             />
-                        </label>
-                        <br />
-                        <label>
-                            Password: 
-                            <input type="password"
-                                id="signup-input"
+                        </div>
+
+                        <div className="form-text-container">
+                            <label className="form-text">
+                                Password:
+                            </label>
+
+                        </div>
+                        <div className="form-input-container">
+                            <input className="form-input" type="password"
                                 value={this.state.password}
                                 onChange={this.update('password')}
                                 placeholder="Password"
                             />
-                        </label>
-                        <br />
-                        <label>
-                            Confirm Password: 
-                            <input type="password"
-                                id="signup-input"
+
+                        </div>
+                        <div className="form-text-container">
+                            <label className="form-text">
+                                Confirm Password:
+                            </label>
+                        </div>
+                        <div className="form-input-container">
+                            <input className="form-input" type="password"
                                 value={this.state.password2}
                                 onChange={this.update('password2')}
                                 placeholder="Confirm Password"
-                            />      
-                        </label>
-                        <br />
-                        <input type="submit" value="Submit" />
+                            />
+                        </div>
+                        <div className="form-button-container">
+                            <button className="form-button" type="submit">Sign Up!</button>
+                        </div>
                         {this.renderErrors()}
                     </div>
                 </form>

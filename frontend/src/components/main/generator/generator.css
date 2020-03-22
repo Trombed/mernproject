@@ -35,8 +35,24 @@
     
 }
 
+.select-file {
+    margin: 5px;
+    font-size: 18px;
+}
+
 .input {
     resize: none;
+    margin: 10px 20px 1px 1px;
+}
+
+.text-input-label {
+    display: inline;
+    margin: 10px;
+    vertical-align: super;
+}
+
+.text-size-bar {
+    margin-left: 80px;
 }
 
 .upper-text {
@@ -73,7 +89,14 @@
     top: 200;
 }
 
-
+.save-upload-button {
+    /* text-align: right; */
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: lightgray;
+    cursor: pointer;
+    border: 1px solid black;
+}
 
 
 

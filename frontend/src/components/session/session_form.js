@@ -1,5 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './session.css';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -37,30 +40,44 @@ class SessionForm extends React.Component {
 
     render() {
         return (
-            <div className="login-form-container">
+            <div className="session-form-container">
+                <div className="form-header-container">
+                    <div className="form-header-text">Sign In</div>
+                    <div className="icon-container">
+                        <div onClick={this.props.closeModal} className="close-x">X</div>
+                    </div>
+
+                </div>
                 <form onSubmit={this.handleSubmit} className="login-form-box">
-                    <div onClick={this.props.closeModal} className="close-x">X</div>
-                    Log In
+
                     {this.renderErrors()}
                     <div className="login-form">
-                        <br />
-                        <label>Username:
+                        <div className="form-text-container">
+                            <label className="form-text"> Username:
+                            </label>
+                        </div>
+                        <div className="form-input-container">
                             <input type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
-                                id="login-input"
+                                className="form-input"
                             />
-                        </label>
-                        <br />
-                        <label>Password:
-              <input type="password"
+                        </div>
+                        <div className="form-text-container">
+                            <label className="form-text">
+                                Password:
+                            </label>
+                        </div>
+                        <div className="form-input-container">
+                            <input type="password"
                                 value={this.state.password}
                                 onChange={this.update('password')}
-                                id="login-input"
+                                className="form-input"
                             />
-                        </label>
-                        <br />
-                        <input className="session-submit" type="submit" value={this.props.formType} />
+                        </div>
+                        <div className="form-button-container">
+                            <input className="form-button" type="submit" value="Sign In"/>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -64,8 +64,8 @@ passport.authenticate("jwt", { session: false }),
 (req, res) => {
     
     Meme.findByIdAndUpdate(req.id,
-        { "$push": { "likes": req.user.id } },
-        // { "$push": { "likes": '5e72d13a602b3566600668ac'} },
+        { "$addToSet": { "likes": req.user.id } },
+        // { "$addToSet": { "likes": '5e7504c9770593980286d9cd'} },
         { "new": true, "upsert": true },
         function (err, meme) {
             if (err) return res.status(500).send("There was a problem creating a like.");
@@ -82,7 +82,7 @@ router.delete("/:id/like",
 
         Meme.findByIdAndUpdate(req.id,
             { "$pull": { "likes": req.user.id } },
-            // { "$pull": { "likes": '5e72d13a602b3566600668ac' } },
+            // { "$pull": { "likes": '5e7504c9770593980286d9cd' } },
             { "new": true, "upsert": true },
             function (err, meme) {
                 if (err) return res.status(500).send("There was a problem deleting a like.");

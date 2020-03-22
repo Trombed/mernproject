@@ -72,9 +72,6 @@ class RandomMemes extends React.Component {
                 <div className="memes" style={{ overflow: "auto" }}> 
                 {
                 this.state.memes
-                            // .filter(meme => meme.images_count > 0 && meme.images[0].type.startsWith('image/'))
-                            // .sort(() => 0.5 - Math.random())
-                            // .slice(0, 10)
                             .map(meme => (
                                 <RandomMeme 
                                 key={meme.id}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { closeModal } from '../../actions/image_modal_actions';
 import { connect } from 'react-redux';
-import './modal.css'
+import './image_modal.css'
 
-function Modal({modal, closeModal}) {
+function ImageModal({modal, closeModal}) {
   if (!modal) {
     return null;
   }
@@ -31,4 +31,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(ImageModal);

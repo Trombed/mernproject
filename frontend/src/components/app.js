@@ -15,7 +15,7 @@ import SignupFormContainer from './session/signup_form_container';
 import "./app_container.css"
 import StitchAppContainer from '../components/stitch/stitchApp_container'
 import ImageModal from './modal/image_modal';
-import Modal from '../../src/components/modal/modal';
+import Modal from '../../src/components/modal/image_modal';
 
 const App = () => (
     <div className="App-Container">

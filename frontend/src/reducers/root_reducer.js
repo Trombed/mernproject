@@ -7,6 +7,7 @@ import LikesReducer from './likes_reducer';
 import ReplyReducer from './comment_reducer';
 import ui from './ui_reducer';
 
+
 const RootReducer = combineReducers({
     session,
     errors,
@@ -14,7 +15,6 @@ const RootReducer = combineReducers({
     modal: modalReducer,
     likes: LikesReducer,
     reply: ReplyReducer,
-    
     ui
 });
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
-import Greeting from '../greeting/greeting';
+import GreetingContainer from '../greeting/greeting_container';
+
+
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -24,9 +26,9 @@ class NavBar extends React.Component {
                 </div>
             );
         } else {
-            //need to make this pull in the log in buttons from Greeting
-            // <Greeting/>
-            
+            return (
+            <GreetingContainer />
+            )
         }
     }
 

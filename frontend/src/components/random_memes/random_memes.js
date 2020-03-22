@@ -27,7 +27,7 @@ class RandomMemes extends React.Component {
                 this.setState({ loading: true });
                 setTimeout(() => {
                     this.getMemes();
-                }, 2000);
+                }, 1500);
             }
         });
     }

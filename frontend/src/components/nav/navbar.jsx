@@ -28,6 +28,7 @@ class NavBar extends React.Component {
         } else {
             return (
                 <div>
+                
                     <Link to={`/randommemes`}>Check This Out!</Link>
                     <GreetingContainer />
             </div>
@@ -38,7 +39,8 @@ class NavBar extends React.Component {
     render() {
         return (
             <div className="NavBar-Container">
-                <div className="NavBar-Title">Mememakewitter</div>
+                <div className="NavBar-Title"><Link to='/'>Mememakewitter
+                </Link></div>
                 <div>{this.getLinks()}</div>
             </div>
         );

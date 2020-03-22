@@ -2,6 +2,9 @@ import React from 'react';
 import GeneratorContainer from './generator/generator_container';
 import ShowPageContainer from './show/show_container';
 import './mainpage_container.css'
+import {Route} from 'react-router-dom'
+import RandomMemes from '../random_memes/random_memes';
+
 
 class MainPage extends React.Component {
 
@@ -9,8 +12,9 @@ class MainPage extends React.Component {
         return (
             <div className="MainPage-Container">
                 <GeneratorContainer />
-                <ShowPageContainer />
-            </div>
+                <Route exact path='/' component={ShowPageContainer} />
+                <Route exact path='/randommemes' component={RandomMemes} />
+                </div>
         );
     }
 }

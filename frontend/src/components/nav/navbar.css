@@ -1,10 +1,12 @@
 .NavBar-Container {
     display: flex;
     flex-direction: row;
+  
     justify-content: space-between;
     padding: 1%;
     border-bottom: 1px solid grey;
     align-items: center;
+    z-index: 50;
 }
 
 .NavBar-Title {

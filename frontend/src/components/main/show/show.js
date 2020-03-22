@@ -50,7 +50,7 @@ class ShowPage extends React.Component {
 
 
     render() {
-        let content = this.props.allMemes.map( meme => {
+        let content = this.props.allMemes.map( meme => {        
         const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
         const likedMeme = (( this.likes[meme._id] || userLiked) ? 
         <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>

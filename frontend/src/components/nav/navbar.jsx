@@ -23,6 +23,7 @@ class NavBar extends React.Component {
                     <Link to={'/profile'}>Profile</Link>
                     <Link to={'/new_tweet'}>Write a Tweet</Link> */}
                     <button onClick={this.logoutUser} className="NavBar-Button">Logout</button>
+                    <Link to={`/randommemes`}>Check This Out!</Link>
                 </div>
             );
         } else {
@@ -33,6 +34,9 @@ class NavBar extends React.Component {
                     </div>
                     <div className='NavBar-Session-Links'>
                     <Link to={'/login'}>Login</Link>
+                    </div>
+                    <div>
+                    <Link to={`/randommemes`}>Check This Out!</Link>
                     </div>
                 </div>
             );

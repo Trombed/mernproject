@@ -22,9 +22,8 @@ class RandomMemes extends React.Component {
             let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
             let scrollHeight = event.srcElement.body.scrollHeight;
 
-            console.log(scrollTop, window.outerHeight, scrollHeight, document.body.scrollTop, document.documentElement.scrollTop)
+            // console.log(scrollTop, window.outerHeight, scrollHeight, document.body.scrollTop, document.documentElement.scrollTop)
             if (scrollTop + window.outerHeight >= scrollHeight) {
-                // this.getMemes();
                 this.setState({ loading: true });
                 setTimeout(() => {
                     this.getMemes();
@@ -70,7 +69,7 @@ class RandomMemes extends React.Component {
         return (
             
             <div>
-                <div className="memes" ref="iScroll" style={{ overflow: "auto" }}> 
+                <div className="memes" style={{ overflow: "auto" }}> 
                 {
                 this.state.memes
                             // .filter(meme => meme.images_count > 0 && meme.images[0].type.startsWith('image/'))

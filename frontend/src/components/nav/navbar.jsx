@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
-import Greeting from '../greeting/greeting';
+import GreetingContainer from '../greeting/greeting_container';
+
+
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -25,18 +27,11 @@ class NavBar extends React.Component {
             );
         } else {
             return (
-                <div className="NavBar-Sessions">
-                    <div className="NavBar-Session-Links">
-                    <Link to={'/signup'}>Signup</Link>
-                    </div>
-                    <div className='NavBar-Session-Links'>
-                    <Link to={'/login'}>Login</Link>
-                    </div>
-                    <div>
+                <div>
                     <Link to={`/randommemes`}>Check This Out!</Link>
-                    </div>
-                </div>
-            );
+                    <GreetingContainer />
+            </div>
+            )
         }
     }
 

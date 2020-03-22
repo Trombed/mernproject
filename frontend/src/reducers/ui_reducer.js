@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import modal from './modal_reducer';
+import modal from './image_modal_reducer';
 
 export default combineReducers({
     modal

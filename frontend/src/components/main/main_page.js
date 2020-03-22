@@ -9,7 +9,7 @@ class MainPage extends React.Component {
         return (
             <div className="MainPage-Container">
                 <GeneratorContainer />
-                {/* <ShowPageContainer /> */}
+                <ShowPageContainer />
             </div>
         );
     }

@@ -14,10 +14,12 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import "./app_container.css"
 import StitchAppContainer from '../components/stitch/stitchApp_container'
+import ImageModal from './modal/image_modal';
 import Modal from '../../src/components/modal/modal';
 
 const App = () => (
     <div className="App-Container">
+        <ImageModal />      
         <Modal/>
         <header>
             <GreetingContainer />

@@ -8,9 +8,8 @@ export const receiveNewComment = data => ({
 })
 
 export const composeReply = (data) => dispatch => {
-    debugger
     return (
-        addComment(data.id, data.body)
+        addComment(data.id, data)
             .then(res => dispatch(receiveNewComment(data)))  
             .catch(err => console.log(err))
     )

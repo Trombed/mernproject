@@ -47,16 +47,13 @@ class IndividualShow extends React.Component {
             id,
             body
         }
-        debugger
         this.props.composeReply(comment)
-
     }
 
 
 
     render() {
        
-        debugger
         let content = this.props.singleMeme.map( meme => {
         const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
         const likedMeme = (( this.likes[meme._id] || userLiked) ? 

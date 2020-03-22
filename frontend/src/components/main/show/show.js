@@ -1,5 +1,6 @@
 import React from 'react';
 import "./show.css"
+import Comments from './comments/comments'
 
 class ShowPage extends React.Component {
     constructor(props) {
@@ -42,16 +43,19 @@ class ShowPage extends React.Component {
             id,
             body
         }
-        debugger
         this.props.composeReply(comment)
 
+    }
+
+    collapse(){
+        
     }
 
 
 
     render() {
         let content = this.props.allMemes.map( meme => {        
-        const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
+        const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id);
         const likedMeme = (( this.likes[meme._id] || userLiked) ? 
         <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
                 <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
@@ -59,7 +63,13 @@ class ShowPage extends React.Component {
         :
         <div className='Individual-Likes' onClick={ ()=> this.likeMeme(meme._id)}>
                 LIKE!
-         </div>)
+         </div>);
+        const comments = (meme.comments.length > 0) ? 
+        <Comments comments={meme.comments} />
+        :
+        null;
+        const commentsLength = meme.comments.length
+        
 
             return (
             <div key={meme._id} className="Individual-Meme-Container">
@@ -75,6 +85,14 @@ class ShowPage extends React.Component {
                     <button onClick={(e) => this.replyMeme(e, meme._id)} >
                         Flame This Post 
                     </button>                
+                </div>
+                <div>
+                    <div onClick={this.collapse}>
+                        Replies: {commentsLength}
+                    </div>
+                    <div>
+                    {comments}
+                    </div>
                 </div>
             </div>
             )

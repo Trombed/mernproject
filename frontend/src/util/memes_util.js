@@ -26,8 +26,9 @@ export const deleteLike = (id) => {
 }
 
 
-export const addComment = (id, data) => {
-    return axios.post(`api/memes/${id}/comment`, data)
+export const addComment = (id, body) => {
+    debugger
+    return axios.post(`api/memes/${id}/comment`, body)
 }
 
 export const removeComment = (id) => {

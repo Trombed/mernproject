@@ -7,7 +7,7 @@ function Modal({modal, closeModal}) {
   if (!modal) {
     return null;
   }
-  debugger
+
   return (
     <div className="modal-background" onClick={closeModal}>
             <span className="Individual-Close" id="Modal-Close"

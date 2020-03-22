@@ -97,7 +97,7 @@ router.delete("/:id/like",
 router.post("/:id/comment",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-
+        debugger
         const newComment = new Comment({
             user: req.user.id,
             // user: '5e72d13a602b3566600668ac',

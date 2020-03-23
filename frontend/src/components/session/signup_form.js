@@ -15,14 +15,22 @@ class SignupForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.clearedErrors = false;
         this.renderErrors = this.renderErrors.bind(this);
+        this.handleDemo = this.handleDemo.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.signedIn === true) {
-            this.props.history.push('/');
-        }
+        // if (nextProps.signedIn === true) {
+        //     this.props.history.push('/');
+        // }
 
         this.setState({ errors: nextProps.errors })
+    }
+
+    handleDemo(e) {
+        e.preventDefault();
+        let user = { email: "Guest_User", password: "password" }
+        this.props.demoForm(user)
+            .then(this.props.closeModal);
     }
 
     update(field) {
@@ -39,7 +47,8 @@ class SignupForm extends React.Component {
             password2: this.state.password2
         };
 
-        this.props.signup(user, this.props.history);
+        this.props.signup(user)
+            .then(this.props.closeModal);
     }
 
     renderErrors() {
@@ -67,7 +76,7 @@ class SignupForm extends React.Component {
                 <form onSubmit={this.handleSubmit} className="session-form-box">
 
                     {this.renderErrors()}
-                    <div className="signup-form">
+                    <div className="session-form">
                         <div className="form-text-container">
                             <label className="form-text"> Username:
                             </label>
@@ -108,7 +117,8 @@ class SignupForm extends React.Component {
                             />
                         </div>
                         <div className="form-button-container">
-                            <button className="form-button" type="submit">Sign Up!</button>
+                            <input className="form-button" type="submit" value="Sign Up!" />
+                            <input className="form-button" type="submit" onClick={this.handleDemo} value="Continue with Guest User" />
                         </div>
                         {this.renderErrors()}
                     </div>

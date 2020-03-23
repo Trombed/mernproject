@@ -29,6 +29,11 @@
     font-size: 30px;
 }
 
+.session-form {
+    display: flex;
+    flex-direction: column;
+}
+
 .session-form-box {
     display: flex;
     width: 100%;
@@ -58,14 +63,25 @@
 
 .form-button-container {
     padding: 10px 0;
+    display: flex;
 }
 
 .form-button {
     outline: 0;
+    border: 1px solid #5680E9;
     font-size: 18px;
     padding: 5px 10px;
+    margin: 5px 30px 5px 0;
 }
 
 .form-button:hover {
+    cursor: pointer;
+}
+
+.close-x {
+    font-size: 25px;
+}
+
+.close-x:hover {
     cursor: pointer;
 }

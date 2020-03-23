@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../actions/session_actions';
-import LoginForm from './login_form';
+import { login, signup } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/image_modal_actions';
-import SessionForm from './session_form';
+// import SessionForm from './session_form';
+import SignLogForm from './signlog_form'
 
 const mapStateToProps = (state) => {
     return {
+        signedIn: state.session.isSignedIn,
         errors: state.errors.session,
         formType: 'login',
     };
@@ -20,6 +21,7 @@ const mapDispatchToProps = (dispatch) => {
                 Sign up
             </button>
         ),
+        demoForm: user => dispatch(login(user)),
         closeModal: () => dispatch(closeModal())
 
 
@@ -35,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
 //     mapDispatchToProps
 // )(LoginForm); //?
 
-export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignLogForm);

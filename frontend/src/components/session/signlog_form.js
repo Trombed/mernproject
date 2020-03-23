@@ -4,23 +4,26 @@ import './session.css';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
-class SessionForm extends React.Component {
+class SignLogForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
             password: '',
+            password2: '',
             errors: {}
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleDemo = this.handleDemo.bind(this)
+        this.clearedErrors = false;
+        this.renderErrors = this.renderErrors.bind(this);
+        this.handleDemo = this.handleDemo.bind(this);
     }
+    componentWillReceiveProps(nextProps) {
+        // if (nextProps.signedIn === true) {
+        //     this.props.history.push('/');
+        // }
 
-    handleDemo(e) {
-        e.preventDefault();
-        let user = { email: "Guest_User", password: "password" }
-        this.props.demoForm(user)
-            .then(this.props.closeModal);
+        this.setState({ errors: nextProps.errors })
     }
 
     update(field) {
@@ -31,8 +34,20 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const user = Object.assign({}, this.state);
-        this.props.login(user)
+
+        let user = {
+            username: this.state.username,
+            password: this.state.password,
+            password2: this.state.password2
+        }
+
+        this.props.processForm(user).then(this.props.closeModal);
+    }
+
+    handleDemo(e) {
+        e.preventDefault();
+        let user = { username: "Guest_User", password: "password" }
+        this.props.demoForm(user)
             .then(this.props.closeModal);
     }
 
@@ -49,10 +64,11 @@ class SessionForm extends React.Component {
     }
 
     render() {
+        const buttonText = (this.props.formType === 'signup') ? 'Sign Up!' : 'Log In!'
         return (
             <div className="session-form-container">
                 <div className="form-header-container">
-                    <div className="form-header-text">Log In</div>
+                    <div className="form-header-text">Sign Up</div>
                     <div className="icon-container">
                         <div onClick={this.props.closeModal} className="close-x">X</div>
                     </div>
@@ -61,39 +77,63 @@ class SessionForm extends React.Component {
                 <form onSubmit={this.handleSubmit} className="session-form-box">
 
                     {this.renderErrors()}
-                    <div className="session-form">
+                    <div className="signup-form">
                         <div className="form-text-container">
                             <label className="form-text"> Username:
                             </label>
                         </div>
+
                         <div className="form-input-container">
-                            <input type="text"
+                            <input className="form-input" type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
-                                className="form-input"
+                                placeholder="Username"
                             />
                         </div>
+
                         <div className="form-text-container">
                             <label className="form-text">
                                 Password:
                             </label>
+
                         </div>
                         <div className="form-input-container">
-                            <input type="password"
+                            <input className="form-input" type="password"
                                 value={this.state.password}
                                 onChange={this.update('password')}
-                                className="form-input"
+                                placeholder="Password"
                             />
+
                         </div>
+                        <div className="form-text-container">
+                            <label className="form-text">
+                                Confirm Password:
+                            </label>
+                        </div>
+
+                        {
+                            (this.props.formType === 'signup') ?
+                                <div className="form-input-container">
+                                    <input className="form-input" type="password"
+                                        value={this.state.password2}
+                                        onChange={this.update('password2')}
+                                        placeholder="Confirm Password"
+                                    />
+                                </div>
+                                :
+                                ''
+                        }
+
                         <div className="form-button-container">
-                            <input className="form-button" type="submit" value="Log Up!" />
+                            {/* <button className="form-button" type="submit">Sign Up!</button> */}
+                            <input className="form-button" type="submit" value={buttonText} />
                             <input className="form-button" type="submit" onClick={this.handleDemo} value="Continue with Guest User" />
                         </div>
+                        {this.renderErrors()}
                     </div>
                 </form>
             </div>
         );
     }
 }
-
-export default withRouter(SessionForm);
+export default withRouter(SignLogForm);

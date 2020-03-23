@@ -3,7 +3,7 @@ import Show from './show';
 import { fetchMemes } from '../../../actions/memes_action';
 import {openModal} from "../../../actions/image_modal_actions"
 import {createNewLike, deleteOldLike} from "../../../actions/like_action"
-import {composeReply, deleteComment} from "../../../actions/reply_action"
+import {composeReply } from "../../../actions/reply_action"
 
 
 const mapStateToProps = state => ({

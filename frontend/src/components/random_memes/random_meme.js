@@ -3,9 +3,7 @@ import './random_meme.css';
 
 class RandomMeme extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+ 
 
     render() {
         return (

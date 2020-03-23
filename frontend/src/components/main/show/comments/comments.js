@@ -3,7 +3,7 @@ import "./comment.css";
 class Comments extends React.Component {
   render() {
     const comment = this.props.comments.map(comment => (
-      <div className="Comment-Individual-Container">
+      <div className={`Comment-Individual-Container ${this.props.id}`}>
         <div className="Comment-Name">{comment.user.username} replied:</div>
 
         <div className="Comment-Body">{comment.body}</div>

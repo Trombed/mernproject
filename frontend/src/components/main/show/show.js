@@ -10,6 +10,7 @@ class ShowPage extends React.Component {
         this.deleteLikeMeme = this.deleteLikeMeme.bind(this)
         this.likes = this.props.likes
         this.replyMeme = this.replyMeme.bind(this)
+        this.collpase = this.collapse.bind(this)
     }
 
     componentDidMount(){
@@ -47,9 +48,27 @@ class ShowPage extends React.Component {
 
     }
 
-    collapse(){
+    collapse(id){
+        var coll = document.getElementsByClassName(`${id}`);
+        if (coll.length <= 0) return null;
         
+        
+        for (let i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if( content === null) {
+                return null;
+            }
+            else if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          }
+          )}
     }
+    
 
 
 
@@ -65,7 +84,7 @@ class ShowPage extends React.Component {
                 LIKE!
          </div>);
         const comments = (meme.comments.length > 0) ? 
-        <Comments comments={meme.comments} />
+        <Comments comments={meme.comments} id={meme._id}/>
         :
         null;
         const commentsLength = meme.comments.length
@@ -87,12 +106,12 @@ class ShowPage extends React.Component {
                     </button>                
                 </div>
                 <div>
-                    <div onClick={this.collapse}>
+                    <div className={`${meme._id}`} id="Comment-Replies" onClick={() => this.collapse(`${meme._id}`)}>
                         Replies: {commentsLength}
                     </div>
-                    <div>
+                    
                     {comments}
-                    </div>
+                    
                 </div>
             </div>
             )

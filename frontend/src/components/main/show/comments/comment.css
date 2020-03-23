@@ -1,13 +1,15 @@
 .Comment-Container {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    display: flex;
+    display: none;
     flex-direction: column;
     border-top: 1px solid #5680E9;
 
 }
 
 .Comment-Individual-Container {
+    display: flex;
+    flex-direction: column;
     padding-top: 10px;
     padding-left: 10px;
     padding-bottom: 10px;

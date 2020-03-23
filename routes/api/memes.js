@@ -14,7 +14,7 @@ const Comment = require('../../models/Comment');
 router.get("/", (req, res) => {
     Meme
         .find()
-        .limit(3)
+        .limit(6)
         .sort({ date: -1 })
         .populate({path: 'comments',
             populate: {

@@ -3,22 +3,34 @@
     flex-direction: row;
   
     justify-content: space-between;
-    padding: 1%;
+    /* padding: 1%; */
     border-bottom: 1px solid grey;
     align-items: center;
     z-index: 50;
+    background-color: #5680E9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 79px;
 }
 
-.NavBar-Title {
+.NavBar-Title a {
     font-weight: 700;
+    color: black;
+    text-decoration: none; 
+    cursor: pointer;
+    font-size: 16px;
+    padding: 3px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.NavBar-Sessions {
+/* .NavBar-Sessions {
     display: flex;
     flex-direction: row;
-}
+} */
 
-.NavBar-Session-Links {
+/* .NavBar-Session-Links {
     padding: 5px;
     border: 1px solid black;
 }
@@ -26,6 +38,20 @@
 .NavBar-Session-Links a {
     color: black;
     text-decoration: none;
+} */
+
+.navbar-links a {
+    color: black;
+    text-decoration: none; 
+    cursor: pointer;
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    font-size: 16px;
+    padding: 3px;
+    display: block;
+    margin-right:auto;
+    margin-left:auto;
 }
 
 
@@ -46,4 +72,13 @@
     background-color: lightgray;
     cursor: pointer;
     border: 1px solid black;
+}
+
+.logout-button {
+    font-size: 16px;
+    border-radius: 0.5em;
+    background-color: lightgray;
+    cursor: pointer;
+    border: 1px solid black;
+    text-align: right;
 }

@@ -100,7 +100,7 @@ class Generator extends React.Component {
                         <input className="text-size-bar" type="range" min="10" max="100" onChange={this.lowerSizeChange} defaultValue="20" />
                         <br/>
                     
-                        <button className="save-upload-button" onClick={this.saveFile}>Save</button>
+                        <button className="save-upload-button" onClick={this.saveFile}>Save Meme</button>
                      </div>
                 
                     <div className="memeGenerator">

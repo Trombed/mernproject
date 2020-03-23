@@ -10,9 +10,7 @@
     /* padding: 30px 50px; */
 }
 
-.MainPage-Container {
-    background-image: linear-gradient(to top, #8860D0 0%, #C1C8E4 25%, #5AB9EA 50%, #84CEEB 75%, #5680E9 100%);
-}
+
 
 .form-header-container {
     display: flex;

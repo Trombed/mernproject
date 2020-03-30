@@ -3,6 +3,7 @@ import { closeModal } from "../../actions/image_modal_actions";
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session/login_form_container';
 import SignupFormContainer from '../session/signup_form_container';
+import GeneratorContainer from '../main/generator/generator_container'
 
 function SessionModal({modal, closeModal}) {
   if (!modal) {
@@ -15,6 +16,9 @@ function SessionModal({modal, closeModal}) {
       break;
     case 'signup':
       component = <SignupFormContainer />;
+      break;
+    case 'create':
+      component = <GeneratorContainer />;
       break;
     default:
       return null;

@@ -5,25 +5,22 @@ import GreetingContainer from '../greeting/greeting_container';
 
 
 
+
 class NavBar extends React.Component {
     constructor(props) {
-        super(props);
-        this.logoutUser = this.logoutUser.bind(this);
+        super(props)
         this.sessionStatus = this.sessionStatus.bind(this);
         this.memeStatus = this.memeStatus.bind(this);
         this.user = this.props.user
     }
 
-    logoutUser(e) {
-        e.preventDefault();
-        this.props.logout();
-    }
+ 
 
     memeStatus() {
         if (this.props.loggedIn) {
             return(
             <div>
-                <button>Create Meme!</button>
+                <button className="create-meme-button" onClick={() => this.props.openModal('create')}>Create Memes!</button>
 
             </div>
             );
@@ -41,7 +38,7 @@ class NavBar extends React.Component {
             return (
                 <div className="navbar-links"> 
                     <input type="submit" value={`Welcome ${this.user.username}`} />
-                    <button onClick={this.logoutUser} className="logout-button">Logout</button>
+                    <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );
         } else {

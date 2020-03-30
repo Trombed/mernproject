@@ -37,7 +37,7 @@ class NavBar extends React.Component {
         if (this.props.loggedIn) {
             return (
                 <div className="navbar-links"> 
-                    <input type="submit" value={`Welcome ${this.user.username}`} />
+                    <input className="navbar-userprofile" type="submit" value={`Welcome ${this.user.username}`} />
                     <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );

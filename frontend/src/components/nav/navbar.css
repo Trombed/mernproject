@@ -62,6 +62,10 @@
 
 }
 
+.navbar-userprofile {
+    font-size: 20px;
+}
+
 .login-signup {
     text-align: right;
 }

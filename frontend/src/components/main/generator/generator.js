@@ -12,7 +12,7 @@ class Generator extends React.Component {
             lowertext: "",
             
         }
-        //I WANNA DRINK
+        //for generating and saving created memes
         this.upperInput = this.upperInput.bind(this)
         this.lowerInput = this.lowerInput.bind(this)
         this.uploadImage = this.uploadImage.bind(this)
@@ -46,6 +46,8 @@ class Generator extends React.Component {
         var screenshot = document.getElementsByClassName("memeGenerator");
         
         html2canvas(screenshot[0],{
+            //create-memes branch current this width and height seem to have no effect
+            //on the created image size
             width: this.width,
             height: this.height,
             backgroundColor: null})
@@ -82,6 +84,9 @@ class Generator extends React.Component {
         ))
 
         return (
+            //created 2 outer divs-generator-page-wrap and generator-page-container
+            //since modal need outer container for users to click but not close modal. aka buffer area
+            
             <div className="generator-page-wrap">
                 <div className="generator-page-container">
 

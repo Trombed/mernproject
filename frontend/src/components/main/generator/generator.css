@@ -41,6 +41,7 @@
 
     position: absolute;
     z-index: 0;
+    
 }
 
 #canvas2 {
@@ -53,7 +54,7 @@
     min-height: 500px; 
     min-width: 500px;
     
-    /* z-index: 0; */
+    z-index: 0;
     
 }
 

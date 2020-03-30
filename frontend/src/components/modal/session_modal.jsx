@@ -23,13 +23,24 @@ function SessionModal({modal, closeModal}) {
     default:
       return null;
   }
-  return (
-    <div className="modal-background" onClick={closeModal}>
-      <div className="modal-child" onClick={e => e.stopPropagation()}>
-        { component }
-      </div>
-    </div>
-  );
+  if (modal !== 'create') {
+      return (
+        <div className="modal-background" onClick={closeModal}>
+          <div className="modal-child" onClick={e => e.stopPropagation()}>
+            {component}
+          </div>
+        </div>
+      );
+  } else {
+      return (
+        <div className="modal-background" onClick={closeModal}>
+          <div className="modal-child-create" onClick={e => e.stopPropagation()}>
+            { component }
+          </div>
+        </div>
+      );
+    
+  }
 }
 
 const mapStateToProps = state => {

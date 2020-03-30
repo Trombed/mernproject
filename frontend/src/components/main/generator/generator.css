@@ -1,3 +1,21 @@
+.generator-page-wrap {
+    display: flex;
+    left: 100px;
+    width: 900px;
+    height: 700px;
+    flex-direction: column;
+    border: 1px solid #5680E9;
+    background-color: rgba(86, 128, 233, 1);
+    margin: 5px;
+    border-radius: 0.5em;
+}
+
+.generator-page-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .memeContainer {
     display: flex;
     flex-direction: row;

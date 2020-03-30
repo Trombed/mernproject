@@ -11,7 +11,7 @@ class MainPage extends React.Component {
     render() {
         return (
             <div className="MainPage-Container">
-                <GeneratorContainer />
+                {/* <GeneratorContainer /> */}
                 <Route exact path='/' component={ShowPageContainer} />
                 <Route exact path='/randommemes' component={RandomMemes} />
                 </div>

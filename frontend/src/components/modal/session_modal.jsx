@@ -17,13 +17,13 @@ function SessionModal({modal, closeModal}) {
     case 'signup':
       component = <SignupFormContainer />;
       break;
-    case 'create':
+    case 'createee':
       component = <GeneratorContainer />;
       break;
     default:
       return null;
   }
-  if (modal !== 'create') {
+  if (modal !== 'createee') {
       return (
         <div className="modal-background" onClick={closeModal}>
           <div className="modal-child" onClick={e => e.stopPropagation()}>

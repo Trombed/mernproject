@@ -1,8 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './session.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faTimes } from '@fortawesome/free-solid-svg-icons'
+
 
 class SignLogForm extends React.Component {
     constructor(props) {
@@ -40,15 +39,15 @@ class SignLogForm extends React.Component {
             password: this.state.password,
             password2: this.state.password2
         }
-
-        this.props.processForm(user).then(this.props.closeModal);
+        // this.props.processForm(user).then(this.props.closeModal);
+        this.props.processForm(user);
     }
 
     handleDemo(e) {
         e.preventDefault();
         let user = { username: "Guest_User", password: "password" }
         this.props.demoForm(user)
-            .then(this.props.closeModal);
+                  .then(this.props.closeModal);
     }
 
     renderErrors() {
@@ -57,6 +56,7 @@ class SignLogForm extends React.Component {
                 {Object.keys(this.state.errors).map((error, i) => (
                     <li key={`error-${i}`}>
                         {this.state.errors[error]}
+                        
                     </li>
                 ))}
             </ul>
@@ -75,8 +75,11 @@ class SignLogForm extends React.Component {
 
                 </div>
                 <form onSubmit={this.handleSubmit} className="session-form-box">
+                    
+                    <div className="login-errors">
+                        {this.renderErrors()}
+                    </div>
 
-                    {this.renderErrors()}
                     <div className="signup-form">
                         <div className="form-text-container">
                             <label className="form-text"> Username:
@@ -125,11 +128,9 @@ class SignLogForm extends React.Component {
                         }
 
                         <div className="form-button-container">
-                            {/* <button className="form-button" type="submit">Sign Up!</button> */}
                             <input className="form-button" type="submit" value={buttonText} />
                             <input className="form-button" type="submit" onClick={this.handleDemo} value="Continue with Guest User" />
                         </div>
-                        {this.renderErrors()}
                     </div>
                 </form>
             </div>

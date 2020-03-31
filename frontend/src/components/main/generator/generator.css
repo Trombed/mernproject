@@ -1,7 +1,30 @@
+.generator-page-wrap {
+    display: flex;
+    left: 100px;
+    width: 900px;
+    height: 600px;
+    flex-direction: column;
+    border: 1px solid #5680E9;
+    background-color: rgba(86, 128, 233, 1);
+    padding: 10px;
+    border-radius: 0.5em;
+}
+
+.generator-page-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .memeContainer {
     display: flex;
     flex-direction: row;
 
+}
+
+.memeContainer-title {
+    font-size: 20px;
+    margin: 20px 0;
 }
 
 
@@ -18,6 +41,7 @@
 
     position: absolute;
     z-index: 0;
+    
 }
 
 #canvas2 {

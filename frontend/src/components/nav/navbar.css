@@ -62,8 +62,19 @@
 
 }
 
+.navbar-userprofile {
+    font-size: 20px;
+}
+
 .login-signup {
     text-align: right;
+}
+.create-meme-button {
+    font-size: 16px;
+    border-radius: 0.5em;
+    background-color: lightgray;
+    cursor: pointer;
+    border: 1px solid black;
 }
 
 .login-signup-button {

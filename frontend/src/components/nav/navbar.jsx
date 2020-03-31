@@ -5,32 +5,45 @@ import GreetingContainer from '../greeting/greeting_container';
 
 
 
+
 class NavBar extends React.Component {
     constructor(props) {
-        super(props);
-        this.logoutUser = this.logoutUser.bind(this);
-        this.getLinks = this.getLinks.bind(this);
+        super(props)
+        this.sessionStatus = this.sessionStatus.bind(this);
+        this.memeStatus = this.memeStatus.bind(this);
+        this.user = this.props.user
     }
 
-    logoutUser(e) {
-        e.preventDefault();
-        this.props.logout();
+ 
+
+    memeStatus() {
+        if (this.props.loggedIn) {
+            return(
+            <div>
+                <button className="create-meme-button" onClick={() => this.props.openModal('createMeme')}>Create Memes!</button>
+
+            </div>
+            );
+        } else {
+            return(
+            <div>
+                <button>Login and Create memes!</button>
+            </div>
+            );
+        }
     }
 
-    getLinks() {
+    sessionStatus() {
         if (this.props.loggedIn) {
             return (
                 <div className="navbar-links"> 
-                    
-                    <Link to={`/randommemes`}>Check Out Some Memes!</Link>
-                    <button onClick={this.logoutUser} className="logout-button">Logout</button>
+                    <input className="navbar-userprofile" type="submit" value={`Welcome ${this.user.username}`} />
+                    <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );
         } else {
             return (
                 <div className="navbar-links">
-                
-                    <Link to={`/randommemes`}>Check Out Some Memes!</Link>
                     <GreetingContainer />
             </div>
             )
@@ -40,9 +53,14 @@ class NavBar extends React.Component {
     render() {
         return (
             <div className="NavBar-Container">
-                <div className="NavBar-Title"><Link to='/'>Mememakewitter
-                </Link></div>
-                <div>{this.getLinks()}</div>
+                <div className="NavBar-Title">
+                    <Link to='/'>Mememakewitter</Link>
+                </div>
+                <div>
+                    <Link to={`/randommemes`}>Check Out Some Memes!</Link>
+                </div>
+                <div>{this.memeStatus()}</div>
+                <div>{this.sessionStatus()}</div>
             </div>
         );
     }

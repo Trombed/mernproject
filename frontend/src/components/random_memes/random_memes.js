@@ -17,7 +17,7 @@ class RandomMemes extends React.Component {
         this.getMemes();
 
         window.addEventListener("scroll", (event) => {
-            // debugger
+           
 
             let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
             let scrollHeight = event.srcElement.body.scrollHeight;
@@ -65,7 +65,6 @@ class RandomMemes extends React.Component {
 
     }
     render() {
-        // debugger
         return (
             
             <div>

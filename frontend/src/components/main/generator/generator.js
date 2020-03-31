@@ -12,7 +12,7 @@ class Generator extends React.Component {
             lowertext: "",
             
         }
-        //I WANNA DRINK
+        //for generating and saving created memes
         this.upperInput = this.upperInput.bind(this)
         this.lowerInput = this.lowerInput.bind(this)
         this.uploadImage = this.uploadImage.bind(this)
@@ -32,6 +32,7 @@ class Generator extends React.Component {
             }
     }
 
+
    
     upperInput(e) {
         this.setState({uppertext: e.target.value});
@@ -44,8 +45,12 @@ class Generator extends React.Component {
     saveFile() {
         var self = this;
         var screenshot = document.getElementsByClassName("memeGenerator");
+        //working to make the screenshot height and width to maintain the original picture's ratio
+        //but if ratio is past 500px, scale down according to ratio
         
         html2canvas(screenshot[0],{
+
+
             width: this.width,
             height: this.height,
             backgroundColor: null})
@@ -57,7 +62,9 @@ class Generator extends React.Component {
             
             // var win = window.open();
             // win.document.write('<iframe src="' + base64image  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>')
-        }) 
+        })
+        .then(this.props.closeModal)
+        .then(this.props.fetchMemes())
         this.setState({uppertext: ""})
         this.setState({lowertext: ""})
     }
@@ -81,49 +88,56 @@ class Generator extends React.Component {
         ))
 
         return (
-                
-            <div className="memeContainer">
+            //created 2 outer divs-generator-page-wrap and generator-page-container
+            //since modal need outer container for users to click but not close modal. aka buffer area
 
-                    <div>
-                        <input className="select-file" type="file" id="fileinput" accept = "image/*" onChange={this.uploadImage} /> 
-                        <br/>
+            <div className="generator-page-wrap">
+                <div className="generator-page-container">
 
-                        <h1 className="text-input-label">Text 1:  </h1>
-                        <textarea className='input' onChange={this.upperInput}/>
-                        <br/>
-                        <input className="text-size-bar" type="range" min="10" max="100" onChange={this.upperSizeChange} defaultValue="20" />
-                        <br/>
+                    <div className="memeContainer-title">Select background Image to create your Meme!</div>
+                    <div className="memeContainer">
+                        <div>
+                            <input className="select-file" type="file" id="fileinput" accept = "image/*" onChange={this.uploadImage} /> 
+                            <br/>
 
-                        <h1 className="text-input-label">Text 2:  </h1>
-                        <textarea className='input' onChange={this.lowerInput}/>
-                        <br/>
-                        <input className="text-size-bar" type="range" min="10" max="100" onChange={this.lowerSizeChange} defaultValue="20" />
-                        <br/>
-                    
-                        <button className="save-upload-button" onClick={this.saveFile}>Save Meme</button>
-                     </div>
-                
-                    <div className="memeGenerator">
+                            <h1 className="text-input-label">Text 1:  </h1>
+                            <textarea className='input' onChange={this.upperInput}/>
+                            <br/>
+                            <input className="text-size-bar" type="range" min="10" max="100" onChange={this.upperSizeChange} defaultValue="20" />
+                            <br/>
 
-                        <div id='canvas2'>
-                          
+                            <h1 className="text-input-label">Text 2:  </h1>
+                            <textarea className='input' onChange={this.lowerInput}/>
+                            <br/>
+                            <input className="text-size-bar" type="range" min="10" max="100" onChange={this.lowerSizeChange} defaultValue="20" />
+                            <br/>
+                        
+                            <button className="save-upload-button" onClick={this.saveFile}>Save Meme</button>
                         </div>
-                        <Draggable>
-                           
-                         <span className='upper-text box'>{upperTextOutput}
-                        </span>
-                        </Draggable>
-                        <br />
-                        <Draggable>
-                            <div  className='lower-text'>{this.state.lowertext}</div>
-                        </Draggable>
-
-
-               
-                    </div>
                     
-                
-              
+                        <div className="memeGenerator">
+
+                            <div id='canvas2'>
+                                
+                            </div>
+                            <Draggable>
+                                
+                                <span className='upper-text box'>{upperTextOutput}
+                            </span>
+                            </Draggable>
+                            <br />
+                            <Draggable>
+                                <div  className='lower-text'>{this.state.lowertext}</div>
+                            </Draggable>
+
+
+                    
+                        </div>
+                            
+                        
+                    
+                    </div>
+                </div>
             </div>
 
             

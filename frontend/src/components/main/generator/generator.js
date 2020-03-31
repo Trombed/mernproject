@@ -44,10 +44,12 @@ class Generator extends React.Component {
     saveFile() {
         var self = this;
         var screenshot = document.getElementsByClassName("memeGenerator");
+        //working to make the screenshot height and width to maintain the original picture's ratio
+        //but if ratio is past 500px, scale down according to ratio
         
         html2canvas(screenshot[0],{
-            //create-memes branch current this width and height seem to have no effect
-            //on the created image size
+
+
             width: this.width,
             height: this.height,
             backgroundColor: null})
@@ -86,7 +88,7 @@ class Generator extends React.Component {
         return (
             //created 2 outer divs-generator-page-wrap and generator-page-container
             //since modal need outer container for users to click but not close modal. aka buffer area
-            
+
             <div className="generator-page-wrap">
                 <div className="generator-page-container">
 

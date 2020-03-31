@@ -19,7 +19,7 @@ class IndividualShow extends React.Component {
       
     }
    componentDidUpdate(prevProps){
-     
+
         if (prevProps.match.params.id !== this.props.match.params.id) {
             this.props.fetchMeme(this.props.match.params.id)  
         }

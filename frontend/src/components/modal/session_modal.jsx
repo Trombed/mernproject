@@ -6,7 +6,6 @@ import SignupFormContainer from '../session/signup_form_container';
 import GeneratorContainer from '../main/generator/generator_container'
 
 function SessionModal({modal, closeModal}) {
-  // debugger
   if (!modal) {
     return null;
   }

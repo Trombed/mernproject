@@ -6,6 +6,7 @@ const MemesReducer = (state = {}, action) => {
 
     switch(action.type) {
         case RECEIVE_MEMES:
+        
             return Object.values(action.data.data)
         default:
             return state

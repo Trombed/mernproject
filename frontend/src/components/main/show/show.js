@@ -1,6 +1,7 @@
 import React from 'react';
 import "./show.css"
 import Comments from './comments/comments'
+import { Link } from 'react-router-dom'
 
 class ShowPage extends React.Component {
     constructor(props) {
@@ -92,7 +93,10 @@ class ShowPage extends React.Component {
 
             return (
             <div key={meme._id} className="Individual-Meme-Container">
-                <div className='Individual-Name'>{meme.user.username} POSTED:
+                <div className='Individual-Name'>
+                <Link to={`/users/${meme.user._id}`}>
+                {meme.user.username} POSTED:
+                </Link>
                 </div>
                 <div className='Individual-Meme-Pic'>
                 <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />

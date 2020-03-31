@@ -6,6 +6,7 @@ import SignupFormContainer from '../session/signup_form_container';
 import GeneratorContainer from '../main/generator/generator_container'
 
 function SessionModal({modal, closeModal}) {
+  // debugger
   if (!modal) {
     return null;
   }
@@ -17,13 +18,13 @@ function SessionModal({modal, closeModal}) {
     case 'signup':
       component = <SignupFormContainer />;
       break;
-    case 'createee':
+    case 'createMeme':
       component = <GeneratorContainer />;
       break;
     default:
       return null;
   }
-  if (modal !== 'createee') {
+  if (modal !== 'createMeme') {
       return (
         <div className="modal-background" onClick={closeModal}>
           <div className="modal-child" onClick={e => e.stopPropagation()}>

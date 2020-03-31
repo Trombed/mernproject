@@ -42,6 +42,18 @@ app.get("/", (req, res) => {
     res.send("Hello world~~~ root page");
 });
 
+app.get("/createMeme", (req, res) => {
+    res.send("modal to create meme");
+});
+
+app.get("/login", (req, res) => {
+    res.send("modal to login users");
+});
+
+app.get("/signup", (req, res) => {
+    res.send("modal to signup users");
+});
+
 app.use('/api/users', users);
 app.use('/api/memes', memes);
 

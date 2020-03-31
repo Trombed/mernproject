@@ -20,7 +20,7 @@ class NavBar extends React.Component {
         if (this.props.loggedIn) {
             return(
             <div>
-                <button className="create-meme-button" onClick={() => this.props.openModal('createee')}>Create Memes!</button>
+                <button className="create-meme-button" onClick={() => this.props.openModal('createMeme')}>Create Memes!</button>
 
             </div>
             );

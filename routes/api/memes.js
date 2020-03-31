@@ -33,9 +33,21 @@ router.get("/", (req, res) => {
 router.get("/users/:user_id", (req, res) => {
     Meme
         .find({ user: req.params.user_id })
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'user',
+                model: 'User',
+                select: 'username'
+            }
+        })
+        .populate('likes', '-password')
+        .populate('user', '-password')
         .then(memes => res.json(memes))
         .catch(err => res.status(400).json(err));
 })
+
+
 
 router.get("/:id", (req, res) => {
     Meme

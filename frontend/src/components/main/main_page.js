@@ -4,7 +4,8 @@ import ShowPageContainer from './show/show_container';
 import './mainpage_container.css'
 import {Route} from 'react-router-dom'
 import RandomMemes from '../random_memes/random_memes';
-
+import IndividualShowContainer from './individual_show/individual_show_container'
+import SingleShow from './single_meme/single_meme';
 
 class MainPage extends React.Component {
 
@@ -14,6 +15,8 @@ class MainPage extends React.Component {
                 {/* <GeneratorContainer /> */}
                 <Route exact path='/' component={ShowPageContainer} />
                 <Route exact path='/randommemes' component={RandomMemes} />
+                <Route exact path='/users/:id' component={IndividualShowContainer} />
+                <Route exact oath ='/:id' component={SingleShow} />
                 </div>
         );
     }

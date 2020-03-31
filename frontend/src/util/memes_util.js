@@ -13,8 +13,12 @@ export const getMemes = () => {
     })
 }
 
+export const getMeme = (id) => {
+    return axios.get(`/api/memes/users/${id}`)
+}
+
 export const deleteMeme = (id) => {
-    return axios.delete(`api/memes/${id}`);
+    return axios.delete(`api/memes/users/${id}`);
 }
 
 export const createLike = (id) => {

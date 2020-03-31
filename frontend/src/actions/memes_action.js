@@ -1,4 +1,4 @@
-import { saveMeme, getMemes } from "../util/memes_util"
+import { saveMeme, getMemes, getMeme } from "../util/memes_util"
 
 
 export const RECEIVE_NEW_MEMES = 'RECEIVE_NEW_MEMES'
@@ -26,5 +26,13 @@ export const receiveMemes = data => ({
 export const fetchMemes = () => dispatch => (
     getMemes()
         .then( memes => dispatch(receiveMemes(memes)))
+        .catch(err => console.log(err))
+)
+
+
+export const fetchMeme = (id) => dispatch => (
+    getMeme(id)
+        // .then(memes => console.log(memes))
+        .then( memes => dispatch (receiveMemes(memes)))
         .catch(err => console.log(err))
 )

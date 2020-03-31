@@ -68,7 +68,7 @@ class SignLogForm extends React.Component {
         return (
             <div className="session-form-container">
                 <div className="form-header-container">
-                    <div className="form-header-text">Sign Up</div>
+                    <div className="form-header-text">{buttonText}</div>
                     <div className="icon-container">
                         <div onClick={this.props.closeModal} className="close-x">X</div>
                     </div>

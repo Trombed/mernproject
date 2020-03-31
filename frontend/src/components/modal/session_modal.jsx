@@ -45,7 +45,7 @@ function SessionModal({modal, closeModal}) {
 
 const mapStateToProps = state => {
   return {
-    modal: state.ui.session
+    modal: state.ui.modal
   };
 };
 

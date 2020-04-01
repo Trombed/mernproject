@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
-import GreetingContainer from '../greeting/greeting_container';
-
-
 
 
 class NavBar extends React.Component {
@@ -13,8 +10,6 @@ class NavBar extends React.Component {
         this.memeStatus = this.memeStatus.bind(this);
         this.user = this.props.user
     }
-
- 
 
     memeStatus() {
         if (this.props.loggedIn) {
@@ -44,8 +39,11 @@ class NavBar extends React.Component {
         } else {
             return (
                 <div className="navbar-links">
-                    <GreetingContainer />
-            </div>
+
+                    <button className="login-signup-button" onClick={() => this.props.openModal('login')}>Log In</button>
+                    <button className="login-signup-button" onClick={() => this.props.openModal('signup')}>Sign Up</button>
+                   
+                </div>
             )
         }
     }

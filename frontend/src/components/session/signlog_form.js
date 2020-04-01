@@ -56,7 +56,6 @@ class SignLogForm extends React.Component {
                 {Object.keys(this.state.errors).map((error, i) => (
                     <li key={`error-${i}`}>
                         {this.state.errors[error]}
-                        
                     </li>
                 ))}
             </ul>
@@ -76,9 +75,7 @@ class SignLogForm extends React.Component {
                 </div>
                 <form onSubmit={this.handleSubmit} className="session-form-box">
                     
-                    <div className="login-errors">
-                        {this.renderErrors()}
-                    </div>
+                    
 
                     <div className="signup-form">
                         <div className="form-text-container">
@@ -131,6 +128,9 @@ class SignLogForm extends React.Component {
                             <input className="form-button" type="submit" value={buttonText} />
                             <input className="form-button" type="submit" onClick={this.handleDemo} value="Continue with Guest User" />
                         </div>
+                    </div>
+                    <div className="login-errors">
+                        {this.renderErrors()}
                     </div>
                 </form>
             </div>

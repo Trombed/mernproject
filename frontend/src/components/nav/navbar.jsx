@@ -54,8 +54,8 @@ class NavBar extends React.Component {
                 <div className="NavBar-Title">
                     <Link to='/'>Mememakewitter</Link>
                 </div>
-                <div>
-                    <Link to={`/randommemes`}>Check Out Some Memes!</Link>
+                <div className="navbar-links">
+                    <Link to={`/randommemes`}>Generate Random Memes!</Link>
                 </div>
                 <div>{this.memeStatus()}</div>
                 <div>{this.sessionStatus()}</div>

@@ -1,7 +1,7 @@
 .session-form-container {
     display: flex;
-    width: 600px;
-    height: 500px;
+    width: 500px;
+    height: 400px;
     flex-direction: column;
     border: 1px solid #5680E9;
     background-color: rgba(86, 128, 233, 1);
@@ -35,8 +35,7 @@
 .session-form-box {
     display: flex;
     width: 100%;
-    padding: 20px 20px;
-    justify-content: flex-start;
+    padding: 20px 40px;
 }
 
 .form-text {
@@ -71,6 +70,7 @@
     font-size: 18px;
     padding: 5px 10px;
     margin: 5px 30px 5px 0;
+    border-radius: 0.3em;
 }
 
 .form-button:hover {
@@ -83,9 +83,4 @@
 
 .close-x:hover {
     cursor: pointer;
-}
-
-.login-errors {
-    display: flex;
-    align-self: flex-start;
 }

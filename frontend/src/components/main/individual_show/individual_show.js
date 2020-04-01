@@ -84,9 +84,7 @@ class IndividualShow extends React.Component {
         <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
         </div>
         :
-        <div className='Individual-Likes' onClick={ ()=> this.likeMeme(meme._id)}>
-                LIKE!
-         </div>);
+        <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" />);
     
         const comments = (meme.comments.length > 0) ? 
         
@@ -119,7 +117,7 @@ class IndividualShow extends React.Component {
                 </div>
                 <div>
                     <div className={`${meme._id}`} id="Comment-Replies" onClick={() => this.collapse(`${meme._id}`)}>
-                        Replies: {commentsLength}
+                        View Comments: {commentsLength}
                     </div>
                     
                     {comments}

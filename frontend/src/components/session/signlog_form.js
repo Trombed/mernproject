@@ -19,9 +19,9 @@ class SignLogForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.signedIn === true) {
-            this.props.history.push('/');
-        }
+        // if (nextProps.signedIn === true) {
+        //     this.props.history.push('/');
+        // }
 
         this.setState({ errors: nextProps.errors })
     }
@@ -41,8 +41,10 @@ class SignLogForm extends React.Component {
             password2: this.state.password2
         }
         this.props.processForm(user).then(() => {
-            if (this.state.errors.length === 0) {
+            if (Object.keys(this.state.errors).length === 0) {
                 this.props.closeModal()
+            } else {
+                // debugger
             }
         });
     }

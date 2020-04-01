@@ -5,7 +5,7 @@ import { closeModal } from '../../actions/image_modal_actions';
 
 const mapStateToProps = (state) => {
     return {
-        signedIn: state.session.isSignedIn,
+        // signedIn: state.session.isSignedIn,
         errors: state.errors.session,
         formType: 'signup',
     };

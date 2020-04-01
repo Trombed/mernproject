@@ -12,7 +12,7 @@ const passport = require('passport');
 
 
 router.get('/test', (req, res) => {
-    res.json({ msg: "testing ~ user route  ~ " })
+    res.json({ msg: "testing ~ user route  ~  " })
 });
 
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -33,7 +33,7 @@ router.post('/register', (req, res) => {
     User.findOne({ username: req.body.username })
         .then(user => {
             if (user) {
-                return res.status(400).json({ username: "A user has already registered with this username" })
+                return res.status(400).json({ username: "---A user has already registered with this username" })
             } else {
                 const newUser = new User({
                     username: req.body.username,
@@ -46,8 +46,25 @@ router.post('/register', (req, res) => {
                         if (err) throw err;
                         newUser.password = hash;
                         newUser.save()
-                            .then(user => res.json(user))
+                            .then(user => {
+                                const payload = {
+                                    id: user.id,
+                                    username: user.username
+                                }
+                                jwt.sign(
+                                    payload,
+                                    keys.secretOrKey,
+                                    // { expiresIn: 3600 },
+                                    (err, token) => {
+                                        res.json({
+                                            success: true,
+                                            token: "Bearer " + token
+                                        });
+                                    }
+                                )
+                            })
                             .catch(err => console.log(err))
+// added
                     })
                 })
             }

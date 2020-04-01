@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
-import GreetingContainer from '../greeting/greeting_container';
-
-
 
 
 class NavBar extends React.Component {
@@ -11,10 +8,7 @@ class NavBar extends React.Component {
         super(props)
         this.sessionStatus = this.sessionStatus.bind(this);
         this.memeStatus = this.memeStatus.bind(this);
-        this.user = this.props.user
     }
-
- 
 
     memeStatus() {
         if (this.props.loggedIn) {
@@ -35,17 +29,21 @@ class NavBar extends React.Component {
 
     sessionStatus() {
         if (this.props.loggedIn) {
+            // debugger
             return (
                 <div className="navbar-links"> 
-                    <input className="navbar-userprofile" type="submit" value={`Welcome ${this.user.username}`} />
+                    <input className="navbar-userprofile" type="submit" value={`Welcome ${this.props.user.username}`} />
                     <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );
         } else {
             return (
                 <div className="navbar-links">
-                    <GreetingContainer />
-            </div>
+
+                    <button className="login-signup-button" onClick={() => this.props.openModal('login')}>Log In</button>
+                    <button className="login-signup-button" onClick={() => this.props.openModal('signup')}>Sign Up</button>
+                   
+                </div>
             )
         }
     }

@@ -1,8 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './session.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faTimes } from '@fortawesome/free-solid-svg-icons'
+
 
 class SignLogForm extends React.Component {
     constructor(props) {
@@ -18,6 +17,7 @@ class SignLogForm extends React.Component {
         this.renderErrors = this.renderErrors.bind(this);
         this.handleDemo = this.handleDemo.bind(this);
     }
+
     componentWillReceiveProps(nextProps) {
         // if (nextProps.signedIn === true) {
         //     this.props.history.push('/');
@@ -40,15 +40,20 @@ class SignLogForm extends React.Component {
             password: this.state.password,
             password2: this.state.password2
         }
-
-        this.props.processForm(user).then(this.props.closeModal);
+        this.props.processForm(user).then(() => {
+            if (Object.keys(this.state.errors).length === 0) {
+                this.props.closeModal()
+            } else {
+                // debugger
+            }
+        });
     }
 
     handleDemo(e) {
         e.preventDefault();
         let user = { username: "Guest_User", password: "password" }
         this.props.demoForm(user)
-            .then(this.props.closeModal);
+                  .then(this.props.closeModal);
     }
 
     renderErrors() {
@@ -68,15 +73,16 @@ class SignLogForm extends React.Component {
         return (
             <div className="session-form-container">
                 <div className="form-header-container">
-                    <div className="form-header-text">Sign Up</div>
+                    <div className="form-header-text">{buttonText}</div>
                     <div className="icon-container">
                         <div onClick={this.props.closeModal} className="close-x">X</div>
                     </div>
 
                 </div>
                 <form onSubmit={this.handleSubmit} className="session-form-box">
+                    
+                    
 
-                    {this.renderErrors()}
                     <div className="signup-form">
                         <div className="form-text-container">
                             <label className="form-text"> Username:
@@ -125,10 +131,11 @@ class SignLogForm extends React.Component {
                         }
 
                         <div className="form-button-container">
-                            {/* <button className="form-button" type="submit">Sign Up!</button> */}
                             <input className="form-button" type="submit" value={buttonText} />
                             <input className="form-button" type="submit" onClick={this.handleDemo} value="Continue with Guest User" />
                         </div>
+                    </div>
+                    <div className="login-errors">
                         {this.renderErrors()}
                     </div>
                 </form>

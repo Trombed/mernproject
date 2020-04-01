@@ -10,9 +10,11 @@
 .Individual-Meme-Container {
     background-color: #e6f2ff;
     border: 1px solid #5680E9;
+    border-radius: 1px;
     display: flex;
     flex-direction: column;
     padding-bottom: 15px; 
+    margin: 15px;
 }
 
 .Individual-Meme-Container:hover {
@@ -20,9 +22,10 @@
 }
 
 .Individual-Name {
-    background-color: #e6f2ff;
+    background-color: #9cbc38;;
     padding: 10px;
     color: black;
+    font-weight: 700;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;

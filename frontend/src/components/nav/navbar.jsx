@@ -21,7 +21,7 @@ class NavBar extends React.Component {
         } else {
             return(
             <div>
-                <div className="message">Login and Create Memes</div>
+                <div className="message">Login to Create Memes</div>
             </div>
             );
         }

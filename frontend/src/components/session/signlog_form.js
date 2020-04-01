@@ -111,15 +111,15 @@ class SignLogForm extends React.Component {
                             />
 
                         </div>
-                        <div className="form-text-container">
-                            <label className="form-text">
-                                Confirm Password:
-                            </label>
-                        </div>
-
                         {
                             (this.props.formType === 'signup') ?
                                 <div className="form-input-container">
+
+                                    <div className="form-text-container">
+                                        <label className="form-text">
+                                            Confirm Password:
+                                        </label>
+                                    </div>
                                     <input className="form-input" type="password"
                                         value={this.state.password2}
                                         onChange={this.update('password2')}

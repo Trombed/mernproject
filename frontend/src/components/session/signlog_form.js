@@ -40,8 +40,11 @@ class SignLogForm extends React.Component {
             password: this.state.password,
             password2: this.state.password2
         }
-        // this.props.processForm(user).then(this.props.closeModal);
-        this.props.processForm(user);
+        this.props.processForm(user).then(() => {
+            if (this.state.errors.length === 0) {
+                this.props.closeModal()
+            }
+        });
     }
 
     handleDemo(e) {

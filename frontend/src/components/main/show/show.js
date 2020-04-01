@@ -102,14 +102,14 @@ class ShowPage extends React.Component {
                 <div className="Individual-Comment">
                 
                     <textarea className="Individual-Comment-Box" id={meme._id} placeholder="Add a comment..." />
-                    <button onClick={(e) => this.replyMeme(e, meme._id)} >
+                    <button className="flame" onClick={(e) => this.replyMeme(e, meme._id)} >
                         Flame This Post 
-                    </button>                
+                    </button>   
+                        <div className={`${meme._id}`} id="Comment-Replies" onClick={() => this.collapse(`${meme._id}`)}>
+                            View Comments: {commentsLength}
+                        </div>             
                 </div>
                 <div>
-                    <div className={`${meme._id}`} id="Comment-Replies" onClick={() => this.collapse(`${meme._id}`)}>
-                        View Comments: {commentsLength}
-                    </div>
                     
                     {comments}
                     

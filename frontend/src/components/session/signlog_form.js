@@ -17,10 +17,11 @@ class SignLogForm extends React.Component {
         this.renderErrors = this.renderErrors.bind(this);
         this.handleDemo = this.handleDemo.bind(this);
     }
+
     componentWillReceiveProps(nextProps) {
-        // if (nextProps.signedIn === true) {
-        //     this.props.history.push('/');
-        // }
+        if (nextProps.signedIn === true) {
+            this.props.history.push('/');
+        }
 
         this.setState({ errors: nextProps.errors })
     }

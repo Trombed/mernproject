@@ -8,7 +8,6 @@ class NavBar extends React.Component {
         super(props)
         this.sessionStatus = this.sessionStatus.bind(this);
         this.memeStatus = this.memeStatus.bind(this);
-        this.user = this.props.user
     }
 
     memeStatus() {
@@ -30,9 +29,10 @@ class NavBar extends React.Component {
 
     sessionStatus() {
         if (this.props.loggedIn) {
+            // debugger
             return (
                 <div className="navbar-links"> 
-                    <input className="navbar-userprofile" type="submit" value={`Welcome ${this.user.username}`} />
+                    <input className="navbar-userprofile" type="submit" value={`Welcome ${this.props.user.username}`} />
                     <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );

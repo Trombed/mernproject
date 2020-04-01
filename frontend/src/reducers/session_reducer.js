@@ -12,6 +12,7 @@ import { RECEIVE_CURRENT_USER,
       case RECEIVE_CURRENT_USER:
         return {
           ...state,
+          
           isAuthenticated: !!action.currentUser,
           user: action.currentUser
         };

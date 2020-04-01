@@ -25,8 +25,6 @@ import { RECEIVE_CURRENT_USER,
         debugger
         return {
           ...state,
-          // isSignedIn: true
-          // // set
           isAuthenticated: !!action.currentUser,
           user: action.currentUser
         };

@@ -21,7 +21,7 @@ class NavBar extends React.Component {
         } else {
             return(
             <div>
-                <button>Login and Create memes!</button>
+                <div className="message">Login and Create Memes</div>
             </div>
             );
         }
@@ -50,12 +50,12 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div className="NavBar-Container">
-                <div className="NavBar-Title">
+            <div className="navbar-container">
+                <div className="navbar-title">
                     <Link to='/'>Mememakewitter</Link>
                 </div>
                 <div className="navbar-links">
-                    <Link to={`/randommemes`}>Explore Memes!</Link>
+                    <Link to={`/randommemes`}>Explore Memes</Link>
                 </div>
                 <div>{this.memeStatus()}</div>
                 <div>{this.sessionStatus()}</div>

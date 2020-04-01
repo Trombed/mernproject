@@ -32,7 +32,7 @@ class NavBar extends React.Component {
             // debugger
             return (
                 <div className="navbar-links"> 
-                    <input className="navbar-userprofile" type="submit" value={`Welcome ${this.props.user.username}`} />
+                    <div className="navbar-userprofile">{`Welcome, ${this.props.user.username}`}</div>
                     <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );

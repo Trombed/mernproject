@@ -6,11 +6,7 @@ export const saveMeme = (data) => {
 };
 
 export const getMemes = () => {
-    return axios.get('/api/memes/', {
-        params: {
-            _limit: 10
-        }
-    })
+    return axios.get('/api/memes/')
 }
 
 export const getMeme = (id) => {
@@ -38,6 +34,6 @@ export const addComment = (id, body) => {
     return axios.post(`api/memes/${id}/comment`, body)
 }
 
-export const removeComment = (id) => {
-    return axios.delete(`/api/memes/${id}/comment`)
+export const removeComment = (id, comment_id) => {
+    return axios.delete(`api/memes/${id}/comment/${comment_id}`)
 }

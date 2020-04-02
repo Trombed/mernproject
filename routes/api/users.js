@@ -22,6 +22,15 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     });
 })
 
+// test route to display all the users
+// router.get('/', (req, res) => {
+
+//    User
+//         .find()
+//         .then(users => res.json(users))
+//         .catch(err => res.status(400).json(err));
+// })
+
 router.post('/register', (req, res) => {
 
     const { errors, isValid } = validateRegisterInput(req.body);

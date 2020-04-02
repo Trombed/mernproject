@@ -84,3 +84,8 @@
 .close-x:hover {
     cursor: pointer;
 }
+
+.login-errors {
+    font-size: 18px;
+    font-style: italic;
+}

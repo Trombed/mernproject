@@ -130,14 +130,16 @@ class SignLogForm extends React.Component {
                                 ''
                         }
 
+                        <div className="login-errors">
+                            {this.renderErrors()}
+                        </div>
+
                         <div className="form-button-container">
                             <input className="form-button" type="submit" value={buttonText} />
                             <input className="form-button" type="submit" onClick={this.handleDemo} value="Continue with Guest User" />
                         </div>
                     </div>
-                    <div className="login-errors">
-                        {this.renderErrors()}
-                    </div>
+                   
                 </form>
             </div>
         );

@@ -34,7 +34,6 @@ class IndividualShow extends React.Component {
 
     likeMeme(id) {
         this.props.createNewLike(`${id}`)
-        console.log(this.props)
         .then(res =>  this.props.fetchMeme(this.props.match.params.id) )
     }
 

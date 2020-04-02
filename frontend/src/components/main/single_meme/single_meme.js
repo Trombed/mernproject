@@ -110,7 +110,9 @@ class SingleShow extends React.Component {
                     <div className={`${meme._id}`} id="Comment-Replies" >
                         View Comments: {commentsLength}
                     </div>
-                         <Comments comments={meme.comments} user={this.props.currentUser.id} deleteComment={this.props.deleteUserComment}/>
+                         <Comments comments={meme.comments} user={this.props.currentUser.id} deleteComment={this.props.deleteUserComment}
+                         memeId={meme._id}
+                         />
                   
                     <div>
                         {deletePost}

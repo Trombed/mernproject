@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
     deleteOldLike: (id) => dispatch(deleteOldLike(id)),
     composeReply: (data) => dispatch(composeReply(data)),
     deleteMemes: (id) => dispatch(deleteMemes(id)),
-    deleteUserComment: (id) => dispatch(deleteUserComment(id))
+    deleteUserComment: (id, commentId) => dispatch(deleteUserComment(id, commentId))
 })
 
 export default connect(

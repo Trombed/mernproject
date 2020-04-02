@@ -64,12 +64,12 @@ export const deleteMemes = (id) => dispatch => (
 
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 
-export const deleteComment = (id) => ({
+export const deleteComment = (id, commentId) => ({
     type: DELETE_COMMENT,
-    id
+    commentId
 })
 
-export const deleteUserComment = (id) => dispatch => (
-    removeComment(id)
-        .then(meme => dispatch(deleteComment(id)))
+export const deleteUserComment = (id, commentId) => dispatch => (
+    removeComment(id, commentId)
+        .then(meme => dispatch(deleteComment(id, commentId)))
 )

@@ -5,15 +5,15 @@ import { Link } from "react-router-dom"
 
 class Comments extends React.Component {
 
-  deleteComment(id) {
-    this.props.deleteComment(id)
+  deleteComment(id, commentId) {
+    this.props.deleteComment(id, commentId)
   }
   render() {
     const comment = this.props.comments.map( (comment) => {
       console.log(this.props)
       const deletePost = (comment.user._id === this.props.user) ? (
         <div>
-          <button onClick={ () => this.deleteComment(comment._id)}>Delete Comment</button>
+          <button onClick={ () => this.deleteComment(this.props.memeId, comment._id)}>Delete Comment</button>
         </div>
       ) : (
         null

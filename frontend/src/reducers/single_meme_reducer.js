@@ -10,9 +10,9 @@ const SingleMemeReducer = (state = {}, action) => {
             return action.data.data
         case DELETE_COMMENT:
             const newState = Object.assign({}, state)
-            
+            debugger
             state.comments.forEach( (el, idx) => {
-             if (el['_id'] === action.id ) {
+             if (el['_id'] === action.commentId ) {
                  delete newState.comments[idx]
              }
         })

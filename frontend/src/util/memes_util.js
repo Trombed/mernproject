@@ -39,5 +39,5 @@ export const addComment = (id, body) => {
 }
 
 export const removeComment = (id) => {
-    return axios.delete(`api/memes/${id}/comment`)
+    return axios.delete(`/api/memes/${id}/comment`)
 }

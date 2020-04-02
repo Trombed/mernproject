@@ -1,4 +1,4 @@
-import { RECEIVE_SINGLE_MEME } from '../actions/memes_action'
+import { RECEIVE_SINGLE_MEME, DELETE_COMMENT } from '../actions/memes_action'
 
 
 const SingleMemeReducer = (state = {}, action) => {
@@ -6,8 +6,17 @@ const SingleMemeReducer = (state = {}, action) => {
 
     switch(action.type) {
         case RECEIVE_SINGLE_MEME:
-          
+            
             return action.data.data
+        case DELETE_COMMENT:
+            const newState = Object.assign({}, state)
+            
+            state.comments.forEach( (el, idx) => {
+             if (el['_id'] === action.id ) {
+                 delete newState.comments[idx]
+             }
+        })
+            return newState
         default:
             return state
     }

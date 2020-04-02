@@ -51,13 +51,12 @@ class ShowPage extends React.Component {
         </div>
         :
 
-=======
         <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" />);
         const comments = (meme.comments.length > 0) ? 
         <Comments comments={meme.comments} id={meme._id}/>
         :
         null;
->>>>>>> master
+
         const commentsLength = meme.comments.length
         
         

@@ -55,10 +55,9 @@ class IndividualShow extends React.Component {
                     <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
                 </div>
         :
-<<<<<<< HEAD
-=======
+
         <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" />);
->>>>>>> master
+
     
       
         const commentsLength = meme.comments.length

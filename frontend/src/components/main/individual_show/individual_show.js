@@ -78,13 +78,10 @@ class IndividualShow extends React.Component {
                 {likedMeme}
              
                 <div>
-<<<<<<< HEAD
                     <Link to={`/${meme._id}`}>
                     <div className={`${meme._id}`} id="Comment-Replies" >
                         View Comments: {commentsLength}
-=======
 
->>>>>>> master
                     </div>
                     </Link>
                   

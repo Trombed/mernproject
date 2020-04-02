@@ -52,10 +52,7 @@ class ShowPage extends React.Component {
         :
 
         <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" />);
-        const comments = (meme.comments.length > 0) ? 
-        <Comments comments={meme.comments} id={meme._id}/>
-        :
-        null;
+ 
 
         const commentsLength = meme.comments.length
         
@@ -74,15 +71,12 @@ class ShowPage extends React.Component {
                 {likedMeme}
           
                 <div>
-<<<<<<< HEAD
+
                     <Link to={`${meme._id}`}>
                     <div className={`${meme._id}`} id="Comment-Replies" >
-                        Replies: {commentsLength}
-=======
-                    <div className={`${meme._id}`} id="Comment-Replies" onClick={() => this.collapse(`${meme._id}`)}>
-                        View Comments: {commentsLength}
->>>>>>> master
+                        View Replies: {commentsLength}
                     </div>
+
                     </Link>
                     
                 </div>

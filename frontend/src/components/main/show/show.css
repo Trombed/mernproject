@@ -62,6 +62,8 @@
     width: inherit;
     padding: 25px;
     resize: none; 
+    display:flex;
+    flex-direction: column;
 }
 
 .Individual-Comment-Box {
@@ -88,18 +90,7 @@
 }
 
 
-#Comment-Replies {
-    cursor: pointer;
-    padding: 20px 0;
-    font-size: 14px;
-    color: #555558;
-    resize: none; 
-    margin: 5px auto;
-    font-weight: 700;
-}
-
-
-.flame {
+.flame, #Comment-Replies {
 
     display: inline-block;
     background-color: #555558;
@@ -108,13 +99,16 @@
     font-size: 14px;
     border-radius: 3px;
     outline: 0;
-    min-height: 28px;
-    min-width: 28px;
+    height: 38px;
+    width: 148px;
     border: 1px solid white;
+    text-align: left;
+    margin: 5px 0;
 }
 
-.flame:hover {
+.flame:hover, #Comment-Replies:hover {
     background-color: #fff;
     color: black;
+    cursor: pointer;
     
 }

@@ -105,12 +105,12 @@ class ShowPage extends React.Component {
                     <button className="flame" onClick={(e) => this.replyMeme(e, meme._id)} >
                         Flame This Post 
                     </button>   
-                        <div className={`${meme._id}`} id="Comment-Replies" onClick={() => this.collapse(`${meme._id}`)}>
+                        <button className={`${meme._id}`} id="Comment-Replies" onClick={() => this.collapse(`${meme._id}`)}>
                             View Comments: {commentsLength}
-                        </div>             
+                        </button>             
                 </div>
                 <div>
-                    
+        
                     {comments}
                     
                 </div>

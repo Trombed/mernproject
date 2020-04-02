@@ -14,7 +14,7 @@ class NavBar extends React.Component {
         if (this.props.loggedIn) {
             return(
             <div>
-                <button className="create-meme-button" onClick={() => this.props.openModal('createMeme')}>Create Memes!</button>
+                <button className="create-meme-button" onClick={() => this.props.openModal('createMeme')}>Create Memes</button>
 
             </div>
             );
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
             // debugger
             return (
                 <div className="navbar-links"> 
-                    <div className="navbar-userprofile">{`Welcome, ${this.props.user.username}`}</div>
+                    <div className="navbar-userprofile">{`Welcome, ${this.props.user.username}!`}</div>
                     <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );

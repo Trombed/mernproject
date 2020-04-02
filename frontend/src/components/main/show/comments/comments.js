@@ -2,11 +2,23 @@ import React from "react";
 import "./comment.css";
 import { Link } from "react-router-dom"
 
-class Comments extends React.Component {
-  render() {
 
-    const comment = this.props.comments.map( (comment) => (
-      
+class Comments extends React.Component {
+
+  deleteComment(id) {
+    this.props.deleteComment(id)
+  }
+  render() {
+    const comment = this.props.comments.map( (comment) => {
+      console.log(this.props)
+      const deletePost = (comment.user._id === this.props.user) ? (
+        <div>
+          <button onClick={ () => this.deleteComment(comment._id)}>Delete Comment</button>
+        </div>
+      ) : (
+        null
+      )
+      return (
       <div className={`Comment-Individual-Container ${this.props.id}`} key={comment._id}>
         <div className="Comment-Name">
        <Link to={`/users/${comment.user._id}`}>
@@ -15,9 +27,10 @@ class Comments extends React.Component {
         </div>
 
         <div className="Comment-Body">{comment.body}</div>
-      </div>
-    ));
-    console.log(comment)
+        <div>{deletePost}</div>
+      </div>)
+    });
+   
     return <div className="Comment-Container">{comment}</div>;
   }
 }

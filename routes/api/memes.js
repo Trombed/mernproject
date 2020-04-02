@@ -142,7 +142,6 @@ router.param('comment_id', function (req, res, next, comment_id) {
 router.delete("/:id/comment/:comment_id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-
         Meme.findByIdAndUpdate(req.id,
             { "$pull": { "comments": req.comment_id } },
             // { "new": true, "upsert": true },

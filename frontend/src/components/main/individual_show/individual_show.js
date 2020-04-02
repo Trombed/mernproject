@@ -34,10 +34,14 @@ class IndividualShow extends React.Component {
 
     likeMeme(id) {
         this.props.createNewLike(`${id}`)
+        console.log(this.props)
+        .then(res =>  this.props.fetchMeme(this.props.match.params.id) )
     }
 
     deleteLikeMeme(id) {
         this.props.deleteOldLike(id)
+        .then(res =>  this.props.fetchMeme(this.props.match.params.id) )
+
     }
 
 
@@ -49,14 +53,14 @@ class IndividualShow extends React.Component {
     render() {
        
         let content = this.props.singleMeme.map( meme => {
-            const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
+            const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)  
             const likedMeme = (( this.likes[meme._id] || userLiked) ? 
                 <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
                     <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
                 </div>
         :
 
-        <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" />);
+        <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" onClick={ () => this.likeMeme(meme._id) } />);
 
     
       

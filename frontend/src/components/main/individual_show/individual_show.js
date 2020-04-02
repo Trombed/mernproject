@@ -17,7 +17,7 @@ class IndividualShow extends React.Component {
       
     }
    componentDidUpdate(prevProps){
-     
+
         if (prevProps.match.params.id !== this.props.match.params.id) {
             this.props.fetchMeme(this.props.match.params.id)  
         }
@@ -55,9 +55,10 @@ class IndividualShow extends React.Component {
                     <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
                 </div>
         :
-                 <div className='Individual-Likes' onClick={ ()=> this.likeMeme(meme._id)}>
-                        LIKE!
-                  </div>);
+<<<<<<< HEAD
+=======
+        <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" />);
+>>>>>>> master
     
       
         const commentsLength = meme.comments.length
@@ -78,9 +79,13 @@ class IndividualShow extends React.Component {
                 {likedMeme}
              
                 <div>
+<<<<<<< HEAD
                     <Link to={`/${meme._id}`}>
                     <div className={`${meme._id}`} id="Comment-Replies" >
-                        Replies: {commentsLength}
+                        View Comments: {commentsLength}
+=======
+
+>>>>>>> master
                     </div>
                     </Link>
                   

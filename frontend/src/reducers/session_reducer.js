@@ -12,6 +12,7 @@ import { RECEIVE_CURRENT_USER,
       case RECEIVE_CURRENT_USER:
         return {
           ...state,
+          
           isAuthenticated: !!action.currentUser,
           user: action.currentUser
         };
@@ -21,9 +22,11 @@ import { RECEIVE_CURRENT_USER,
           user: {}
         };
       case RECEIVE_USER_SIGN_IN:
+        debugger
         return {
           ...state,
-          isSignedIn: true
+          isAuthenticated: !!action.currentUser,
+          user: action.currentUser
         };
       default:
         return state;

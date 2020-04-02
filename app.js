@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
+const router = express.Router();
 const mongoose = require('mongoose');
 const db = require("./config/keys").mongoURI;
-const users = require('./routes/api/users');
-const memes = require('./routes/api/memes');
+const users = router.use(require('./routes/api/users'));
+const memes = router.use(require('./routes/api/memes'));
 
-const User = require('./models/User');
-const Meme = require('./models/Meme');
+// const User = require('./models/User');
+// const Meme = require('./models/Meme');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
@@ -41,11 +42,23 @@ app.get("/", (req, res) => {
     res.send("Hello world~~~ root page");
 });
 
+app.get("/createMeme", (req, res) => {
+    res.send("modal to create meme");
+});
+
+app.get("/login", (req, res) => {
+    res.send("modal to login users");
+});
+
+app.get("/signup", (req, res) => {
+    res.send("modal to signup users");
+});
+
 app.use('/api/users', users);
 app.use('/api/memes', memes);
 
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-    console.log(`Listening on port: ${port}`)
+    console.log(`Backend listening on port: ${port}`)
 })

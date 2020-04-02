@@ -17,13 +17,13 @@ function SessionModal({modal, closeModal}) {
     case 'signup':
       component = <SignupFormContainer />;
       break;
-    case 'create':
+    case 'createMeme':
       component = <GeneratorContainer />;
       break;
     default:
       return null;
   }
-  if (modal !== 'create') {
+  if (modal !== 'createMeme') {
       return (
         <div className="modal-background" onClick={closeModal}>
           <div className="modal-child" onClick={e => e.stopPropagation()}>
@@ -45,7 +45,7 @@ function SessionModal({modal, closeModal}) {
 
 const mapStateToProps = state => {
   return {
-    modal: state.ui.session
+    modal: state.ui.modal
   };
 };
 

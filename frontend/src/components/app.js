@@ -8,7 +8,7 @@ import SessionModal from '../../src/components/modal/session_modal';
 const App = () => (
     <div className="App-Container">
         <ImageModal />      
-        <SessionModal/>
+        <SessionModal />
   
         <NavBarContainer />
         <MainPage />

@@ -10,7 +10,7 @@ class Comments extends React.Component {
       <div className={`Comment-Individual-Container ${this.props.id}`} key={comment._id}>
         <div className="Comment-Name">
        <Link to={`/users/${comment.user._id}`}>
-        {comment.user.username} replied:
+        {comment.user.username}:
         </Link> 
         </div>
 

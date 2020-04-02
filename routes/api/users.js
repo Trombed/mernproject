@@ -12,7 +12,7 @@ const passport = require('passport');
 
 
 router.get('/test', (req, res) => {
-    res.json({ msg: "testing ~ user route  ~ " })
+    res.json({ msg: "testing ~ user route ~ " })
 });
 
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -29,7 +29,6 @@ router.post('/register', (req, res) => {
         return res.status(400).json(errors);
     }
    
-
     User.findOne({ username: req.body.username })
         .then(user => {
             if (user) {
@@ -40,14 +39,30 @@ router.post('/register', (req, res) => {
                     password: req.body.password
                 })
 
-                // bcrypt.genSalt( number of rounds to generate salt, cb function to run after salting is done )
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
                         if (err) throw err;
                         newUser.password = hash;
                         newUser.save()
-                            .then(user => res.json(user))
+                            .then(user => {
+                                const payload = {
+                                    id: user.id,
+                                    username: user.username
+                                }
+                                jwt.sign(
+                                    payload,
+                                    keys.secretOrKey,
+                                    // { expiresIn: 3600 },
+                                    (err, token) => {
+                                        res.json({
+                                            success: true,
+                                            token: "Bearer " + token
+                                        });
+                                    }
+                                )
+                            })
                             .catch(err => console.log(err))
+// added
                     })
                 })
             }

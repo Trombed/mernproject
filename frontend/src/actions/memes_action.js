@@ -1,4 +1,4 @@
-import { saveMeme, getMemes, getMeme, getSingleMeme, deleteMeme } from "../util/memes_util"
+import { saveMeme, getMemes, getMeme, getSingleMeme, deleteMeme, removeComment } from "../util/memes_util"
 
 
 export const RECEIVE_NEW_MEMES = 'RECEIVE_NEW_MEMES'
@@ -60,4 +60,16 @@ export const deleteUserMeme = id =>  ({
 export const deleteMemes = (id) => dispatch => (
     deleteMeme(id)
         .then(meme => console.log("deleted"))
+)
+
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+
+export const deleteComment = (id) => ({
+    type: DELETE_COMMENT,
+    id
+})
+
+export const deleteUserComment = (id) => dispatch => (
+    removeComment(id)
+        .then(meme => dispatch(deleteComment(id)))
 )

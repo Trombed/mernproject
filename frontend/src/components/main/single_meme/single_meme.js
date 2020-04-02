@@ -36,10 +36,12 @@ class SingleShow extends React.Component {
 
     likeMeme(id) {
         this.props.createNewLike(`${id}`)
+        .then( res =>    this.props.fetchSingleMeme(this.props.match.params.id) )
     }
 
     deleteLikeMeme(id) {
         this.props.deleteOldLike(id)
+        .then( res =>    this.props.fetchSingleMeme(this.props.match.params.id) )
     }
 
     replyMeme(e, id) {
@@ -50,6 +52,7 @@ class SingleShow extends React.Component {
             body
         }
         this.props.composeReply(comment)
+        .then( res => this.props.fetchSingleMeme(this.props.match.params.id))
     }
 
     deletePost(id) {
@@ -62,53 +65,72 @@ class SingleShow extends React.Component {
 
 
     render() {
-       
-        const meme = this.props.oneMeme;
-      
-        const content = (Object.keys(meme).length === 0) ? 
-        null :
-        (
+        var content = null
+        if (Object.values(this.props.oneMeme).length <= 0) {
+            content = null 
+        } else {
+            const meme = this.props.oneMeme
+            const commentsLength = meme.comments.length
+            const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
+             const likedMeme = (( this.likes[meme._id] || userLiked) ? 
+                <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
+                    <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
+                </div>
+        :
+        <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE"  onClick={ () => this.likeMeme(meme._id) } />);
+            const deletePost = (meme.user._id === this.props.currentUser.id) ? 
+            ( <div> 
+                <button onClick={() => this.deletePost(meme._id)}> Delete Post </button> 
+              </div>
+            ) : (
+                null
+            )
+            content = (
+
+                <div key={meme._id} className="Individual-Meme-Container">
+                <div className='Individual-Name'>
+                <Link to={`/users/${meme.user._id}`}>
+                    {meme.user.username}
+                </Link>
+                     POSTED:
+                </div>
+                <div className='Individual-Meme-Pic'>
+                <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
+                </div>
             
-            <div key={meme._id} className="Individual-Meme-Container">
-                            <div className='Individual-Name'>
-                            <Link to={`/users/${meme.user._id}`}>
-                                {meme.user.username}
-                            </Link>
-                                 POSTED:
-                            </div>
-                            <div className='Individual-Meme-Pic'>
-                            <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
-                            </div>
-                        
-                      
-                            <div className="Individual-Comment">
+                {likedMeme}
+                <div className="Individual-Comment">
                             
                                 <textarea className="Individual-Comment-Box" id={meme._id} placeholder="Add a comment..." />
                                 <button onClick={(e) => this.replyMeme(e, meme._id)} >
                                     Flame This Post 
                                 </button>                
                             </div>
-                            <div>
-                                <div className={`${meme._id}`} id="Comment-Replies">
-                                    Replies: {meme.comments.length}
-                                </div>
-                                    
-                                <Comments comments={meme.comments} />
-                                
-                            </div>
+                <div>
+                    <div className={`${meme._id}`} id="Comment-Replies" >
+                        View Comments: {commentsLength}
+                    </div>
+                         <Comments comments={meme.comments} user={this.props.currentUser.id} deleteComment={this.props.deleteUserComment}/>
+                  
+                    <div>
+                        {deletePost}
+                    </div>
+                </div>
+            </div>
+                
+            )
+        }
+        
+        
 
-                            <div>
-                                <button onClick={ () => this.deletePost(meme._id)}>Delete Post</button>
-                            </div>
-                        </div>
-        )
+        
       
 
             return (
-                  <div className="Fetched-Meme-Container">
-                               {content}
-                                
-                   </div>
+            <div className="Fetched-Meme-Container">
+               {content}
+                
+            </div>
             )
 
     }

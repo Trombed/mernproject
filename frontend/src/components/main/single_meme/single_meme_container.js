@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SingleShow from './single_meme';
-import { fetchSingleMeme, deleteMemes } from '../../../actions/memes_action';
+import { fetchSingleMeme, deleteMemes, deleteUserComment } from '../../../actions/memes_action';
 import {openModal} from "../../../actions/image_modal_actions"
 import {createNewLike, deleteOldLike} from "../../../actions/like_action"
 import {composeReply } from "../../../actions/reply_action"
@@ -20,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
     createNewLike: (id) => dispatch(createNewLike(id)),
     deleteOldLike: (id) => dispatch(deleteOldLike(id)),
     composeReply: (data) => dispatch(composeReply(data)),
-    deleteMemes: (id) => dispatch(deleteMemes(id))
+    deleteMemes: (id) => dispatch(deleteMemes(id)),
+    deleteUserComment: (id) => dispatch(deleteUserComment(id))
 })
 
 export default connect(

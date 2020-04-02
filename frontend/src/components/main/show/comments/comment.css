@@ -24,13 +24,14 @@
 .Comment-Name a {
     color: black;
     text-decoration: none;
-    font-weight:normal;
+    font-weight: 700;
     font-size: 16px;
 }
 
 .Comment-Body{
     padding: 15px;
     color: black;
+    font-style: italic;
 }
 
 .delete-comment {

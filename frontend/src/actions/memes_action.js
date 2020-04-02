@@ -1,4 +1,4 @@
-import { saveMeme, getMemes, getMeme } from "../util/memes_util"
+import { saveMeme, getMemes, getMeme, getSingleMeme, deleteMeme } from "../util/memes_util"
 
 
 export const RECEIVE_NEW_MEMES = 'RECEIVE_NEW_MEMES'
@@ -23,6 +23,13 @@ export const receiveMemes = data => ({
     data
 })
 
+export const RECEIVE_SINGLE_MEME = 'RECEIVE_SINGLE_MEME'
+
+export const receiveSingleMeme = data => ({
+    type: RECEIVE_SINGLE_MEME,
+    data
+})
+
 export const fetchMemes = () => dispatch => (
     getMemes()
         .then( memes => dispatch(receiveMemes(memes)))
@@ -32,7 +39,25 @@ export const fetchMemes = () => dispatch => (
 
 export const fetchMeme = (id) => dispatch => (
     getMeme(id)
-        // .then(memes => console.log(memes))
         .then( memes => dispatch (receiveMemes(memes)))
         .catch(err => console.log(err))
+)
+
+export const fetchSingleMeme = (id) => dispatch => (
+    getSingleMeme(id)
+        .then( memes => dispatch (receiveSingleMeme(memes)))
+        .catch(err => console.log(err))
+)
+
+export const DELETE_USER_MEME = 'DELETE_USER_MEME'
+
+export const deleteUserMeme = id =>  ({
+    type: DELETE_USER_MEME,
+    id
+})
+
+
+export const deleteMemes = (id) => dispatch => (
+    deleteMeme(id)
+        .then(meme => console.log("deleted"))
 )

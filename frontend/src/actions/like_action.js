@@ -15,6 +15,7 @@ export const createNewLike = (id) => dispatch => (
 
 )
 
+
 export const RECEIVE_DELETE_LIKE = 'RECEIVE_DELETE_LIKE'
 
 export const receiveDeleteLike = (data) => ({

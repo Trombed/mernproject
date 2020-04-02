@@ -50,6 +50,7 @@ router.get("/users/:user_id", (req, res) => {
 
 
 router.get("/:id", (req, res) => {
+    debugger
     Meme
         .findById(req.params.id)
         .populate({path: 'comments', 

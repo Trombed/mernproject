@@ -1,0 +1,29 @@
+import { connect } from 'react-redux';
+import SingleShow from './single_meme';
+import { fetchSingleMeme, deleteMemes } from '../../../actions/memes_action';
+import {openModal} from "../../../actions/image_modal_actions"
+import {createNewLike, deleteOldLike} from "../../../actions/like_action"
+import {composeReply } from "../../../actions/reply_action"
+
+
+
+const mapStateToProps = (state, ownProps) => ({
+   currentUser: state.session.user,
+   oneMeme: state.singleMeme,
+   likes: state.likes
+});
+
+
+const mapDispatchToProps = dispatch => ({
+    fetchSingleMeme: (id) => dispatch(fetchSingleMeme(id)),
+    openModal: (img) => dispatch(openModal(img)),
+    createNewLike: (id) => dispatch(createNewLike(id)),
+    deleteOldLike: (id) => dispatch(deleteOldLike(id)),
+    composeReply: (data) => dispatch(composeReply(data)),
+    deleteMemes: (id) => dispatch(deleteMemes(id))
+})
+
+export default connect(
+    mapStateToProps,    
+    mapDispatchToProps
+)(SingleShow);

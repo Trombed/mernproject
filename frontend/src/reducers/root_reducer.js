@@ -6,6 +6,7 @@ import modalReducer from './image_modal_reducer';
 import LikesReducer from './likes_reducer';
 import ReplyReducer from './comment_reducer';
 import ui from './ui_reducer';
+import SingleMemeReducer from './single_meme_reducer';
 
 
 const RootReducer = combineReducers({
@@ -15,7 +16,9 @@ const RootReducer = combineReducers({
     modal: modalReducer,
     likes: LikesReducer,
     reply: ReplyReducer,
+    singleMeme: SingleMemeReducer,
     ui
+
 });
 
 export default RootReducer;

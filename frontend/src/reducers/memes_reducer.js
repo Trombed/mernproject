@@ -1,4 +1,4 @@
-import { RECEIVE_MEMES } from '../actions/memes_action'
+import { RECEIVE_MEMES} from '../actions/memes_action'
 
 
 const MemesReducer = (state = {}, action) => {

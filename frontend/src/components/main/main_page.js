@@ -5,7 +5,7 @@ import './mainpage_container.css'
 import {Route} from 'react-router-dom'
 import RandomMemes from '../random_memes/random_memes';
 import IndividualShowContainer from './individual_show/individual_show_container'
-import SingleShow from './single_meme/single_meme';
+import SingleShowContainer from './single_meme/single_meme_container';
 
 class MainPage extends React.Component {
 
@@ -16,7 +16,7 @@ class MainPage extends React.Component {
                 <Route exact path='/' component={ShowPageContainer} />
                 <Route exact path='/randommemes' component={RandomMemes} />
                 <Route exact path='/users/:id' component={IndividualShowContainer} />
-                <Route exact oath ='/:id' component={SingleShow} />
+                <Route exact path ='/:id' component={SingleShowContainer} />
                 </div>
         );
     }

@@ -17,8 +17,12 @@ export const getMeme = (id) => {
     return axios.get(`/api/memes/users/${id}`)
 }
 
+export const getSingleMeme = (id) => {
+    return axios.get(`/api/memes/${id}`)
+}
+
 export const deleteMeme = (id) => {
-    return axios.delete(`api/memes/users/${id}`);
+    return axios.delete(`api/memes/${id}`);
 }
 
 export const createLike = (id) => {

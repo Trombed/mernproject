@@ -1,12 +1,12 @@
 .generator-page-wrap {
     display: flex;
     left: 100px;
-    width: 900px;
-    height: 600px;
+    width: 80vw;
+    height: 80vh;
     flex-direction: column;
     border: 1px solid #5680E9;
     background-color: rgba(86, 128, 233, 1);
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 0.5em;
 }
 
@@ -29,9 +29,9 @@
 
 
 .memeGenerator {
-    height: 500px;
-    width: 500px;
-    top: 20vh;
+    /* height: 500px;
+    width: 500px; */
+    /* top: 20vh; */
     overflow: hidden;
     flex-wrap: wrap;
 }
@@ -48,11 +48,9 @@
     position: absolute;
     background-image:url('');
     /* background-size: cover; */
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
-    min-height: 500px; 
-    min-width: 500px;
     
     z-index: 0;
     

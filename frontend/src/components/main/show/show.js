@@ -51,8 +51,11 @@ class ShowPage extends React.Component {
         </div>
         :
 
-        <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" />);
- 
+        <div className='Individual-Likes' onClick={() => this.likeMeme(meme._id)}>
+            <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" />
+        </div>
+
+        );
 
         const commentsLength = meme.comments.length
         

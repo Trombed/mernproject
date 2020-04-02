@@ -32,3 +32,30 @@
     padding: 15px;
     color: black;
 }
+
+.delete-comment {
+
+    font-size: 12px;
+    height: 38px;
+    width: 118px;
+    margin: 5px;
+    text-decoration: none; 
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    padding: 8px;
+    text-transform: none;
+    user-select: none;
+    border-radius: 5px;
+    font-weight: 700;
+    background-color: #9cbc38;
+    box-shadow: 0 6px 10px 0 rgba(27,28,30,.31);
+    color: #fff;
+}
+
+.delete-comment:hover {
+    color: black;
+    cursor: pointer;
+    border: none;
+}

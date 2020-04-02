@@ -90,25 +90,49 @@
 }
 
 
-.flame, #Comment-Replies {
+#Comment-Replies {
 
     display: inline-block;
-    background-color: #555558;
-    color: #fff;
+    color: black;
     font-weight: 700;
-    font-size: 14px;
-    border-radius: 3px;
+    font-size: 16px;
     outline: 0;
-    height: 38px;
-    width: 148px;
-    border: 1px solid white;
     text-align: left;
-    margin: 5px 0;
+    margin: 25px;
 }
 
-.flame:hover, #Comment-Replies:hover {
-    background-color: #fff;
+#Comment-Replies:hover {
+    
+    color: darkgreen;
+    cursor: pointer;
+    border: none;
+    
+}
+
+.flame {
+
+    font-size: 14px;
+    height: 38px;
+    width: 128px;
+    margin: 5px 0;
+    text-decoration: none; 
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    padding: 8px;
+    text-transform: none;
+    user-select: none;
+    border-radius: 5px;
+    font-weight: 700;
+    background-color: #9cbc38;
+    box-shadow: 0 6px 10px 0 rgba(27,28,30,.31);
+    color: #fff;
+
+}
+
+.flame:hover {
     color: black;
     cursor: pointer;
-    
+    border: none;
 }

@@ -13,7 +13,7 @@ class Comments extends React.Component {
       console.log(this.props)
       const deletePost = (comment.user._id === this.props.user) ? (
         <div>
-          <button onClick={ () => this.deleteComment(this.props.memeId, comment._id)}>Delete Comment</button>
+          <button className="delete-comment" onClick={ () => this.deleteComment(this.props.memeId, comment._id)}>Delete Comment</button>
         </div>
       ) : (
         null

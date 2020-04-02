@@ -14,14 +14,14 @@ class NavBar extends React.Component {
         if (this.props.loggedIn) {
             return(
             <div>
-                <button className="create-meme-button" onClick={() => this.props.openModal('createMeme')}>Create Memes!</button>
+                <button className="create-meme-button" onClick={() => this.props.openModal('createMeme')}>Create Memes</button>
 
             </div>
             );
         } else {
             return(
             <div>
-                <button>Login and Create memes!</button>
+                <div className="message">Login to Create Memes</div>
             </div>
             );
         }
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
             // debugger
             return (
                 <div className="navbar-links"> 
-                    <input className="navbar-userprofile" type="submit" value={`Welcome ${this.props.user.username}`} />
+                    <div className="navbar-userprofile">{`Welcome, ${this.props.user.username}!`}</div>
                     <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );
@@ -50,12 +50,12 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div className="NavBar-Container">
-                <div className="NavBar-Title">
+            <div className="navbar-container">
+                <div className="navbar-title">
                     <Link to='/'>Mememakewitter</Link>
                 </div>
                 <div className="navbar-links">
-                    <Link to={`/randommemes`}>Explore Memes!</Link>
+                    <Link to={`/randommemes`}>Explore Memes</Link>
                 </div>
                 <div>{this.memeStatus()}</div>
                 <div>{this.sessionStatus()}</div>

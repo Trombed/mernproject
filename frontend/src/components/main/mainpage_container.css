@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(to top, #8860D0 0%, #C1C8E4 25%, #5AB9EA 50%, #84CEEB 75%, #5680E9 100%);
-    margin-top: 79px;
+    background-color: #555558;
+    margin-top: 80px;
 
 }
 

@@ -62,8 +62,7 @@ class ShowPage extends React.Component {
             <div key={meme._id} className="Individual-Meme-Container">
                 <div className='Individual-Name'>
                 <Link to={`/users/${meme.user._id}`}>
-                {meme.user.username} POSTED:
-                </Link>
+                {meme.user.username} </Link> POSTED:
                 </div>
                 <div className='Individual-Meme-Pic'>
                 <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />

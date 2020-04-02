@@ -10,19 +10,25 @@
 .Individual-Meme-Container {
     background-color: #e6f2ff;
     border: 1px solid #5680E9;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
-    padding-bottom: 15px; 
+    padding-bottom: 10px; 
+    padding-top: 0;
+    margin: 15px;
 }
 
 .Individual-Meme-Container:hover {
    opacity: .9;
 }
 
+
+
 .Individual-Name {
-    background-color: #e6f2ff;
+    background-color: #9cbc38;;
     padding: 10px;
     color: black;
+    font-weight: 700;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -34,6 +40,12 @@
 .Individual-Name a {
     color: black;
     text-decoration: none;
+    
+}
+
+.Individual-Name a:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .Individual-Meme-Pic {
@@ -43,7 +55,6 @@
 }
 
 .Individual-Likes {
-    padding: 5px;
     color: white; 
 }
 
@@ -51,13 +62,18 @@
     width: inherit;
     padding: 25px;
     resize: none; 
+    display:flex;
+    flex-direction: column;
 }
 
 .Individual-Comment-Box {
     width: 100%;
-    min-height: 15px;
+    min-height: 25px;
     font-size: 14px;
     resize: none; 
+    border-radius: 3px;
+    border: 1px solid white;
+    margin: 5px auto;
 }
 
 .Meme-Like-Icon {
@@ -74,10 +90,25 @@
 }
 
 
-#Comment-Replies {
-    cursor: pointer;
-    margin-left: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+.flame, #Comment-Replies {
+
+    display: inline-block;
+    background-color: #555558;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 3px;
+    outline: 0;
+    height: 38px;
+    width: 148px;
+    border: 1px solid white;
+    text-align: left;
+    margin: 5px 0;
 }
 
+.flame:hover, #Comment-Replies:hover {
+    background-color: #fff;
+    color: black;
+    cursor: pointer;
+    
+}

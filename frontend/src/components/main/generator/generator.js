@@ -119,6 +119,10 @@ class Generator extends React.Component {
 
             <div className="generator-page-wrap">
                 <div className="generator-page-container">
+                    
+                    <div className="icon-container">
+                        <div onClick={this.props.closeModal} className="close-x">X</div>
+                    </div>
 
                     <div className="memeContainer-title">Select background Image to create your Meme!</div>
                     <div className="memeContainer">

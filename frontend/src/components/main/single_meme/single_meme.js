@@ -77,9 +77,9 @@ class SingleShow extends React.Component {
             let viewComments;
 
             if (commentsLength === 0) {
-                viewComments = `No comments yet...`
+                viewComments = `No comments yet...` 
             } else {
-                viewComments = `View Comments: ${commentsLength}`
+                viewComments = `Comments: ${commentsLength}`
             }
 
             const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)

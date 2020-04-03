@@ -119,5 +119,18 @@
     border-radius: 0.3em;
 }
 
+.close-x {
+    font-size: 25px;
+}
+
+.close-x:hover {
+    cursor: pointer;
+}
+
+.icon-container {
+    align-self: flex-end;
+    margin: 15px;
+}
+
 
 

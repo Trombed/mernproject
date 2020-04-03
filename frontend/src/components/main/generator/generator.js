@@ -84,10 +84,10 @@ class Generator extends React.Component {
         
             const base64image = canvas.toDataURL("image/png");
             let image = { image: base64image };
-            // self.props.composeMemes(image)
+            self.props.composeMemes(image)
             
-            var win = window.open();
-            win.document.write('<iframe src="' + base64image  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>')
+            // var win = window.open();
+            // win.document.write('<iframe src="' + base64image  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>')
         })
         .then(this.props.closeModal)
         .then(this.props.fetchMemes())
@@ -120,6 +120,10 @@ class Generator extends React.Component {
 
             <div className="generator-page-wrap">
                 <div className="generator-page-container">
+                    
+                    <div className="icon-container">
+                        <div onClick={this.props.closeModal} className="close-x">X</div>
+                    </div>
 
                     <div className="memeContainer-title">Select background Image to create your Meme!</div>
                     <div className="memeContainer">

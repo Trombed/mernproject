@@ -36,19 +36,13 @@ class ShowPage extends React.Component {
     }
 
 
-
-
-    
-
-
-
-    render() {
-        let content = this.props.allMemes.map( meme => {        
+    render() {
+        let content = this.props.allMemes.map( meme => {        
         const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id);
         const likedMeme = (( this.likes[meme._id] || userLiked) ? 
         <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
-                <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
-        </div>
+        <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
+        </div>
         :
 
         <div className='Individual-Likes' onClick={() => this.likeMeme(meme._id)}>
@@ -71,14 +65,14 @@ class ShowPage extends React.Component {
 
             return (
             <div key={meme._id} className="Individual-Meme-Container">
-                <div className='Individual-Name'>
+            <div className='Individual-Name'>
                 <Link to={`/users/${meme.user._id}`}>
                 {meme.user.username} </Link> POSTED:
-                </div>
-                <div className='Individual-Meme-Pic'>
-                <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
-                </div>
-                {likedMeme}
+            </div>
+            <div className='Individual-Meme-Pic'>
+            <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
+            </div>
+            {likedMeme}
           
                 <div>
 
@@ -90,16 +84,16 @@ class ShowPage extends React.Component {
                     </Link>
                     
                 </div>
-            </div>
+        </div>
             )
-        })
+        })
 
-        return (
-            <div className="Fetched-Meme-Container">
-               {content}
-            </div>
-        );
-    }
+        return (
+        <div className="Fetched-Meme-Container">
+            {content}
+        </div>
+        );
+    }
 }
 
 export default ShowPage;

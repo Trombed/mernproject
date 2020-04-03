@@ -51,12 +51,12 @@ class IndividualShow extends React.Component {
 
     render() {
        
-        let content = this.props.singleMeme.map( meme => {
+        let content = this.props.singleMeme.map( meme => {
             const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)  
             const likedMeme = (( this.likes[meme._id] || userLiked) ? 
                 <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
-                    <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
-                </div>
+               <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
+               </div>
         :
 
         <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE" onClick={ () => this.likeMeme(meme._id) } />);
@@ -76,17 +76,17 @@ class IndividualShow extends React.Component {
             return (
             
             <div key={meme._id} className="Individual-Meme-Container">
-                <div className='Individual-Name'>
+            <div className='Individual-Name'>
                 <Link to={`/users/${meme.user._id}`}>
                     {meme.user.username}
                 </Link>
                      POSTED:
-                </div>
-                <div className='Individual-Meme-Pic'>
-                <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
-                </div>
+                </div>
+                <div className='Individual-Meme-Pic'>
+                <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
+                </div>
             
-                {likedMeme}
+                {likedMeme}
              
                 <div>
                     <Link to={`/${meme._id}`}>
@@ -98,18 +98,18 @@ class IndividualShow extends React.Component {
                   
                     
                 </div>
-            </div>
+        </div>
            
             )
-        })
+        })
 
-        return (
-            <div className="Fetched-Meme-Container">
-               {content}
+        return (
+            <div className="Fetched-Meme-Container">
+                {content}
                 
-            </div>
-        );
-    }
+            </div>
+        );
+     }
 }
 
 export default IndividualShow;

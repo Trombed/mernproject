@@ -13,26 +13,26 @@ class SingleShow extends React.Component {
         this.likes = this.props.likes
         this.replyMeme = this.replyMeme.bind(this)
      
-    }
+    }
 
-    componentDidMount() {
+    componentDidMount() {
 
         this.props.fetchSingleMeme(this.props.match.params.id)
-    }
+    }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.id !== this.props.match.params.id) {
-            this.props.fetchSingleMeme(this.props.match.params.id)  
+            this.props.fetchSingleMeme(this.props.match.params.id)
         }
     }
 
 
 
 
-    imageEnlarge(e) {
+    imageEnlarge(e) {
         const img = e.currentTarget.src 
         this.props.openModal(img)
-    }
+    }
 
     likeMeme(id) {
         this.props.createNewLike(`${id}`)
@@ -66,7 +66,7 @@ class SingleShow extends React.Component {
 
 
 
-    render() {
+    render() {
         var content = null
         if (Object.values(this.props.oneMeme).length <= 0) {
             content = null 
@@ -84,9 +84,9 @@ class SingleShow extends React.Component {
 
             const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
              const likedMeme = (( this.likes[meme._id] || userLiked) ? 
-                <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
-                    <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
-                </div>
+                <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
+                    <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
+                </div>
         :
         <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE"  onClick={ () => this.likeMeme(meme._id) } />);
             const deletePost = (meme.user._id === this.props.currentUser.id) ? 
@@ -99,19 +99,17 @@ class SingleShow extends React.Component {
             content = (
 
                 <div key={meme._id} className="Individual-Meme-Container">
-                <div className='Individual-Name'>
+                <div className='Individual-Name'>
                 <Link to={`/users/${meme.user._id}`}>
                     {meme.user.username}
                 </Link>
                      POSTED:
-                </div>
-                <div className='Individual-Meme-Pic'>
-                <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
-                </div>
-            
-                {likedMeme}
+                </div>
+                <div className='Individual-Meme-Pic'>
+                <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
+                </div>
+                    {likedMeme}
                 <div className="Individual-Comment">
-                            
                                 <textarea className="Individual-Comment-Box" id={meme._id} placeholder="Add a comment..." />
                                 <button className="flame" onClick={(e) => this.replyMeme(e, meme._id)} >
                                     Flame This Post 
@@ -129,17 +127,14 @@ class SingleShow extends React.Component {
                         {deletePost}
                     </div>
                 </div>
-            </div>
+        </div>
                 
             )
         }
         
 
             return (
-            <div className="Fetched-Meme-Container">
-               {content}
-                
-            </div>
+            <div className="Fetched-Meme-Container">{content}</div>
             )
 
     }

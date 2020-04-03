@@ -2,7 +2,7 @@ import React from 'react'
 import './generator.css'
 import html2canvas from 'html2canvas';
 import Draggable from 'react-draggable'
-import { read } from 'fs';
+
 
 class Generator extends React.Component {
     constructor(props) {
@@ -18,28 +18,28 @@ class Generator extends React.Component {
         this.lowerInput = this.lowerInput.bind(this)
         this.uploadImage = this.uploadImage.bind(this)
         this.saveFile = this.saveFile.bind(this)
-        this.width = 500;
-        this.height = 500;
+        // this.height = 500;
+        // this.width = 500;
     }
 
   
     uploadImage(files) {
-        var self = this;
+        // var self = this;
         files.preventDefault();
         const file = files.target.files[0]
         const reader = new FileReader();
-        const img = new Image();
         reader.readAsDataURL(file)
-            reader.onload = function(e) {
-                img.src = e.target.result
-        
-            }
+        const img = new Image();
+        reader.onload = function(e) {
+            img.src = e.target.result
     
-          
-            reader.onloadend = (e) => {
-                self.width = img.width
-                self.height = img.height 
-                if (img.width > 900 || img.height > 700) {
+        }
+        
+            reader.onloadend = (e) => {   
+                
+                // self.width = img.width
+                // self.height = img.height 
+                if (img.width > 800 || img.height > 700) {
                         document.getElementById("memeGenerator").style.width = "700px"
                         document.getElementById("memeGenerator").style.height = "700px"
                         document.getElementById("canvas2").style.width = `700px`
@@ -52,7 +52,6 @@ class Generator extends React.Component {
                     document.getElementById("canvas2").style.width = `${img.width}px`
                     document.getElementById("canvas2").style.height = `${img.height}px`
                 }
-            
                 document.getElementById('canvas2').style.backgroundImage = "url(" + reader.result + ")";
             }
       
@@ -71,23 +70,23 @@ class Generator extends React.Component {
     saveFile() {
         var self = this;
         var screenshot = document.getElementsByClassName("memeGenerator");
-        //working to make the screenshot height and width to maintain the original picture's ratio
-        //but if ratio is past 500px, scale down according to ratio
-        
+        console.log(this.width)
+        console.log(this.height)
         html2canvas(screenshot[0],{
 
 
-            width: self.width,
-            height: self.height,
-            backgroundColor: "white"})
+            // width: this.width,
+            // height: this.height,
+            imageTimeout: 30000,
+            backgroundColor: "black"})
         .then( (canvas) => {
         
             const base64image = canvas.toDataURL("image/png");
             let image = { image: base64image };
-            // self.props.composeMemes(image)
+            self.props.composeMemes(image)
             
-            var win = window.open();
-            win.document.write('<iframe src="' + base64image  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>')
+            // var win = window.open();
+            // win.document.write('<iframe src="' + base64image  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>')
         })
         .then(this.props.closeModal)
         .then(this.props.fetchMemes())

@@ -6,15 +6,15 @@
   left: 0;
   background: rgba(0, 0, 0, 0.8);
   z-index: 100;
-  animation-name: zoom;
-  animation-duration: 0.3s;
+  /* animation-name: zoom;
+  animation-duration: 0.3s; */
 }
 
 .modal-child {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
  
 }
 .modal-child-create {

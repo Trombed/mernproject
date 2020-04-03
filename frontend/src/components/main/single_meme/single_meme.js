@@ -79,8 +79,8 @@ class SingleShow extends React.Component {
         :
         <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE"  onClick={ () => this.likeMeme(meme._id) } />);
             const deletePost = (meme.user._id === this.props.currentUser.id) ? 
-            ( <div> 
-                <button onClick={() => this.deletePost(meme._id)}> Delete Post </button> 
+            ( <div className="delete"> 
+                <button className="delete-post" onClick={() => this.deletePost(meme._id)}> Delete Post </button> 
               </div>
             ) : (
                 null

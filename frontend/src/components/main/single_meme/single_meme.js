@@ -53,7 +53,9 @@ class SingleShow extends React.Component {
         }
         this.props.composeReply(comment)
         .then( res => this.props.fetchSingleMeme(this.props.match.params.id))
+        .then(() => document.getElementById(id).value = "")
     }
+
 
     deletePost(id) {
         this.props.deleteMemes(id)

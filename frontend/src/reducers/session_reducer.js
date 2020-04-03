@@ -22,7 +22,6 @@ import { RECEIVE_CURRENT_USER,
           user: {}
         };
       case RECEIVE_USER_SIGN_IN:
-        debugger
         return {
           ...state,
           isAuthenticated: !!action.currentUser,

@@ -70,7 +70,7 @@ class IndividualShow extends React.Component {
             if (commentsLength === 0) {
                 viewComments = `No comments yet...`
             } else {
-                viewComments = `View Comments: ${commentsLength}`
+                viewComments = `View all ${commentsLength} comments `
             }
 
             return (
@@ -80,7 +80,7 @@ class IndividualShow extends React.Component {
                 <Link to={`/users/${meme.user._id}`}>
                     {meme.user.username}
                 </Link>
-                     POSTED:
+                     
                 </div>
                 <div className='Individual-Meme-Pic'>
                 <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />

@@ -58,7 +58,7 @@ class ShowPage extends React.Component {
         if (commentsLength === 0) {
             viewComments = `No comments yet...`
         } else {
-            viewComments = `View Comments: ${commentsLength}`
+            viewComments = `View all ${commentsLength} comments `
         }
         
         
@@ -67,7 +67,7 @@ class ShowPage extends React.Component {
             <div key={meme._id} className="Individual-Meme-Container">
             <div className='Individual-Name'>
                 <Link to={`/users/${meme.user._id}`}>
-                {meme.user.username} </Link> POSTED:
+                {meme.user.username} </Link> 
             </div>
             <div className='Individual-Meme-Pic'>
             <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />

@@ -31,7 +31,7 @@
 .memeGenerator {
     /* height: 500px;
     width: 500px; */
-    /* top: 20vh; */
+    top: 20vh;
     overflow: hidden;
     flex-wrap: wrap;
 }
@@ -45,13 +45,16 @@
 }
 
 #canvas2 {
+    /* height: 500px;
+    width: 500px; */
     position: absolute;
     background-image:url('');
-    /* background-size: cover; */
-    background-size: contain;
+ 
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
-    
+    /* min-height: 500px;
+    min-width: 500px; */
     z-index: 0;
     
 }

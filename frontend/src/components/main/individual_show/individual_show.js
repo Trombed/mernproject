@@ -65,6 +65,14 @@ class IndividualShow extends React.Component {
       
         const commentsLength = meme.comments.length
 
+            let viewComments;
+
+            if (commentsLength === 0) {
+                viewComments = `No comments yet...`
+            } else {
+                viewComments = `View Comments: ${commentsLength}`
+            }
+
             return (
             
             <div key={meme._id} className="Individual-Meme-Container">
@@ -83,7 +91,7 @@ class IndividualShow extends React.Component {
                 <div>
                     <Link to={`/${meme._id}`}>
                     <div className={`${meme._id}`} id="Comment-Replies" >
-                        View Comments: {commentsLength}
+                        {viewComments}
 
                     </div>
                     </Link>

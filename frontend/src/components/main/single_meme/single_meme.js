@@ -71,6 +71,15 @@ class SingleShow extends React.Component {
         } else {
             const meme = this.props.oneMeme
             const commentsLength = meme.comments.length
+
+            let viewComments;
+
+            if (commentsLength === 0) {
+                viewComments = `No comments yet...`
+            } else {
+                viewComments = `View Comments: ${commentsLength}`
+            }
+
             const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
              const likedMeme = (( this.likes[meme._id] || userLiked) ? 
                 <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
@@ -108,7 +117,7 @@ class SingleShow extends React.Component {
                             </div>
                 <div>
                     <div className={`${meme._id}`} id="Comment-Replies" >
-                        View Comments: {commentsLength}
+                        {viewComments}
                     </div>
                          <Comments comments={meme.comments} user={this.props.currentUser.id} deleteComment={this.props.deleteUserComment}
                          memeId={meme._id}
@@ -123,10 +132,6 @@ class SingleShow extends React.Component {
             )
         }
         
-        
-
-        
-      
 
             return (
             <div className="Fetched-Meme-Container">

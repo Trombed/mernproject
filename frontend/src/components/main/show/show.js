@@ -58,6 +58,14 @@ class ShowPage extends React.Component {
         );
 
         const commentsLength = meme.comments.length
+
+        let viewComments;
+
+        if (commentsLength === 0) {
+            viewComments = `No comments yet...`
+        } else {
+            viewComments = `View Comments: ${commentsLength}`
+        }
         
         
 
@@ -76,7 +84,7 @@ class ShowPage extends React.Component {
 
                     <Link to={`${meme._id}`}>
                     <div className={`${meme._id}`} id="Comment-Replies" >
-                        View Replies: {commentsLength}
+                        {viewComments}
                     </div>
 
                     </Link>

@@ -23,7 +23,7 @@ class Comments extends React.Component {
         <div className="Comment-Name">
        <Link to={`/users/${comment.user._id}`}>
         {comment.user.username}:
-        </Link> 
+        </Link>
         </div>
 
         <div className="Comment-Body">{comment.body}</div>

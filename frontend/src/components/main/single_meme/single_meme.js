@@ -85,10 +85,10 @@ class SingleShow extends React.Component {
             const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
              const likedMeme = (( this.likes[meme._id] || userLiked) ? 
                 <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
-                    <img src="fire.svg" className="Meme-Like-Icon" alt="UNLIKE" />
+                    <img src="fire.png" className="Meme-Like-Icon" alt="UNLIKE" />
                 </div>
         :
-        <img src="nofire.svg" className="Meme-Like-Icon-2" alt="LIKE"  onClick={ () => this.likeMeme(meme._id) } />);
+        <img src="nofire.png" className="Meme-Like-Icon-2" alt="LIKE"  onClick={ () => this.likeMeme(meme._id) } />);
             const deletePost = (meme.user._id === this.props.currentUser.id) ? 
             ( <div className="delete"> 
                 <button className="delete-post" onClick={() => this.deletePost(meme._id)}> Delete Post </button> 

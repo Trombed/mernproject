@@ -60,10 +60,10 @@ class ShowPage extends React.Component {
 
             if (commentsLength === 0) {
                 viewComments = `No comments yet...`
-            } else if (commentsLength === 1) {
-                viewComments = `View 1 comment`
+            // } else if (commentsLength === 1) {
+            //     viewComments = `View 1 comment`
             } else {
-                viewComments = `View all ${commentsLength} comments `
+                viewComments = `View all comments `
             }
         
         

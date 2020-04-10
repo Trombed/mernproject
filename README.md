@@ -19,7 +19,7 @@ See it live: http://supermememaker.herokuapp.com/#/
   - MongoDB
   - Express
 
-## Example
+## Example:
 
 Backend Routes: 
 

@@ -111,8 +111,8 @@ componentDidMount() {
 
 ## Future features:
 
+* Users can follow other users
 * Users can add friends
-* Users can invite friends
 
 ## Creators:
 

@@ -60,6 +60,7 @@ class SingleShow extends React.Component {
     deletePost(id) {
         this.props.deleteMemes(id)
         this.props.history.push("/")
+       
     }
 
 

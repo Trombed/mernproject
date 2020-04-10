@@ -8,6 +8,7 @@ class Comments extends React.Component {
   deleteComment(id, commentId) {
     this.props.deleteComment(id, commentId)
   }
+  
   render() {
     const comment = this.props.comments.map( (comment) => {
       console.log(this.props)

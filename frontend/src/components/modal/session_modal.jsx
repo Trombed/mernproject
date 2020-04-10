@@ -26,7 +26,7 @@ function SessionModal({modal, closeModal}) {
   if (modal !== 'createMeme') {
       return (
         <div className="modal-background" onClick={closeModal}>
-          <div className="modal-child" onClick={e => e.stopPropagation()}>
+          <div className="" onClick={e => e.stopPropagation()}>
             {component}
           </div>
         </div>

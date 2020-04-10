@@ -63,11 +63,12 @@ class Generator extends React.Component {
             let image = { image: base64image };
             self.props.composeMemes(image);
         })
-        .then( (res) => this.props.fetchMemes())
         .then(this.props.closeModal)
         
         this.setState({uppertext: ""});
-        this.setState({lowertext: ""});
+        this.setState({lowertext: ""}, () => (
+            this.props.fetchMemes()
+        ));
         
     }
 

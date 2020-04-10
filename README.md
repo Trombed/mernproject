@@ -8,6 +8,8 @@ The goal of the project is to create custom memes. Functionality:
 
 See it live: http://supermememaker.herokuapp.com/#/
 
+![](images/scrt.png)
+
 ## List of technologies:
 
 * Front-end:

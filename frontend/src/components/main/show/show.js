@@ -9,6 +9,7 @@ class ShowPage extends React.Component {
         this.likeMeme = this.likeMeme.bind(this)
         this.deleteLikeMeme = this.deleteLikeMeme.bind(this)
         this.likes = this.props.likes
+        this.
     }
 
     componentDidMount(){
@@ -19,6 +20,8 @@ class ShowPage extends React.Component {
     componentDidUpdate (prevProp) {
        if (prevProp.likes !== this.props.likes) {
            this.props.fetchMemes()
+       } else if (prevProp.allMemes !== this.props.allMemes) {
+            
        }
     }
 

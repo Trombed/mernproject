@@ -1,51 +1,38 @@
-import React from 'react'
-import './generator.css'
+import React from 'react';
+import './generator.css';
 import html2canvas from 'html2canvas';
-import Draggable from 'react-draggable'
-
-
+import Draggable from 'react-draggable';
 class Generator extends React.Component {
     constructor(props) {
         super(props);
-        
         this.state = {
             uppertext: "",
             lowertext: "",
-            
-        }
-        //for generating and saving created memes
-        this.upperInput = this.upperInput.bind(this)
-        this.lowerInput = this.lowerInput.bind(this)
-        this.uploadImage = this.uploadImage.bind(this)
-        this.saveFile = this.saveFile.bind(this)
-        // this.height = 500;
-        // this.width = 500;
+        };
+   
+        this.upperInput = this.upperInput.bind(this);
+        this.lowerInput = this.lowerInput.bind(this);
+        this.uploadImage = this.uploadImage.bind(this);
+        this.saveFile = this.saveFile.bind(this);
     }
 
-  
     uploadImage(files) {
-        // var self = this;
         files.preventDefault();
-        const file = files.target.files[0]
+        const file = files.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file)
         const img = new Image();
         reader.onload = function(e) {
             img.src = e.target.result
-    
-        }
-        
+        };
             reader.onloadend = (e) => {   
                 
-                // self.width = img.width
-                // self.height = img.height 
                 if (img.width > 800 || img.height > 700) {
                         document.getElementById("memeGenerator").style.width = "700px"
                         document.getElementById("memeGenerator").style.height = "700px"
                         document.getElementById("canvas2").style.width = `700px`
                         document.getElementById("canvas2").style.height = `700px`
                 }
-                
                 else {
                     document.getElementById("memeGenerator").style.width = `${img.width}px`
                     document.getElementById("memeGenerator").style.height = `${img.height}px`
@@ -54,9 +41,7 @@ class Generator extends React.Component {
                 }
                 document.getElementById('canvas2').style.backgroundImage = "url(" + reader.result + ")";
             }
-      
     }
-
 
    
     upperInput(e) {
@@ -70,53 +55,41 @@ class Generator extends React.Component {
     saveFile() {
         var self = this;
         var screenshot = document.getElementsByClassName("memeGenerator");
-        console.log(this.width)
-        console.log(this.height)
         html2canvas(screenshot[0],{
-
-
-            // width: this.width,
-            // height: this.height,
             imageTimeout: 30000,
-            backgroundColor: "black"})
-        .then( (canvas) => {
-        
+            backgroundColor: "null"})
+        .then( (canvas) => { 
             const base64image = canvas.toDataURL("image/png");
             let image = { image: base64image };
-            self.props.composeMemes(image)
-            
-            // var win = window.open();
-            // win.document.write('<iframe src="' + base64image  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>')
+            self.props.composeMemes(image);
         })
+        .then( (res) => this.props.fetchMemes())
         .then(this.props.closeModal)
-        .then(this.props.fetchMemes())
-        this.setState({uppertext: ""})
-        this.setState({lowertext: ""})
+        
+        this.setState({uppertext: ""});
+        this.setState({lowertext: ""});
         
     }
 
    
     upperSizeChange(e) {
-        var text = document.getElementsByClassName("upper-text")
-        text[0].style.fontSize = `${e.currentTarget.value}px`
+        var text = document.getElementsByClassName("upper-text");
+        text[0].style.fontSize = `${e.currentTarget.value}px`;
 
     }
 
     lowerSizeChange(e) {
-        var text = document.getElementsByClassName("lower-text")
-        text[0].style.fontSize = `${e.currentTarget.value}px`    
+        var text = document.getElementsByClassName("lower-text");
+        text[0].style.fontSize = `${e.currentTarget.value}px`;    
     }
 
 
     render() {
         const upperTextOutput = this.state.uppertext.split("\n").map( (line, index) => (
             <p key={index}>{line}</p>
-        ))
+        ));
 
         return (
-            //created 2 outer divs-generator-page-wrap and generator-page-container
-            //since modal need outer container for users to click but not close modal. aka buffer area
-
             <div className="generator-page-wrap">
                 <div className="generator-page-container">
                     
@@ -151,26 +124,17 @@ class Generator extends React.Component {
                                 
                             </div>
                             <Draggable>
-                                
                                 <span className='upper-text box'>{upperTextOutput}
-                            </span>
+                                </span>
                             </Draggable>
                             <br />
                             <Draggable>
                                 <div  className='lower-text'>{this.state.lowertext}</div>
                             </Draggable>
-
-
-                    
                         </div>
-                            
-                        
-                    
                     </div>
                 </div>
             </div>
-
-            
         )
     }
 }

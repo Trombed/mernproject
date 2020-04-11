@@ -11,7 +11,6 @@ class Comments extends React.Component {
   
   render() {
     const comment = this.props.comments.map( (comment) => {
-      console.log(this.props)
       const deletePost = (comment.user._id === this.props.user) ? (
         <div>
           <button className="delete-comment" onClick={ () => this.deleteComment(this.props.memeId, comment._id)}>Delete Comment</button>

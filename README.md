@@ -16,6 +16,7 @@ See it live: http://supermememaker.herokuapp.com/#/
   - React
   - Redux
   - Axios
+  - Html2Canvas
 
 * Back-end:
   - MongoDB

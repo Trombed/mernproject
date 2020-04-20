@@ -24,18 +24,15 @@ See it live: http://supermememaker.herokuapp.com/#/
 
 ## Example:
 
-Backend Routes: 
-
-`app.use('/api/users', users)` 
-
-`app.use('/api/memes', memes)`
+### Users can see a list of memems, that other users have posted.
 
 ```javascript
-router.get("/users/:user_id", (req, res) => {
+router.get("/", (req, res) => {
     Meme
-        .find({ user: req.params.user_id })
-        .populate({
-            path: 'comments',
+        .find()
+        .limit(6)
+        .sort({ date: -1 })
+        .populate({path: 'comments',
             populate: {
                 path: 'user',
                 model: 'User',
@@ -49,8 +46,9 @@ router.get("/users/:user_id", (req, res) => {
 })
 ```
 
+### Users can comment on and like a specific meme.
+
 ```javascript
-// route to like a specific meme for the current user
 router.post("/:id/like", 
 passport.authenticate("jwt", { session: false }),
 (req, res) => {
@@ -64,7 +62,7 @@ passport.authenticate("jwt", { session: false }),
     );
 })
 ```
-`generator.js`
+### Users can create a custom meme by clicking on "Create memes" button, choose a file and then add upper and/or lower text. User can resize the text.
 
 The function saveFile will take the screenshot of the canvas to create the image with user’s customer texts:
 
@@ -88,7 +86,7 @@ saveFile() {
     }
 ```
 
-`random_meme.js`
+### Users can explore more memes.
 
 Using an API, we have memes from other websites to be displayed on our page. For ease of use, we have addEventListener on scrolling to request more as users reach the bottom of the page:
 

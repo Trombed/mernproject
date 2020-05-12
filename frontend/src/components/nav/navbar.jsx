@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
+import logo from '../../images/Memegram.png';
 
 
 class NavBar extends React.Component {
@@ -52,7 +53,7 @@ class NavBar extends React.Component {
         return (
             <div className="navbar-container">
                 <div className="navbar-title">
-                    <Link to='/'><div className='memegram-logo'></div></Link>
+                    <Link to='/'><img src={logo} /></Link>
                 </div>
                 <div className="navbar-links">
                     <Link to={`/randommemes`}>Explore Memes</Link>

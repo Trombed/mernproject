@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
 
 ### Users can comment on and like a specific meme.
 
-![feed](https://i.imgur.com/BtlDx0E.gif)
+![post](https://i.imgur.com/BtlDx0E.gif)
 
 ```javascript
 router.post("/:id/like", 
@@ -68,7 +68,7 @@ passport.authenticate("jwt", { session: false }),
 ```
 ### Users can create a custom meme by clicking on "Create memes" button, choose a file and then add upper and/or lower text. User can resize the text.
 
-![create](https://i.imgur.com/PcGZV8e.mp4)
+![create](images/create.mp4)
 
 
 The function saveFile will take the screenshot of the canvas to create the image with user’s customer texts:

@@ -26,7 +26,7 @@ See it live: http://supermememaker.herokuapp.com/#/
 
 ### Users can see a list of memes that other users have posted.
 
-![feed](https://i.imgur.com/95HSldk.gif)
+![feed](images/feed.gif)
 
 ```javascript
 router.get("/", (req, res) => {
@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
 
 ### Users can comment on and like a specific meme.
 
-![post](https://i.imgur.com/BtlDx0E.gif)
+![post](images/post.gif)
 
 ```javascript
 router.post("/:id/like", 
@@ -68,7 +68,7 @@ passport.authenticate("jwt", { session: false }),
 ```
 ### Users can create a custom meme by clicking on "Create memes" button, choose a file and then add upper and/or lower text. User can resize the text.
 
-![create](images/create.mp4)
+![create](images/create.gif)
 
 
 The function saveFile will take the screenshot of the canvas to create the image with user’s customer texts:

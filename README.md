@@ -68,7 +68,7 @@ passport.authenticate("jwt", { session: false }),
 ```
 ### Users can create a custom meme by clicking on "Create memes" button, choose a file and then add upper and/or lower text. User can resize the text.
 
-![create](https://i.imgur.com/PcGZV8e.gif)
+![create](https://i.imgur.com/PcGZV8e.mp4)
 
 
 The function saveFile will take the screenshot of the canvas to create the image with user’s customer texts:
@@ -95,7 +95,7 @@ saveFile() {
 
 ### Users can explore more memes.
 
-![explore](https://i.imgur.com/XE87Jmc.gif)
+![explore](images/explore.gif)
 
 
 Using an API, we have memes from other websites to be displayed on our page. For ease of use, we have addEventListener on scrolling to request more as users reach the bottom of the page:

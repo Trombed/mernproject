@@ -24,7 +24,9 @@ See it live: http://supermememaker.herokuapp.com/#/
 
 ## Example:
 
-### Users can see a list of memems, that other users have posted.
+### Users can see a list of memes that other users have posted.
+
+![feed](https://i.imgur.com/95HSldk.gif)
 
 ```javascript
 router.get("/", (req, res) => {
@@ -48,6 +50,8 @@ router.get("/", (req, res) => {
 
 ### Users can comment on and like a specific meme.
 
+![feed](https://i.imgur.com/BtlDx0E.gif)
+
 ```javascript
 router.post("/:id/like", 
 passport.authenticate("jwt", { session: false }),
@@ -63,6 +67,9 @@ passport.authenticate("jwt", { session: false }),
 })
 ```
 ### Users can create a custom meme by clicking on "Create memes" button, choose a file and then add upper and/or lower text. User can resize the text.
+
+![create](https://i.imgur.com/PcGZV8e.gif)
+
 
 The function saveFile will take the screenshot of the canvas to create the image with user’s customer texts:
 
@@ -87,6 +94,9 @@ saveFile() {
 ```
 
 ### Users can explore more memes.
+
+![explore](https://i.imgur.com/XE87Jmc.gif)
+
 
 Using an API, we have memes from other websites to be displayed on our page. For ease of use, we have addEventListener on scrolling to request more as users reach the bottom of the page:
 

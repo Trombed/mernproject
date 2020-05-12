@@ -52,7 +52,7 @@ class NavBar extends React.Component {
         return (
             <div className="navbar-container">
                 <div className="navbar-title">
-                    <Link to='/'>Mememakewitter</Link>
+                    <Link to='/'><div className='memegram-logo'></div></Link>
                 </div>
                 <div className="navbar-links">
                     <Link to={`/randommemes`}>Explore Memes</Link>

@@ -44,6 +44,10 @@
     align-self: center;
 }
 
+.memegram-logo {
+    content: image_url('memegram.png');
+}
+
 .navbar-links a{
     font-size: 16px;
     margin: 5px;

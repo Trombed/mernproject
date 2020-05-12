@@ -1,4 +1,4 @@
-# SuperMemeMaker
+# Memegram
 
 The goal of the project is to create custom memes. Functionality:
 

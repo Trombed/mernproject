@@ -165,13 +165,21 @@ router.delete('/:id', (req, res) => {
 router.post("/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
+        let memeId;
         const newMeme = new Meme({
             user: req.user.id,
             // user: '5e7504c9770593980286d9cd',
             image: req.body.image
         });
-        newMeme.save()
-            .then(meme => meme.populate('user', '-password').execPopulate().then(meme => res.json(meme)));
+        newMeme.save( (err, item) => {
+            memeId = item._id;
+            return res.json(memeId)
+     
+        })
+            // .then(meme => meme.populate('user', '-password').execPopulate().then(meme => res.json(meme)))
+      
+   
+
     }
 )
 

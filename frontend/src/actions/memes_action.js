@@ -11,7 +11,9 @@ export const receiveNewMemes = data => ({
 export const composeMemes = data => dispatch => {
     return (
             saveMeme(data)
-                .then(data => dispatch(receiveNewMemes(data)))
+                // .then( res => console.log(res.data))
+                .then( res => window.location = `/#/${res.data}/`)
+                // .then(data => dispatch(receiveNewMemes(data)))
                 .catch(err => console.log(err))
     )
 }

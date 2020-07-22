@@ -87,8 +87,8 @@ class StitchApp extends React.Component {
                     })
                 })
                     .then(result => {
-                        console.log(result)
-                        console.log(`the URL: - ${url}`)
+                        // console.log(result)
+                        // console.log(`the URL: - ${url}`)
                         // Update UI
                         // this.getEntries()
                     })

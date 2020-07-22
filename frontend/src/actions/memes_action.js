@@ -61,7 +61,7 @@ export const deleteUserMeme = id =>  ({
 
 export const deleteMemes = (id) => dispatch => (
     deleteMeme(id)
-        .then(meme => console.log("deleted"))
+       
 )
 
 export const DELETE_COMMENT = 'DELETE_COMMENT'

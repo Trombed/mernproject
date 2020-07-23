@@ -8,9 +8,10 @@ export const receiveNewLike = (data) => ({
 })
 
 export const createNewLike = (id) => dispatch => (
-   
+  
     createLike(id)
         .then( like => dispatch(receiveNewLike(id)))
+
         .catch(err => console.log(err))
 
 )
@@ -26,5 +27,5 @@ export const receiveDeleteLike = (data) => ({
 export const deleteOldLike = (id) => dispatch => (
     deleteLike(id)
         .then( res => dispatch(receiveDeleteLike(id)))
-        .catch(err => console.log(err))
+        // .catch(err => console.log(err))
 )

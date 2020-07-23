@@ -113,7 +113,7 @@ class SingleShow extends React.Component {
                 <div className="Individual-Comment">
                                 <textarea className="Individual-Comment-Box" id={meme._id} placeholder="Add a comment..." />
                                 <button className="flame" onClick={(e) => this.replyMeme(e, meme._id)} >
-                                    Flame This Post 
+                                    Comment: 
                                 </button>                
                             </div>
                 <div>

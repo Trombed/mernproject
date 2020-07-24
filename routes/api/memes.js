@@ -64,7 +64,7 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(400).json(err));
 })
 
-// extracting id from the route
+
 router.param('id', function (req, res, next, id) {
     req.id = id;
     next();

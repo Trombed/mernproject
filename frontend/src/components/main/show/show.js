@@ -38,8 +38,18 @@ class ShowPage extends React.Component {
         this.props.deleteOldLike(id)
     }
 
+    noLike() {
+        return (
+            <div className="Individual-Meme-Like-Not-Sign-In">
+                Sign In to Like The Post.
+            </div>
+        )
+    }
+
 
     render() {
+      
+
         let content = this.props.allMemes.map( meme => {        
         const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id);
         const likedMeme = (( this.likes[meme._id] || userLiked) ? 
@@ -57,16 +67,13 @@ class ShowPage extends React.Component {
         const commentsLength = meme.comments.length
 
         let viewComments;
-
             if (commentsLength === 0) {
                 viewComments = `No comments yet...`
-            // } else if (commentsLength === 1) {
-            //     viewComments = `View 1 comment`
             } else {
                 viewComments = `View all comments `
             }
-        
-        
+
+        let showLike = this.props.loggedIn ?    likedMeme : this.noLike()
 
             return (
             <div key={meme._id} className="Individual-Meme-Container">
@@ -77,8 +84,8 @@ class ShowPage extends React.Component {
             <div className='Individual-Meme-Pic'>
             <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
             </div>
-            {likedMeme}
-          
+            {/* {likedMeme} */}
+            {showLike}
                 <div>
 
                     <Link to={`${meme._id}`}>

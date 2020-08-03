@@ -64,6 +64,11 @@
     flex-direction: column;
 }
 
+.Individual-Meme-Like-Not-Sign-In {
+     font-family: Arial, Helvetica, sans-serif;
+     padding: 1vh 1.5vh;
+}
+
 .Individual-Comment-Box {
     width: 100%;
     min-height: 25px;

@@ -45,12 +45,18 @@ class IndividualShow extends React.Component {
 
 
 
-
+    noLike() {
+        return (
+            <div className="Individual-Meme-Like-Not-Sign-In">
+                Sign In to Like The Post.
+            </div>
+        )
+    }
 
 
 
     render() {
-       
+          console.log(this.props.loggedIn)
         let content = this.props.singleMeme.map( meme => {
             const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)  
             const likedMeme = (( this.likes[meme._id] || userLiked) ? 
@@ -74,7 +80,7 @@ class IndividualShow extends React.Component {
             } else {
                 viewComments = `View all comments `
             }
-
+            let showLike = this.props.loggedIn ?    likedMeme : this.noLike()
             return (
             
             <div key={meme._id} className="Individual-Meme-Container">
@@ -88,7 +94,7 @@ class IndividualShow extends React.Component {
                 <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
                 </div>
             
-                {likedMeme}
+                {showLike}
              
                 <div>
                     <Link to={`/${meme._id}`}>

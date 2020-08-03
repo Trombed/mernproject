@@ -7,6 +7,7 @@ import {composeReply } from "../../../actions/reply_action"
 
 
 const mapStateToProps = state => ({
+   loggedIn: state.session.isAuthenticated,
    currentUser: state.session.user,
    allMemes: Object.values(state.memes),
    likes: state.likes

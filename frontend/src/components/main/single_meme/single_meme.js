@@ -63,12 +63,18 @@ class SingleShow extends React.Component {
        
     }
 
-
+    noLike() {
+        return (
+            <div className="Individual-Meme-Like-Not-Sign-In">
+                Sign In to Comment The Post.
+            </div>
+        )
+    }
 
 
 
     render() {
-        
+        console.log(this.props.loggedIn)
         var content = null
         if (Object.values(this.props.oneMeme).length <= 0) {
             content = null 
@@ -85,6 +91,7 @@ class SingleShow extends React.Component {
             }
 
             const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)
+            
              const likedMeme = (( this.likes[meme._id] || userLiked) ? 
                 <div className='Individual-Likes' onClick={ ()=> this.deleteLikeMeme(meme._id)}>
                     <img src="fire.png" className="Meme-Like-Icon" alt="UNLIKE" />
@@ -98,7 +105,16 @@ class SingleShow extends React.Component {
             ) : (
                 null
             )
-            content = (
+        let showLike = this.props.loggedIn ?    likedMeme : this.noLike()
+        let showReplyBox = !this.props.loggedIn ? ( null) : (
+                 <div className="Individual-Comment">
+                                <textarea className="Individual-Comment-Box" id={meme._id} placeholder="Add a comment..." />
+                                <button className="flame" onClick={(e) => this.replyMeme(e, meme._id)} >
+                                    Comment: 
+                                </button>                
+                </div>
+        )
+        content = (
 
                 <div key={meme._id} className="Individual-Meme-Container">
                 <div className='Individual-Name'>
@@ -110,13 +126,9 @@ class SingleShow extends React.Component {
                 <div className='Individual-Meme-Pic'>
                 <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />
                 </div>
-                    {likedMeme}
-                <div className="Individual-Comment">
-                                <textarea className="Individual-Comment-Box" id={meme._id} placeholder="Add a comment..." />
-                                <button className="flame" onClick={(e) => this.replyMeme(e, meme._id)} >
-                                    Comment: 
-                                </button>                
-                            </div>
+                {showLike}
+                {showReplyBox}
+           
                 <div>
                     <div className={`${meme._id}`} id="Comment-Replies" >
                         {viewComments}

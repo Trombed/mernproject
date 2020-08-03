@@ -53,7 +53,7 @@ class NavBar extends React.Component {
         return (
             <div className="navbar-container">
                 <div className="navbar-title">
-                    <Link to='/'><img src={logo} /></Link>
+                    <Link to='/'><img src={logo} alt="" /></Link>
                 </div>
                 <div className="navbar-links">
                     <Link to={`/randommemes`}>Explore Memes</Link>

@@ -2,11 +2,11 @@ import React from 'react';
 import { closeModal } from '../../actions/image_modal_actions';
 import { connect } from 'react-redux';
 import './image_modal.css'
-import { dodgerblue } from 'color-name';
+
 
 function ImageModal({modal, closeModal}) {
-  let noScroll = document.getElementsByClassName("Home-Body-Container")
-  debugger
+  // let noScroll = document.getElementsByClassName("Home-Body-Container")
+ 
   if (!modal) {
     return null;
   }

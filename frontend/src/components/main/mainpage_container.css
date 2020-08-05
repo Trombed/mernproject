@@ -6,8 +6,8 @@
     display: flex;
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #555558;
-    margin-top: 10vh;
+    background-color: white;
+    margin-top: 7vh;
     min-height: 90vh;
 
 }

@@ -6,6 +6,7 @@ import {Route, Switch} from 'react-router-dom'
 import RandomMemes from '../random_memes/random_memes';
 import IndividualShowContainer from './individual_show/individual_show_container'
 import SingleShowContainer from './single_meme/single_meme_container';
+import Generator from './generator/generator_container'
 
 class MainPage extends React.Component {
 
@@ -16,6 +17,7 @@ class MainPage extends React.Component {
                 {/* <GeneratorContainer /> */}
                 <Route exact path='/' component={ShowPageContainer} />
                 <Route exact path='/randommemes' component={RandomMemes} />
+                <Route exact path='/create' component={Generator} />
                 <Route exact path='/users/:id' component={IndividualShowContainer} />
                 <Route exact path ='/:id' component={SingleShowContainer} />
             </Switch>

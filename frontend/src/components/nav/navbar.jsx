@@ -15,8 +15,12 @@ class NavBar extends React.Component {
         if (this.props.loggedIn) {
             return(
             <div>
-                <button className="create-meme-button" onClick={() => this.props.openModal('createMeme')}>Create Memes</button>
-
+                {/* <button className="create-meme-button" onClick={() => this.props.openModal('createMeme')}>Create Memes</button> */}
+                <Link to='/create'>
+                    <div className='create-meme-button'>
+                        Create Memes
+                    </div>
+                </Link>
             </div>
             );
         } else {
@@ -42,7 +46,7 @@ class NavBar extends React.Component {
                 <div className="navbar-links">
 
                     <button className="login-signup-button" onClick={() => this.props.openModal('login')}>Log In</button>
-                    <button className="login-signup-button" onClick={() => this.props.openModal('signup')}>Sign Up</button>
+                    <button className="signin-signup-button" onClick={() => this.props.openModal('signup')}>Sign Up</button>
                    
                 </div>
             )
@@ -53,7 +57,7 @@ class NavBar extends React.Component {
         return (
             <div className="navbar-container">
                 <div className="navbar-title">
-                    <Link to='/'><img src={logo} alt="" /></Link>
+                    <Link to='/'><img src={logo} alt=""  className="logo" /></Link>
                 </div>
                 <div className="navbar-links">
                     <Link to={`/randommemes`}>Explore Memes</Link>

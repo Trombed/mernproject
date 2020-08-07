@@ -4,17 +4,19 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: white;
   z-index: 100;
-  /* animation-name: zoom;
-  animation-duration: 0.3s; */
+  transform: translateX(0,100%);
+  animation-name: slide;
+  animation-duration: 1s;
+
 }
 
 .modal-child-meme {
   position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  /* top: 70%; */
+  transform: translate(50%, 50%);
+
 }
 
 .modal-child {
@@ -28,22 +30,66 @@
   position: absolute;
   top: 10%;
   left: 10%;
-  /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   
  
 }
 
-@keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
+@keyframes slide {
+    from {translate: (0px, 0px)}
+    to {translate: (100px, 100px)}
 }
 
 #Modal-Close {
     position: absolute;
     top: 15px;
     right: 35px;
-    color: #f1f1f1;
+    color: black;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
+    cursor: pointer;
+}
+
+#Modal-Close:hover{
+  color: red;
+}
+
+.close {
+  width: 28px;
+  height: 28px;
+  border-radius: 0%;
+  fill: white;
+  cursor: pointer;
+}
+
+.close:hover {
+  /* fill: purple !important; */
+  background-color: white !important;
+}
+
+.image-modal-background {
+  position: fixed;
+  top: 8vh;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: white;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.image-modal-child-meme {
+  display: flex;
+  height: 96vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.Individual-Modal-Image {
+  /* height: 100%; */
+  /* object-fit: contain; */
 }

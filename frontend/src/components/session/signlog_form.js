@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './session.css';
+import close from '../../../src/images/close.svg'
+import logo from '../../../src/images/Memegram.png'
 
 
 class SignLogForm extends React.Component {
@@ -16,6 +18,16 @@ class SignLogForm extends React.Component {
         this.clearedErrors = false;
         this.renderErrors = this.renderErrors.bind(this);
         this.handleDemo = this.handleDemo.bind(this);
+    }
+
+    componentDidMount() {
+        window.onscroll = function () { window.scrollTo(0, 0); };
+        document.body.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        window.onscroll = function () {};
+        document.body.style.overflow = 'visible';
     }
 
     componentWillReceiveProps(nextProps) {
@@ -56,11 +68,29 @@ class SignLogForm extends React.Component {
                   .then(this.props.closeModal);
     }
 
+    checkField(e) {
+        e.preventDefault();
+
+        let user = this.state.username === "";
+        let pw = this.state.password  === "";
+        let pw2 = this.state.password2  === "";
+        if (this.props.formType === 'signup') {
+            if ( !user || !pw || pw2) {
+                return 
+            }
+        } else if (this.props.formType === 'login') {
+            if ( !user || !pw ) {
+                return 
+            }
+        }
+        this.handleDemo()
+    }
+
     renderErrors() {
         return (
             <ul>
                 {Object.keys(this.state.errors).map((error, i) => (
-                    <li key={`error-${i}`}>
+                    <li key={`error-${i}`} className="Session-Errors">
                         {this.state.errors[error]}
                     </li>
                 ))}
@@ -69,13 +99,18 @@ class SignLogForm extends React.Component {
     }
 
     render() {
-        const buttonText = (this.props.formType === 'signup') ? 'Sign Up!' : 'Log In!'
+        const buttonText = (this.props.formType === 'signup') ? 
+            'Sign Up' 
+            : 
+            'Login'
         return (
             <div className="session-form-container">
                 <div className="form-header-container">
-                    <div className="form-header-text">{buttonText}</div>
+                    <div className="form-header-text">
+                        <img src={logo} alt=""/>
+                    </div>
                     <div className="icon-container">
-                        <div onClick={this.props.closeModal} className="close-x">X</div>
+                        <div onClick={this.props.closeModal}><img src={close} alt=""   className="close" /></div>
                     </div>
 
                 </div>
@@ -113,7 +148,8 @@ class SignLogForm extends React.Component {
                         </div>
                         {
                             (this.props.formType === 'signup') ?
-                                <div className="form-input-container">
+                                <div className="f\
+                                orm-input-container">
 
                                     <div className="form-text-container">
                                         <label className="form-text">
@@ -135,8 +171,10 @@ class SignLogForm extends React.Component {
                         </div>
 
                         <div className="form-button-container">
-                            <input className="form-button" type="submit" value={buttonText} />
-                            <input className="form-button" type="submit" onClick={this.handleDemo} value="Continue with Guest User" />
+                            <input className="form-button-submit" type="submit" value={buttonText} />
+                            <div className="form-demo-user" type="submit" onClick={this.checkField}>
+                                Sign in as demo user.
+                            </div>
                         </div>
                     </div>
                    

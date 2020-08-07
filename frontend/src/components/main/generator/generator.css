@@ -14,14 +14,14 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    border: 10px solid purple;
+    border: 10px solid white;
 }
 
 
 .memeContainer {
     display: flex;
     flex-direction: row;
-    background-color: red;
+    background-color: darkgrey;
     height: 100%;
 
 }
@@ -35,16 +35,15 @@
 
 
 .memeGenerator {
-    /* height: 500px;
-    width: 500px; */
     top: 20vh;
     overflow: hidden;
     width: 100%;
-    height: 100%;
-    padding: 20px;
+    height: 94%;
+    padding: 24px;
     background-color: blue;
     justify-content: center;
     align-items: center;
+    object-fit: contain;
 
 }
 
@@ -143,15 +142,18 @@
 }
 
 .icon-container {
-    align-self: flex-end;
-    margin: 15px;
+    align-self: center;
+
 }
 
 
 
 
 .Generator-Text-Rows {
+    padding-top: 10px;
     display: flex;
+    /* justify-content: center; */
+    align-items: center;
     flex-direction: column;
     width: 30%;
 }
@@ -193,11 +195,16 @@
 
 .profile-file-upload {
     text-align: center;
-    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9400D3;
     width: 200px;
-    color: black;
+    height: 30px;
+    color: white;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 15px;
 }
 
 
@@ -206,6 +213,9 @@ display: none;
 }
 
 .Generator-Meme-Container {
+    width: 100%;
     height: 100%;
-    background-color: grey;
+    background-color: white;
+    display: flex;
+    justify-content: center;
 }

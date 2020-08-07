@@ -5,21 +5,38 @@ import './image_modal.css'
 
 
 function ImageModal({modal, closeModal}) {
-  // let noScroll = document.getElementsByClassName("Home-Body-Container")
- 
+
   if (!modal) {
+    window.onscroll = function () {};
+    document.body.style.overflow = 'visible';
     return null;
   }
+  
 
-  return (
-    <div className="modal-background" onClick={closeModal}>
-            <span className="Individual-Close" id="Modal-Close"
-                        onClick={closeModal}>&times;</span>
-      <div className="modal-child-meme" onClick={e => e.stopPropagation()}>
-            <img className="Individual-Modal-Image" id="Modal-Image" alt="" src={modal}/>
+  if (modal === "signup" || modal === "login") {
+    return (
+      <div className="modal-background" onClick={closeModal}>
+              <span className="Individual-Close" id="Modal-Close"
+                          onClick={closeModal}>&times;</span>
+        <div className="modal-child-meme" onClick={e => e.stopPropagation()}>
+              <img className="Individual-Modal-Image" id="Modal-Image" alt="" src={modal}/>
+        </div>
       </div>
+    );
+  } else {
+    window.onscroll = function () { window.scrollTo(0, 0); };
+        document.body.style.overflow = 'hidden';
+    return (
+      <div className="image-modal-background" onClick={closeModal}>
+          <span className="Individual-Close" id="Modal-Close"
+                        onClick={closeModal}>&times;</span>
+          <div className="image-modal-child-meme" onClick={e => e.stopPropagation()}>
+            <img className="Individual-Modal-Image" id="Modal-Image" alt="" src={modal}/>
+          </div>
     </div>
-  );
+    )
+  }
+
 }
 
 const mapStateToProps = state => {

@@ -37,7 +37,7 @@ class NavBar extends React.Component {
             // debugger
             return (
                 <div className="navbar-links"> 
-                    <div className="navbar-userprofile">{`Welcome, ${this.props.user.username}!`}</div>
+                    <div className="navbar-userprofile">{`${this.props.user.username}!`}</div>
                     <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );
@@ -46,7 +46,7 @@ class NavBar extends React.Component {
                 <div className="navbar-links">
 
                     <button className="login-signup-button" onClick={() => this.props.openModal('login')}>Log In</button>
-                    <button className="signin-signup-button" onClick={() => this.props.openModal('signup')}>Sign Up</button>
+                    <div className="signin-signup-button" onClick={() => this.props.openModal('signup')}>Sign Up</div>
                    
                 </div>
             )

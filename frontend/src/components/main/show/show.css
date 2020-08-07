@@ -8,12 +8,13 @@
 }
 
 .Individual-Meme-Container {
-    background-color: #e6f2ff;
-    border: 1px solid #5680E9;
+    background-color: white ;
+    border: 0.04rem solid black;
     border-radius: 3px;
     display: flex;
     flex-direction: column;
     margin: 15px;
+    padding: 10px;
 }
 
 .Individual-Meme-Container:hover {
@@ -23,7 +24,7 @@
 
 
 .Individual-Name {
-    background-color: #9cbc38;
+    background-color: white;
     padding: 10px;
     color: black;
     font-weight: 700;
@@ -47,9 +48,15 @@
 }
 
 .Individual-Meme-Pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: inherit;
-    height: 300px; 
+    height: 400px; 
     overflow: hidden;
+    object-fit: cover;
+    border: 1px solid black;
+    background-color: black;
 }
 
 .Individual-Likes {

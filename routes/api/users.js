@@ -22,14 +22,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     });
 })
 
-// test route to display all the users
-// router.get('/', (req, res) => {
 
-//    User
-//         .find()
-//         .then(users => res.json(users))
-//         .catch(err => res.status(400).json(err));
-// })
 
 router.post('/register', (req, res) => {
 
@@ -61,7 +54,7 @@ router.post('/register', (req, res) => {
                                 jwt.sign(
                                     payload,
                                     keys.secretOrKey,
-                                    // { expiresIn: 3600 },
+                                    { expiresIn: 3600 },
                                     (err, token) => {
                                         res.json({
                                             success: true,
@@ -70,7 +63,7 @@ router.post('/register', (req, res) => {
                                     }
                                 )
                             })
-                            // .catch(err => console.log(err))
+                            .catch(err => console.log(err))
 // added
                     })
                 })
@@ -83,6 +76,7 @@ router.post('/login', (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
 
     if (!isValid) {
+        console.log(isValid)
         return res.status(400).json(errors);
     }
 
@@ -105,7 +99,7 @@ router.post('/login', (req, res) => {
                         jwt.sign(
                             payload,
                             keys.secretOrKey,
-                            // { expiresIn: 3600 },
+                            { expiresIn: 3600 },
                             (err, token) => {
                                 res.json({
                                     success: true,
@@ -114,7 +108,7 @@ router.post('/login', (req, res) => {
                             }
                         )
                     } else {
-                        return res.status(400).json({ password: 'Incorrect password bro!' });
+                        return res.status(400).json({ password: 'Incorrect password' });
                     }
                 })
         })

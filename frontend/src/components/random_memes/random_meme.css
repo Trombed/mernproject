@@ -1,5 +1,5 @@
 .memes {
-    background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);
+    background-color: white;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

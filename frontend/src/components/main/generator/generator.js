@@ -39,20 +39,23 @@ class Generator extends React.Component {
         reader.onload = function(e) {
             img.src = e.target.result
         };
-            reader.onloadend = (e) => {   
-                
-                if (img.width > 800 || img.height > 700) {
-                        document.getElementById("memeGenerator").style.width = "700px"
-                        document.getElementById("memeGenerator").style.height = "700px"
-                        document.getElementById("canvas2").style.width = `700px`
-                        document.getElementById("canvas2").style.height = `700px`
-                }
-                else {
+            reader.onloadend = (e) => { 
+  
+                console.log(img.width)
+                console.log(img.height)
+
+                // if (img.width > 800 || img.height > 700) {
+                //         // document.getElementById("memeGenerator").style.width = "700px"
+                //         // document.getElementById("memeGenerator").style.height = "700px"
+                //         // document.getElementById("canvas2").style.width = `700px`
+                //         // document.getElementById("canvas2").style.height = `700px`
+                // }
+                // else {
                     document.getElementById("memeGenerator").style.width = `${img.width}px`
                     document.getElementById("memeGenerator").style.height = `${img.height}px`
                     document.getElementById("canvas2").style.width = `${img.width}px`
                     document.getElementById("canvas2").style.height = `${img.height}px`
-                }
+                // }
                 document.getElementById('canvas2').style.backgroundImage = "url(" + reader.result + ")";
             }
     }
@@ -67,6 +70,9 @@ class Generator extends React.Component {
     }
 
     saveFile() {
+        if (document.getElementById('canvas2').style.backgroundImage === "") {
+            return;
+        }
         var self = this;
         var screenshot = document.getElementsByClassName("memeGenerator");
         html2canvas(screenshot[0],{
@@ -209,9 +215,10 @@ class Generator extends React.Component {
                             
                             {/* UPPER TEXT */}
                             <div className="Generator-Input-Div">
-                                <h1 className="text-input-label">Text 1:  </h1>
+                              
 
-                                <textarea className='input' onChange={this.upperInput}/>
+                                <textarea className='input' onChange={this.upperInput} placeholder="
+                                Upper Text" />
                                 <div>
                                     <div className="swatch" onClick={  e => this.handleClick(1) }>
                                         <div className="color" style={{backgroundColor: this.state.colorValue}} />

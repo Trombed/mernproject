@@ -74,7 +74,7 @@ class SingleShow extends React.Component {
 
 
     render() {
-        console.log(this.props.loggedIn)
+      
         var content = null
         if (Object.values(this.props.oneMeme).length <= 0) {
             content = null 

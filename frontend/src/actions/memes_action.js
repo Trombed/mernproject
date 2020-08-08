@@ -1,5 +1,5 @@
 import { saveMeme, getMemes, getMeme, getSingleMeme, deleteMeme, removeComment } from "../util/memes_util"
-
+import {closeModal} from '../actions/image_modal_actions'
 
 export const RECEIVE_NEW_MEMES = 'RECEIVE_NEW_MEMES'
 
@@ -12,7 +12,11 @@ export const composeMemes = data => dispatch => {
     return (
             saveMeme(data)
                 // .then( res => console.log(res.data))
-                .then( res => window.location = `/#/${res.data}/`)
+                .then( res => {
+            
+                    window.location = `/#/${res.data}/`
+                    closeModal()
+            })
                 // .then(data => dispatch(receiveNewMemes(data)))
                 .catch(err => console.log(err))
     )

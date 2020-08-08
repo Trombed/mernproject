@@ -23,6 +23,13 @@ function ImageModal({modal, closeModal}) {
         </div>
       </div>
     );
+  } else if (modal === 'saving') {
+    return (
+      <div className='loader-background'>
+        <div className="loader"></div>
+        <div className="loader-text">Saving</div>
+      </div>
+    )
   } else {
     window.onscroll = function () { window.scrollTo(0, 0); };
         document.body.style.overflow = 'hidden';

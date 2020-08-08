@@ -10,6 +10,7 @@
 
 }
 
+
 .generator-page-container {
     display: flex;
     flex-direction: column;
@@ -17,11 +18,53 @@
     border: 10px solid white;
 }
 
+.generator-header {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.generator-uploader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+.generator-url-upload {
+    margin-left: -5px;
+    border: 1px 1px 1px 0px solid black;
+    border-radius: 0px 5px 5px 0px;
+   height: 68%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   color: white;
+   background-color: #5C25B5;
+   padding: 0px 3px;
+  
+}
+
+#url-upload {
+    margin-left: 30px;
+    width: 200px;
+    height: 60%;
+    border-radius: 2px;
+}
+
+#url-upload:focus {
+    border-radius: 2px;
+
+}
+
+
 
 .memeContainer {
     display: flex;
     flex-direction: row;
-    background-color: darkgrey;
+    background-color: white;
     height: 100%;
 
 }
@@ -40,7 +83,7 @@
     width: 100%;
     height: 94%;
     padding: 24px;
-    background-color: blue;
+    background-color: transparent;
     justify-content: center;
     align-items: center;
     object-fit: contain;
@@ -73,11 +116,14 @@
 .select-file {
     margin: 10px;
     font-size: 18px;
+    padding: 0px;
 }
 
-.input {
+.text-input {
     resize: none;
-
+    height: 90%;
+    padding: 0px;
+    margin: 0px;
 }
 
 .text-input-label {
@@ -86,9 +132,58 @@
     vertical-align: super;
 }
 
-.text-size-bar {
-    margin-left: 80px;
+.Text-Size-Changer {
+    display: flex;
+    padding-top: 2px;
+    padding-left: 2px;
+    height: 30px;
+    align-items: center;
 }
+
+.Text-Size {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 50%; /* Full-width */
+  height: 3px; /* Specified height */
+  
+  border-radius: 10px;
+  outline: none; 
+  opacity: 0.7; 
+  -webkit-transition: .2s; 
+  transition: opacity .2s;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; 
+    /* Override default look */
+    appearance: none;
+    width: 20px; 
+    padding: 3px;
+    
+    /* Set a specific slider handle width */
+    height: 20px; 
+    /* Slider handle height */
+    border: 0px solid transparent;
+    border-radius: 50%;
+    box-shadow: 10px solid red;
+    background: #9400D3; 
+    /* Green background */
+    cursor: pointer; 
+    /* Cursor on hover */
+  }
+
+.slider:hover {
+    opacity: 1;
+}
+
+
 
 .upper-text {
     padding: 5px;
@@ -98,13 +193,14 @@
     justify-content: center;
     align-items: center;
     z-index: 10;
-    width: 200;
+    
     font-size: 20px;
     font-family: "Impact";
     color: white;
     text-shadow: black 0px 0px 5px;
     overflow: hidden;
     cursor: pointer;
+
 }
 
 .lower-text {
@@ -124,14 +220,28 @@
 }
 
 .save-upload-button {
+    background-color: #5C25B5;
     margin: 10px;
     outline: 0;
     border: 1px solid black;
+    border-radius: 5px;
     font-size: 18px;
     padding: 5px 10px;
     margin: 10px 10px 10px 10px;
-    border-radius: 0.3em;
+ 
+    cursor: pointer;
+    color: white;
 }
+
+.save-upload-button:hover {
+    background-color: #9400D3;
+    box-shadow: 0px 0px 1px 1px black;
+}
+.save-upload-button:active {
+    box-shadow: none;
+}
+
+
 
 .close-x {
     font-size: 25px;
@@ -153,14 +263,15 @@
     padding-top: 10px;
     display: flex;
     /* justify-content: center; */
-    align-items: center;
+
     flex-direction: column;
     width: 30%;
+
 }
 
 .Generator-Input-Div {
     display: flex;
-   
+    /* height: 70px; */
     float: left;
   
 }
@@ -172,12 +283,13 @@
 }
 
 .swatch {
-    padding: 3px;
-    background: #fff;
-    border-radius: 1px;
+    border: 1px solid black;
+    padding: 5px;
+    background: lightgrey;
+    border-radius: 0px;
     display: inline-block;
     cursor: pointer;
-    height: 90%;
+   
 }
 
 .popover {
@@ -198,15 +310,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #9400D3;
+    background-color:#5C25B5;
     width: 200px;
     height: 30px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 15px;
 }
 
+.profile-file-upload:hover {
+    background-color: #9400D3;
+}
 
 input[type="file"] {
 display: none;
@@ -215,7 +329,9 @@ display: none;
 .Generator-Meme-Container {
     width: 100%;
     height: 100%;
+    background-image: url(../../../images/transparentBG.png);
     background-color: white;
     display: flex;
     justify-content: center;
+    background-size: contain;
 }

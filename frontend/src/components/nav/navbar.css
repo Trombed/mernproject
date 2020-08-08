@@ -85,9 +85,12 @@
 }
 
 
-.create-meme-button, .create-meme-button {
+.create-meme-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
-    height: 38px;
+
     width: 138px;
     margin: 5px;
     text-decoration: none; 
@@ -97,16 +100,16 @@
     display: inline-block;
     padding: 8px;
     text-transform: none;
-    user-select: none;
     border-radius: 5px;
     font-weight: 700;
-    background-color: #9cbc38;
+    background-color: #5C25B5;
     color: #fff;
 }
 
- .create-meme-button:hover, .create-meme-button:hover, .logout-button:hover, .navbar-links a:hover {
+.create-meme-button:hover {
     box-shadow: none;
-    background-color: darkgreen;
+    background-color: #9400D3;
+
 }
 
 
@@ -172,4 +175,34 @@
     background-color: #9400D3;
     box-shadow: 0 5px #666;
     transform: translateY(5px);
+}
+
+.logout-button {
+    font-size: 16px;
+    height: 30px;
+    width: 100px;
+    margin: 5px;
+    text-decoration: none; 
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    padding: 8px;
+    text-transform: none;
+    user-select: none;
+    border-radius: 5px;
+    font-weight: 700;
+    background-color: #5C25B5;
+    color: #fff;
+    outline: none;
+    
+    box-shadow: 0 9px #999;
+}
+
+.logout-button:hover {
+
+    background-color: #9400D3;
+    box-shadow: 0 5px #666;
+    transform: translateY(5px);
+    
 }

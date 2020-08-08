@@ -8,13 +8,15 @@
 }
 
 .Individual-Meme-Container {
-    background-color: white ;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 90%, rgba(221,221,221,1) 100%);
     border: 0.04rem solid black;
-    border-radius: 3px;
+    border-radius: 0px;
     display: flex;
     flex-direction: column;
     margin: 15px;
     padding: 10px;
+    box-shadow: 10px 10px 5px #aaaaaa;
 }
 
 .Individual-Meme-Container:hover {

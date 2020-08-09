@@ -4,13 +4,15 @@ import './generator.css';
 import html2canvas from 'html2canvas';
 import Draggable from 'react-draggable';
 import { ChromePicker } from 'react-color';
-
-
+import adjust from '../../../images/adjust.svg'
+import Filter from './filters/filter'
 
 class Generator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            showFilter: true,
+
             uppertext: "",
             lowertext: "",
             save: false,
@@ -86,6 +88,10 @@ class Generator extends React.Component {
         let result = document.getElementById('canvas2').style.backgroundImage = "url(" + address + ")";
         document.getElementById("url-upload").value = ""
      }
+
+     clearBG() {
+        let result = document.getElementById('canvas2').style.backgroundImage = "url()";
+    }
 
   
 
@@ -223,6 +229,23 @@ class Generator extends React.Component {
         }
     }
 
+    filterToggle() {
+     
+        let text = document.getElementsByClassName("Generator-Text-Rows")[0] 
+        let filter = document.getElementsByClassName("Filter-Container")[0]
+        if (this.state.showFilter) {
+            this.setState({ showFilter: false }, () => {
+                text.style.display = "none"
+                filter.style.display = "flex"
+            })
+        } else if (!this.state.showFilter) {
+            this.setState({ showFilter: true}, () => {
+                text.style.display = "flex"
+                filter.style.display = "none"
+            })
+        }
+    }
+
     render() {
 
 
@@ -249,7 +272,15 @@ class Generator extends React.Component {
                             <div className="generator-url-upload" onClick={this.urlUpload}>
                                 URL
                             </div>
-                        </div>            
+                            <div onClick={this.clearBG} className="Remove-Image">
+                                Remove Image
+                            </div>
+                            <img    src={adjust} 
+                                    className="adjust"
+                                    onClick={this.filterToggle.bind(this)}
+                                />  
+                        </div>      
+                           
                             <button className="save-upload-button" onClick={this.saveFile}>Save Meme
                             </button>
                     </div>
@@ -352,10 +383,13 @@ class Generator extends React.Component {
                    
                             {/* END LOWER TEXT */}
 
-                        
+                            
+                                
+                            
+                            
                          
                         </div>
-
+                        <Filter />
                         <div className="Generator-Meme-Container">
 
                             <div className="memeGenerator" id="memeGenerator">

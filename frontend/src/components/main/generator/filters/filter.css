@@ -1,0 +1,23 @@
+.Filter-Container {
+    padding-top: 10px;
+    display: none;
+    flex-direction: column;
+    width: 30%;
+    border: 1px solid black;
+
+}
+.Filter-Row {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+}
+
+.Filter-Row-Text {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between;
+    padding-bottom: 5px;
+}

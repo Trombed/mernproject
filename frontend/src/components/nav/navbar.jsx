@@ -32,6 +32,8 @@ class NavBar extends React.Component {
         }
     }
 
+  
+
     sessionStatus() {
         if (this.props.loggedIn) {
             // debugger

@@ -241,6 +241,25 @@
     box-shadow: none;
 }
 
+.Remove-Image {
+    background-color: #5C25B5;
+    margin: 10px;
+    outline: 0;
+
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 5px 10px;
+    margin: 10px 10px 10px 10px;
+ 
+    cursor: pointer;
+    color: white;
+}
+
+.Remove-Image:hover {
+    background-color: #9400D3;
+    /* box-shadow: 0px 0px 1px 1px black; */
+    outline: none;
+}
 
 
 .close-x {
@@ -333,5 +352,19 @@ display: none;
     background-color: white;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-size: contain;
+}
+
+.adjust {
+  
+    color: black;
+    background-color: black;
+    /* -webkit-tap-highlight-color: rgba(0,0,0,0); */
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.adjust:hover {
+    opacity: 1;
 }

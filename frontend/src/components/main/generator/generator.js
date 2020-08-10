@@ -13,15 +13,15 @@ class Generator extends React.Component {
         this.state = {
             showFilter: true,
 
-            uppertext: "",
-            lowertext: "",
+            text1: "",
+            text2: "",
             save: false,
-            row: 2,
+            rows: [],
 
-            displayColorPicker: false,
-            colorValue: "#FFFFFF",
-            displayShadowPicker: false,
-            shadowValue: "#000000",
+            displayColorPicker1: false,
+            colorValue1: "#FFFFFF",
+            displayShadowPicker1: false,
+            shadowValue1: "#000000",
             fontSize1: 20,
 
 
@@ -30,6 +30,7 @@ class Generator extends React.Component {
             colorValue2: "#FFFFFF",
             displayShadowPicker2: false,
             shadowValue2: "#000000",
+            fontSize2: 20,
         };
    
         this.upperInput = this.upperInput.bind(this);
@@ -96,9 +97,11 @@ class Generator extends React.Component {
   
 
    
-    upperInput(e) {
-        this.setState({uppertext: e.target.value});
+    upperInput(e, num) {
+        this.setState( { [`text${num}`]: e.target.value } )
     }
+
+ 
 
     lowerInput(e) {
         this.setState({lowertext: e.target.value});
@@ -130,10 +133,11 @@ class Generator extends React.Component {
     }
 
    
-    upperSizeChange(e) {
-        this.setState({fontSize1: e.currentTarget.value})
-        var text = document.getElementsByClassName("upper-text");
-        text[0].style.fontSize = `${e.currentTarget.value}px`;
+    upperSizeChange(e, num) {
+        var text = document.getElementsByClassName(`upper-text-${num}`)[0];
+        if (text === undefined) return;
+        this.setState({[`fontSize${num}`]: e.currentTarget.value})
+        text.style.fontSize = `${e.currentTarget.value}px`;
 
     }
 
@@ -143,87 +147,61 @@ class Generator extends React.Component {
     }
     
     handleClick = (num) => {
-        
-        if (num === 1) {
-            this.setState({ displayColorPicker: !this.state.displayColorPicker  })
-        } else if (num === 2) {
-            this.setState({ displayColorPicker2: !this.state.displayColorPicker2 })
-        }
+        this.setState({ [`displayColorPicker${num}`]:  !this.state[`displayColorPicker${num}`] })
     };
 
     handleClose = (num) => {
-       console.log(num)
-        if (num === 1) {
-            this.setState({ displayColorPicker: false })
-            console.log(num)
-        } else if (num === 2) {
-            this.setState({ displayColorPicker2: false })
-        }
+        this.setState({ [`displayColorPicker${num}`]: false })
     };
 
     handleColorChange = (color, num )=> {
-        if (num === 1) {
+      
             this.setState({
-                colorValue: color.hex
+                [`colorValue${num}`]: color.hex
               }, () => {
-                  var text = document.getElementsByClassName("upper-text");
-                  
-                  text[0].style.color = `${color.hex}`
+                  var text = document.getElementsByClassName(`upper-text-${num}`)[0];
+                  if (text === undefined ) return;
+                  text.style.color = `${color.hex}`
               });
-        } else if (num === 2) {
-            this.setState({
-                colorValue: color.hex
-              }, () => {
-                  var text = document.getElementsByClassName("lower-text");
-                  
-                  text[0].style.color = `${color.hex}`
-              });
-        }
+        
 
     };
 
     handleShadowClick = (num) => {
-        
-        if (num === 1) {
-            this.setState({ displayShadowPicker: !this.state.displayShadowPicker  })
-        } else if (num === 2) {
-            this.setState({ displayShadowPicker2: !this.state.displayShadowPicker2 })
-        }
+        this.setState({ [`displayShadowPicker${num}`]:  !this.state[`displayShadowPicker${num}`] })
+        // if (num === 1) {
+        //     this.setState({ displayShadowPicker1: !this.state.displayShadowPicker1  })
+        // } else if (num === 2) {
+        //     this.setState({ displayShadowPicker2: !this.state.displayShadowPicker2 })
+        // }
     };
 
     handleShadowClose = (num) => {
       
         if (num === 1) {
-            this.setState({ displayShadowPicker: false })
-            console.log(num)
+            this.setState({ displayShadowPicker1: false })
+            
         } else if (num === 2) {
             this.setState({ displayShadowPicker2: false })
         }
     };
 
     handleShadowChange = (color, num )=> {
-        if (num === 1) {
             this.setState({
-                shadowValue: color.hex
+                [`shadowValue${num}`]: color.hex
               }, () => {
-                  var text = document.getElementsByClassName("upper-text");
-                  
-                  text[0].style.textShadow = `${color.hex} 0px 0px 10px`
+                  var text = document.getElementsByClassName(`upper-text-${num}`)[0];
+                  if (text === undefined) {
+                      console.log("test")
+                      return;
+                    }
+                  text.style.textShadow = `${color.hex} 0px 0px 10px`
               });
-        } else if (num === 2) {
-            this.setState({
-                shadowValue: color.hex
-              }, () => {
-                  var text = document.getElementsByClassName("lower-text");
-                  
-                  text[0].style.textShadow = `${color.hex} 0px 0px 10px`
-              });
-        }
+   
     };
 
    
     submitURL(e) {
-      
         if (e.key === "Enter") {
             this.urlUpload()
         }
@@ -246,10 +224,109 @@ class Generator extends React.Component {
         }
     }
 
+    addRow() {
+        this.setState({rows: [...this.state.rows, ""]}, () => {
+            let rowNum = this.state.rows.length + 2
+            this.setState({
+                [`text${rowNum}`]: rowNum,
+                [`displayColorPicker${rowNum}`]: false,
+                [`colorValue${rowNum}`]: "#FFFFFF",
+                [`displayShadowPicker${rowNum}`]: false,
+                [`shadowValue${rowNum}`]: "#000000",
+                [`fontSize${rowNum}`]: 20
+            })
+            
+        })
+       
+    }
+
+    deleteRow() {
+        if (this.state.rows.length <= 0 ) return;
+        this.setState({
+            rows: [...this.state.rows.slice(0,this.state.rows.length-1)]
+        })
+    }
+
+    addInput(e, num) {
+         this.setState( { [`text${num+3}`]: e.target.value }, 
+                            () =>  {    
+                                    let rows = this.state.rows
+                                     rows[num] = this.state[`text${num+3}`]
+                                     this.setState({ rows }) }
+                    )
+    }
+
     render() {
 
+        //Generate new row inputs
+        const newRows = this.state.rows.map( (row, idx) => (
+            <div className="Generator-Text-New-Rows" key={idx}>
+                <div className="Generator-Input-Div">
+                    <textarea className='text-input' onChange={ e => this.addInput(e, idx)} placeholder={`Row# ${idx+3}`}/>
+                <div>
+                <div className="swatch" onClick={  e => this.handleClick(idx+3) }>
+                    <div className="color" style={{backgroundColor: this.state[`colorValue${idx+3}`] }} />
+                    </div>
+                    { this.state[`displayColorPicker${idx+3}`] ? <div className="popover">
+                    <div className="cover" onClick={ e => this.handleClose(idx+3) }/>
+                    <ChromePicker   color={ this.state[`colorValue${idx+3}`] } 
+                                    onChange={ color => this.handleColorChange(color, idx+3) } />
+                    </div> : null }
 
-        const upperTextOutput = this.state.uppertext.split("\n").map( (line, index) => (
+                </div>
+
+                <div>
+                    <div className="swatch" onClick={  e => this.handleShadowClick(idx+3) }>
+                        <div className="color" style={{ backgroundColor: this.state[`shadowValue${idx+2}`] }} />
+                    </div>
+                    { this.state[`displayShadowPicker${idx+3}`] ? <div className="popover">
+                    <div className="cover" onClick={ e => this.handleShadowClose(idx+3) }/>
+                    <ChromePicker   color={ this.state[`shadowValue${idx+3}`] } 
+                                    onChange={ color => this.handleShadowChange(color, idx+3) } />
+                    </div> : null }
+
+                </div>
+            </div>      
+            <div className="Text-Size-Changer">
+                    <div className="Text-Size">
+                    Size:
+                    </div>
+                    <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, idx+3)} defaultValue="20" />
+                    <div className="Text-Size">
+                        { this.state[`fontSize${idx+3}`] }
+
+                    </div>
+                </div>
+            </div>       
+
+        ))
+        // END Generating New rows
+
+        //Render new rows on image
+        let newSentence = this.state.rows.map( (sentence, idx) => {
+            const breakLine = sentence.split("\n").map( (line, index) => (
+                <p key={index}>{line}</p>
+            ))
+            return (
+                <Draggable key={idx}>
+                    <div  className={`upper-text-${idx+3}`}>
+                        { breakLine}
+                    </div>
+                </Draggable>
+            )
+          
+        })
+     
+                                
+
+        //End render new rows on image
+
+
+        const upperTextOutput = this.state.text1.split("\n").map( (line, index) => (
+            <p key={index}>{line}</p>
+        ));
+
+         const lowerTextOutput = this.state.text2.split("\n").map( (line, index) => (
             <p key={index}>{line}</p>
         ));
 
@@ -297,15 +374,15 @@ class Generator extends React.Component {
                             <div className="Generator-Input-Div">
                               
 
-                                <textarea className='text-input' onChange={this.upperInput} placeholder="
+                                <textarea className='text-input' onChange={ e=> this.upperInput(e,1)} placeholder="
                                 Upper Text" />
                                 <div>
                                     <div className="swatch" onClick={  e => this.handleClick(1) }>
-                                        <div className="color" style={{backgroundColor: this.state.colorValue}} />
+                                        <div className="color" style={{backgroundColor: this.state.colorValue1}} />
                                     </div>
-                                    { this.state.displayColorPicker ? <div className="popover">
+                                    { this.state.displayColorPicker1 ? <div className="popover">
                                     <div className="cover" onClick={ e => this.handleClose(1) }/>
-                                    <ChromePicker   color={ this.state.colorValue } 
+                                    <ChromePicker   color={ this.state.colorValue1 } 
                                                     onChange={ color => this.handleColorChange(color, 1) } />
                                     </div> : null }
 
@@ -313,11 +390,11 @@ class Generator extends React.Component {
 
                                 <div>
                                     <div className="swatch" onClick={  e => this.handleShadowClick(1) }>
-                                        <div className="color" style={{backgroundColor: this.state.shadowValue}} />
+                                        <div className="color" style={{backgroundColor: this.state.shadowValue1}} />
                                     </div>
-                                    { this.state.displayShadowPicker ? <div className="popover">
+                                    { this.state.displayShadowPicker1 ? <div className="popover">
                                     <div className="cover" onClick={ e => this.handleShadowClose(1) }/>
-                                    <ChromePicker   color={ this.state.shadowValue } 
+                                    <ChromePicker   color={ this.state.shadowValue1 } 
                                                     onChange={ color => this.handleShadowChange(color, 1) } />
                                     </div> : null }
 
@@ -329,7 +406,7 @@ class Generator extends React.Component {
                                 <div className="Text-Size">
                                 Size:
                                 </div>
-                                <input className="slider" type="range" min="10" max="100" onChange={this.upperSizeChange} defaultValue="20" />
+                                <input className="slider" type="range" min="10" max="100" onChange={e => this.upperSizeChange(e, 1)} defaultValue="20" />
                                 <div className="Text-Size">
                                     {this.state.fontSize1}
 
@@ -342,28 +419,28 @@ class Generator extends React.Component {
                             <div className="Generator-Input-Div">
                               
 
-                              <textarea className='text-input' onChange={this.upperInput} placeholder="
-                              Upper Text" />
+                              <textarea className='text-input' onChange={ e => this.upperInput(e, 2)} placeholder="
+                              Lower Text" />
                               <div>
-                                  <div className="swatch" onClick={  e => this.handleClick(1) }>
-                                      <div className="color" style={{backgroundColor: this.state.colorValue}} />
+                                  <div className="swatch" onClick={  e => this.handleClick(2) }>
+                                      <div className="color" style={{backgroundColor: this.state.colorValue2}} />
                                   </div>
-                                  { this.state.displayColorPicker ? <div className="popover">
-                                  <div className="cover" onClick={ e => this.handleClose(1) }/>
-                                  <ChromePicker   color={ this.state.colorValue } 
-                                                  onChange={ color => this.handleColorChange(color, 1) } />
+                                  { this.state.displayColorPicker2 ? <div className="popover">
+                                  <div className="cover" onClick={ e => this.handleClose(2) }/>
+                                  <ChromePicker   color={ this.state.colorValue2 } 
+                                                  onChange={ color => this.handleColorChange(color, 2) } />
                                   </div> : null }
 
                               </div>
 
                               <div>
-                                  <div className="swatch" onClick={  e => this.handleShadowClick(1) }>
-                                      <div className="color" style={{backgroundColor: this.state.shadowValue}} />
+                                  <div className="swatch" onClick={  e => this.handleShadowClick(2) }>
+                                      <div className="color" style={{backgroundColor: this.state.shadowValue2}} />
                                   </div>
-                                  { this.state.displayShadowPicker ? <div className="popover">
-                                  <div className="cover" onClick={ e => this.handleShadowClose(1) }/>
-                                  <ChromePicker   color={ this.state.shadowValue } 
-                                                  onChange={ color => this.handleShadowChange(color, 1) } />
+                                  { this.state.displayShadowPicker2 ? <div className="popover">
+                                  <div className="cover" onClick={ e => this.handleShadowClose(2) }/>
+                                  <ChromePicker   color={ this.state.shadowValue2 } 
+                                                  onChange={ color => this.handleShadowChange(color, 2) } />
                                   </div> : null }
 
                               </div>
@@ -374,15 +451,25 @@ class Generator extends React.Component {
                               <div className="Text-Size">
                               Size:
                               </div>
-                              <input className="slider" type="range" min="10" max="100" onChange={this.upperSizeChange} defaultValue="20" />
+                              <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, 2)} defaultValue="20" />
                               <div className="Text-Size">
-                                  {this.state.fontSize1}
+                                  {this.state.fontSize2}
 
                               </div>
                           </div>
+
+                            {newRows}
                    
                             {/* END LOWER TEXT */}
+                            <div>
+                            <button onClick={this.addRow.bind(this)}>
+                                Add Row
+                            </button>
 
+                            <button onClick={this.deleteRow.bind(this)}>
+                                Delete Row
+                            </button>
+                            </div>
                             
                                 
                             
@@ -398,13 +485,15 @@ class Generator extends React.Component {
                                     
                                 </div>
                                 <Draggable>
-                                    <span className='upper-text box'>{upperTextOutput}
+                                    <span className='upper-text-1 box'>{upperTextOutput}
                                     </span>
                                 </Draggable>
                                 <br />
                                 <Draggable>
-                                    <div  className='lower-text'>{this.state.lowertext}</div>
+                                    <div  className='upper-text-2 '>    {lowerTextOutput}
+                                    </div>
                                 </Draggable>
+                                {newSentence}
                             </div>
 
                         </div>

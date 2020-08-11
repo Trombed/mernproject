@@ -2,7 +2,7 @@ import React from 'react';
 import "../show/show.css";
 import Comments from '../show/comments/comments';
 import { Link } from 'react-router-dom';
-
+import { closeModal} from '../../../actions/image_modal_actions'
 
 class SingleShow extends React.Component {
     constructor(props) {
@@ -18,6 +18,7 @@ class SingleShow extends React.Component {
     componentDidMount() {
 
         this.props.fetchSingleMeme(this.props.match.params.id)
+        closeModal()
     }
 
     componentDidUpdate(prevProps) {

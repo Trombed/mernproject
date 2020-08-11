@@ -15,7 +15,7 @@ export const composeMemes = data => dispatch => {
                 .then( res => {
             
                     window.location = `/#/${res.data}/`
-                    closeModal()
+                    
             })
                 // .then(data => dispatch(receiveNewMemes(data)))
                 .catch(err => console.log(err))

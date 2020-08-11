@@ -1,9 +1,12 @@
 .Filter-Container {
     padding-top: 10px;
+    padding: 20px;
     display: none;
     flex-direction: column;
-    width: 30%;
+    width: 25vw;
     border: 1px solid black;
+    min-height: 80vh;
+    max-height: 80vh;
 
 }
 .Filter-Row {

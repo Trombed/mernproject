@@ -10,7 +10,7 @@
 .Individual-Meme-Container {
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 90%, rgba(221,221,221,1) 100%);
-    border: 0.04rem solid black;
+    border: 0.04rem solid #aaaaaa;
     border-radius: 0px;
     display: flex;
     flex-direction: column;

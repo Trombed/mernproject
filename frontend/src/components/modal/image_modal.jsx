@@ -38,7 +38,8 @@ function ImageModal({modal, closeModal}) {
           <span className="Individual-Close" id="Modal-Close"
                         onClick={closeModal}>&times;</span>
           <div className="image-modal-child-meme" onClick={e => e.stopPropagation()}>
-            <img className="Individual-Modal-Image" id="Modal-Image" alt="" src={modal}/>
+            <img className="Individual-Modal-Image" id="Modal-Image" alt="" src={modal}
+            />
           </div>
     </div>
     )

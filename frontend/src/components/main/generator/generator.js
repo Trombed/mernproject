@@ -151,6 +151,7 @@ class Generator extends React.Component {
     };
 
     handleClose = (num) => {
+        console.log(num)
         this.setState({ [`displayColorPicker${num}`]: false })
     };
 
@@ -331,7 +332,7 @@ class Generator extends React.Component {
         ));
 
         return (
-            <div className="generator-page-wrap">
+
 
                 <div className="generator-page-container">
                     <div className="generator-header">
@@ -461,12 +462,12 @@ class Generator extends React.Component {
                             {newRows}
                    
                             {/* END LOWER TEXT */}
-                            <div>
-                            <button onClick={this.addRow.bind(this)}>
+                            <div className="Row-Manipulation">
+                            <button className="Add-Row" onClick={this.addRow.bind(this)}>
                                 Add Row
                             </button>
 
-                            <button onClick={this.deleteRow.bind(this)}>
+                            <button className="Add-Row" onClick={this.deleteRow.bind(this)}>
                                 Delete Row
                             </button>
                             </div>
@@ -500,7 +501,7 @@ class Generator extends React.Component {
 
                     </div>
                 </div>
-            </div>
+            
         )
     }
 }

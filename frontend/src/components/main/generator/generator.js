@@ -6,6 +6,7 @@ import Draggable from 'react-draggable';
 import { ChromePicker } from 'react-color';
 import adjust from '../../../images/adjust.svg'
 import Filter from './filters/filter'
+import screenshot from 'image-screenshot'
 
 class Generator extends React.Component {
     constructor(props) {
@@ -56,9 +57,7 @@ class Generator extends React.Component {
         };
             reader.onloadend = (e) => { 
   
-                console.log(img.width)
-                console.log(img.height)
-
+    
                 // if (img.width > 800 || img.height > 700) {
                 //         // document.getElementById("memeGenerator").style.width = "700px"
                 //         // document.getElementById("memeGenerator").style.height = "700px"
@@ -71,7 +70,8 @@ class Generator extends React.Component {
                     document.getElementById("canvas2").style.width = `${img.width}px`
                     document.getElementById("canvas2").style.height = `${img.height}px`
                 // }
-                document.getElementById('canvas2').style.backgroundImage = "url(" + reader.result + ")";
+                // document.getElementById('canvas2').style.backgroundImage = "url(" + reader.result + ")";
+                document.getElementById('picture').src = img.src
             }
     }
 
@@ -108,30 +108,72 @@ class Generator extends React.Component {
         this.setState({lowertext: e.target.value});
     }
 
-    saveFile() {
+    // async saveFile() {
        
-        if (document.getElementById('canvas2').style.backgroundImage === "") {
-            return;
-        }
-        this.props.openModal("saving")
-        var self = this;
-        var screenshot = document.getElementsByClassName("memeGenerator");
-        html2canvas(screenshot[0],{
+    //     // if (document.getElementById('canvas2').style.backgroundImage === "") {
+    //     //     return;
+    //     // }
+    //     // this.props.openModal("saving")
+    //     var self = this;
+    //     const img = document.getElementById("picture")
+    //     screenshot(img).then( url => {
+    //         document.getElementById('canvas2').style.backgroundImage = "url(" + url + ")";
+    //         document.getElementById("picture").src = ""
+    //     })
+
+       
+    //     var screenshot2 = document.getElementsByClassName("memeGenerator");
+    //     html2canvas(screenshot2[0],{
+    //         imageTimeout: 30000,
+    //         backgroundColor: "null"})
+    //     .then( (canvas) => { 
+    //         const base64image = canvas.toDataURL("image/png");
+    //         let image = { image: base64image };
+    //         self.props.composeMemes(image);
+    //     })  
+    //     .then( this.props.closeModal)
+    //     .then( this.props.fetchMemes())
+    //     this.setState({uppertext: ""});
+    //     this.setState({lowertext: ""}, () => {
+    //         this.props.fetchMemes()
+    //     });
+        
+    // }
+
+    saveFile() {
+        let data;
+        
+        const img = document.getElementById("picture")
+        screenshot(img)
+        .then( url => {
+            document.getElementById('canvas2').style.backgroundImage = "url(" + url + ")";
+            document.getElementById("picture").src = ""
+            this.screenCapture();
+        })
+    }
+
+    screenCapture() {
+        let self = this
+        var screenshot2 = document.getElementsByClassName("memeGenerator");
+        html2canvas(screenshot2[0],{
             imageTimeout: 30000,
             backgroundColor: "null"})
         .then( (canvas) => { 
             const base64image = canvas.toDataURL("image/png");
             let image = { image: base64image };
             self.props.composeMemes(image);
-        })
-        .then( this.props.closeModal)
+        })  
+        // .then( this.props.closeModal)
         .then( this.props.fetchMemes())
         this.setState({uppertext: ""});
         this.setState({lowertext: ""}, () => {
             this.props.fetchMemes()
         });
-        
     }
+
+
+
+
 
    
     upperSizeChange(e, num) {
@@ -490,7 +532,8 @@ class Generator extends React.Component {
                             <div className="memeGenerator" id="memeGenerator">
 
                                 <div id='canvas2'>
-                                    
+                                <img id='picture' src="" />
+                                
                                 </div>
                                 <Draggable>
                                     <span className='upper-text-1 box'>{upperTextOutput}

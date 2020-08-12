@@ -20,11 +20,11 @@ const Filter = () => {
     const [showSaturate, setShowSaturate] = useState(false)
     const [showHueRotate, setShowHueRotate] = useState(false)
     const [showInvert, setShowInvert] = useState(false)
-    document.getElementById('canvas2')
+  
 
     useEffect( () => {
        
-        document.getElementById('canvas2').style.filter = `brightness(${brightness}%) blur(${blur}px) contrast(${contrast}%) grayscale(${grayscale}%) sepia(${sepia}%) saturate(${saturate}%)  hue-rotate(${hueRotate}deg) invert(${invert}%)`
+        document.getElementById('picture').style.filter = `brightness(${brightness}%) blur(${blur}px) contrast(${contrast}%) grayscale(${grayscale}%) sepia(${sepia}%) saturate(${saturate}%)  hue-rotate(${hueRotate}deg) invert(${invert}%)`
     })
 
     const reset = () => {
@@ -130,7 +130,7 @@ const Filter = () => {
             </div>
             <div className="Filter-Slider">
 
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeBlur(e)} 
+            <input className="slider" type="range" min="0" step="0.1" max="50" onChange={ e => changeBlur(e)} 
             value={blur} />
             </div>
        

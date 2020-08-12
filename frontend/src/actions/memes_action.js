@@ -9,7 +9,9 @@ export const receiveNewMemes = data => ({
 })
 
 export const composeMemes = data => dispatch => {
+    
     return (
+        
             saveMeme(data)
                 // .then( res => console.log(res.data))
                 .then( res => {

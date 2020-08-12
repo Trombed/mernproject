@@ -4,23 +4,115 @@
     display: none;
     flex-direction: column;
     width: 25vw;
-    border: 1px solid black;
-    min-height: 80vh;
-    max-height: 80vh;
+  
+    min-height: 78vh;
+    max-height: 78vh;
+    font-family: 'Open Sans', sans-serif;
 
 }
 .Filter-Row {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 10px 0px;
+    padding: 1vh 0px;
 }
 
 .Filter-Row-Text {
-    width: 70%;
+    width: 45%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: space-between;
-    padding-bottom: 5px;
+    align-items: center;
+    padding-bottom: 1vh;
+}
+
+.Filter-Slider {
+    width: 100%;
+}
+
+.Filter-Header {
+    font-size: 2em;
+    padding-bottom: 1vh;
+}
+
+.Filter-Name {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    letter-spacing: 1px;
+}
+
+.Filter-Name:hover {
+    color: #5C25B5;
+    font-weight: extra-bold 900;
+}
+
+.Filter-Number {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    width: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.Filter-Input {
+    outline: none;
+    width: 2vw;
+    border: none;
+    cursor: pointer;
+    border: 2px solid hsla(0,0%,100%,0);
+    /* border: 2px solid black; */
+    border-radius: 5px;
+    text-align: right;
+
+}
+
+.Filter-Input:hover {
+   
+   color: #9400D3;
+   border: 2px solid rgb(155, 26, 211);
+}
+
+.Filter-Input:focus {
+    border: 2px solid #5C25B5
+}
+
+.Filter-Divider {
+    background-image: linear-gradient(to right, rgb(202, 67, 184), rgb(255, 255, 255));
+    height: 0.8vh;
+    margin-bottom: 1vh;
+}
+
+.Filter-Reset-Container {
+    padding-top: 2vh;
+}
+
+.Filter-Reset {
+
+    width: 8vw;
+    padding: 10px;
+    color: white;
+    background-color: #5C25B5;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Filter-Reset:hover {
+    background-color: #9400D3;
 }

@@ -38,6 +38,7 @@ class Generator extends React.Component {
         this.uploadImage = this.uploadImage.bind(this);
         this.saveFile = this.saveFile.bind(this);
         this.upperSizeChange = this.upperSizeChange.bind(this)
+        this.handleClose = this.handleClose.bind(this)
     }
 
     componentWillMount() {
@@ -86,12 +87,12 @@ class Generator extends React.Component {
         document.getElementById("memeGenerator").style.height = `${img.height}px`
         document.getElementById("canvas2").style.width = `${img.width}px`
         document.getElementById("canvas2").style.height = `${img.height}px`
-        let result = document.getElementById('canvas2').style.backgroundImage = "url(" + address + ")";
+        document.getElementById('canvas2').style.backgroundImage = "url(" + address + ")";
         document.getElementById("url-upload").value = ""
      }
 
      clearBG() {
-        let result = document.getElementById('canvas2').style.backgroundImage = "url()";
+        document.getElementById('canvas2').style.backgroundImage = "url()";
     }
 
   
@@ -150,13 +151,13 @@ class Generator extends React.Component {
         this.setState({ [`displayColorPicker${num}`]:  !this.state[`displayColorPicker${num}`] })
     };
 
-    handleClose = (num) => {
-        console.log(num)
+    handleClose(num) {
+     
         this.setState({ [`displayColorPicker${num}`]: false })
+   
     };
 
     handleColorChange = (color, num )=> {
-      
             this.setState({
                 [`colorValue${num}`]: color.hex
               }, () => {
@@ -164,27 +165,18 @@ class Generator extends React.Component {
                   if (text === undefined ) return;
                   text.style.color = `${color.hex}`
               });
-        
-
     };
 
     handleShadowClick = (num) => {
         this.setState({ [`displayShadowPicker${num}`]:  !this.state[`displayShadowPicker${num}`] })
         // if (num === 1) {
-        //     this.setState({ displayShadowPicker1: !this.state.displayShadowPicker1  })
-        // } else if (num === 2) {
-        //     this.setState({ displayShadowPicker2: !this.state.displayShadowPicker2 })
-        // }
+
     };
 
     handleShadowClose = (num) => {
-      
-        if (num === 1) {
-            this.setState({ displayShadowPicker1: false })
-            
-        } else if (num === 2) {
-            this.setState({ displayShadowPicker2: false })
-        }
+        this.setState({ [`displayShadowPicker${num}`]:  false })
+ 
+       
     };
 
     handleShadowChange = (color, num )=> {
@@ -193,7 +185,7 @@ class Generator extends React.Component {
               }, () => {
                   var text = document.getElementsByClassName(`upper-text-${num}`)[0];
                   if (text === undefined) {
-                      console.log("test")
+                 
                       return;
                     }
                   text.style.textShadow = `${color.hex} 0px 0px 10px`
@@ -269,7 +261,11 @@ class Generator extends React.Component {
                     <div className="color" style={{backgroundColor: this.state[`colorValue${idx+3}`] }} />
                     </div>
                     { this.state[`displayColorPicker${idx+3}`] ? <div className="popover">
-                    <div className="cover" onClick={ e => this.handleClose(idx+3) }/>
+                    <div className="cover" onClick={ e => {
+                        this.handleClose(idx+3) 
+                       
+                    }
+                    }/>
                     <ChromePicker   color={ this.state[`colorValue${idx+3}`] } 
                                     onChange={ color => this.handleColorChange(color, idx+3) } />
                     </div> : null }
@@ -278,12 +274,14 @@ class Generator extends React.Component {
 
                 <div>
                     <div className="swatch" onClick={  e => this.handleShadowClick(idx+3) }>
-                        <div className="color" style={{ backgroundColor: this.state[`shadowValue${idx+2}`] }} />
+                        <div className="color" style={{ backgroundColor: this.state[`shadowValue${idx+3}`] }} />
                     </div>
                     { this.state[`displayShadowPicker${idx+3}`] ? <div className="popover">
                     <div className="cover" onClick={ e => this.handleShadowClose(idx+3) }/>
                     <ChromePicker   color={ this.state[`shadowValue${idx+3}`] } 
-                                    onChange={ color => this.handleShadowChange(color, idx+3) } />
+                                    onChange={ color => this.handleShadowChange(color, idx+3) } 
+                                   
+                                    />
                     </div> : null }
 
                 </div>
@@ -355,6 +353,7 @@ class Generator extends React.Component {
                             </div>
                             <img    src={adjust} 
                                     className="adjust"
+                                    alt=""
                                     onClick={this.filterToggle.bind(this)}
                                 />  
                         </div>      
@@ -377,14 +376,18 @@ class Generator extends React.Component {
 
                                 <textarea className='text-input' onChange={ e=> this.upperInput(e,1)} placeholder="
                                 Upper Text" />
-                                <div>
-                                    <div className="swatch" onClick={  e => this.handleClick(1) }>
+                                <div >
+                                    <div className="swatch" onClick={  () => {
+                                        this.handleClick(1)
+                                    
+                                     } }>
                                         <div className="color" style={{backgroundColor: this.state.colorValue1}} />
                                     </div>
-                                    { this.state.displayColorPicker1 ? <div className="popover">
-                                    <div className="cover" onClick={ e => this.handleClose(1) }/>
+                                    { this.state.displayColorPicker1 ? <div className="popover"  >
+                                    <div className="cover" onClick={ (e) => this.handleClose(1)}/>
                                     <ChromePicker   color={ this.state.colorValue1 } 
-                                                    onChange={ color => this.handleColorChange(color, 1) } />
+                                                    onChange={ color => this.handleColorChange(color, 1) } 
+                                                    />
                                     </div> : null }
 
                                 </div>
@@ -393,11 +396,15 @@ class Generator extends React.Component {
                                     <div className="swatch" onClick={  e => this.handleShadowClick(1) }>
                                         <div className="color" style={{backgroundColor: this.state.shadowValue1}} />
                                     </div>
-                                    { this.state.displayShadowPicker1 ? <div className="popover">
-                                    <div className="cover" onClick={ e => this.handleShadowClose(1) }/>
-                                    <ChromePicker   color={ this.state.shadowValue1 } 
+                                    { 
+                                        this.state.displayShadowPicker1 ? 
+                                            <div className="popover">
+                                                <div className="cover" onClick={ e => this.handleShadowClose(1) }/>
+                                                 <ChromePicker   color={ this.state.shadowValue1 } 
                                                     onChange={ color => this.handleShadowChange(color, 1) } />
-                                    </div> : null }
+                                            </div> 
+                                        : null 
+                                    }
 
                                 </div>
                             </div>

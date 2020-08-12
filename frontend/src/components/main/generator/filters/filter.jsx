@@ -12,7 +12,15 @@ const Filter = () => {
     const [saturate, setSaturate] = useState(100)
     const [hueRotate, setHueRotate] = useState(0)
     const [invert, setInvert] = useState(0)
-    const picture = document.getElementById('canvas2')
+    const [showBrightness, setShowBrightness] = useState(false)
+    const [showBlur, setShowBlur] = useState(false)
+    const [showContrast, setShowContrast] = useState(false)
+    const [showGrayscale, setShowGrayscale] = useState(false)
+    const [showSepia, setShowSepia] = useState(false)
+    const [showSaturate, setShowSaturate] = useState(false)
+    const [showHueRotate, setShowHueRotate] = useState(false)
+    const [showInvert, setShowInvert] = useState(false)
+    document.getElementById('canvas2')
 
     useEffect( () => {
        
@@ -66,119 +74,223 @@ const Filter = () => {
 
 
 
+
+
     return (
     <div className="Filter-Container">
-        <div>
-            Filters
+        <div className="Filter-Header">
+            FILTERS
         </div>
-         <div className="Filter-Row">
+        <div className="Filter-Divider" />
+
+        <div className="Filter-Row">
             <div className="Filter-Row-Text">
-                <div>
-                Brightness: 
+                <div className="Filter-Name" 
+                onMouseEnter={ () => setShowBrightness(true) }
+                onMouseLeave={ () => setShowBrightness(false)}
+                onClick={ () => setBrightness(100)}
+                >
+                 { showBrightness ? "RESET" : "BRIGHTNESS" }
                 </div>
-                <div>
-                {brightness}
+                <div className="Filter-Number">
+                    <input type="number" 
+                    className="Filter-Input"
+                    value={brightness} 
+                    onChange={ changeBrightness }/>
                 </div>
             </div>
-            <input className="slider" type="range" min="0" max="200" onChange={ e => changeBrightness(e)} defaultValue="100" />
+            <div className="Filter-Slider">
+                <input className="slider" 
+                type="range" 
+                min="0" 
+                max="200" 
+                onChange={ e => changeBrightness(e)} 
+    
+                value={brightness}
+                 />
+            </div>
             
         </div>   
         
         <div className="Filter-Row">
         <div className="Filter-Row-Text">
-                <div>
-                Brightness: 
+                <div className="Filter-Name"
+                onMouseEnter={ () => setShowBlur(true) }
+                onMouseLeave={ () => setShowBlur(false)}
+                onClick={ () => setBlur(0)}
+                >
+                { showBlur ? "Reset" : "Blur"}
                 </div>
-                <div>
-                {brightness}
+                <div className="Filter-Number">
+                <input type="number" 
+                    className="Filter-Input"
+                    value={blur} 
+                    onChange={ changeBlur }/>
                 </div>
             </div>
-            Blur:  {blur}
-            <input className="slider" type="range" min="0" max="10" onChange={ e => changeBlur(e)} defaultValue="0" />
+            <div className="Filter-Slider">
+
+            <input className="slider" type="range" min="0" max="100" onChange={ e => changeBlur(e)} 
+            value={blur} />
+            </div>
        
         </div>
 
         <div className="Filter-Row">
             <div className="Filter-Row-Text">
-                <div>
-                Contrast: 
+                <div className="Filter-Name" 
+                 onMouseEnter={ () => setShowContrast(true) }
+                 onMouseLeave={ () => setShowContrast(false)}
+                 onClick={ () => setContrast(100)}
+                 >
+                 { showContrast ? "Reset" : "Contrast"}
+               
                 </div>
-                <div>
-                {contrast}
+                <div className="Filter-Number">
+                <input type="number" 
+                    className="Filter-Input"
+                    value={contrast} 
+                    onChange={ changeContrast }/>
                 </div>
             </div>
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeContrast(e)} defaultValue="100" />
+            <div className="Filter-Slider">
+
+            <input className="slider" type="range" min="0" max="100" onChange={ e => changeContrast(e)} 
+            value={contrast} />
+            </div>
           
         </div>
 
         <div className="Filter-Row">
             <div className="Filter-Row-Text">
-                <div>
-                Grayscale: 
+                <div className="Filter-Name"
+                onMouseEnter={ () => setShowGrayscale(true) }
+                onMouseLeave={ () => setShowGrayscale(false)}
+                onClick={ () => setGrayscale(0)}
+                >
+                { showGrayscale ? "Reset" : "Grayscale"}
                 </div>
-                <div>
-                {grayscale}
+                <div className="Filter-Number">
+                <input type="number" 
+                    className="Filter-Input"
+                    value={grayscale} 
+                    onChange={ changeGrayscale }/>
                 </div>
             </div>
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeGrayscale(e)} defaultValue="0" />
+            <div className="Filter-Slider">
+
+            <input className="slider" type="range" min="0" max="100" onChange={ e => changeGrayscale(e)} 
+            value={grayscale} />
+            </div>
            
         </div>
 
         <div className="Filter-Row">
             <div className="Filter-Row-Text">
-                <div>
-                Sepia 
+                <div className="Filter-Name"
+                 onMouseEnter={ () => setShowSepia(true) }
+                 onMouseLeave={ () => setShowSepia(false)}
+                 onClick={ () => setSepia(0)}
+                 >
+                 { showSepia ? "Reset" : "Sepia"}
                 </div>
-                <div>
-                {sepia}
+                <div className="Filter-Number">
+                <input type="number" 
+                    className="Filter-Input"
+                    value={sepia} 
+                    onChange={ changeSepia }/>
                 </div>
             </div>
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeSepia(e)} defaultValue="0" />
+            <div className="Filter-Slider">
+
+            <input className="slider" type="range" min="0" max="100" onChange={ e => changeSepia(e)} 
+            value={sepia} />
+            </div>
             
         </div>
 
         <div className="Filter-Row"> 
             <div className="Filter-Row-Text">
-                <div>
-                Saturate: 
+                <div className="Filter-Name"
+                 onMouseEnter={ () => setShowSaturate(true) }
+                 onMouseLeave={ () => setShowSaturate(false)}
+                 onClick={ () => setSaturate(100)}
+                 >
+                 { showSaturate ? "Reset" : "Saturate"}
                 </div>
-                <div>
-                {saturate}
+                <div className="Filter-Number">
+                <input type="number" 
+                    className="Filter-Input"
+                    value={saturate} 
+                    onChange={ changeSaturate }/>
                 </div>
             </div>
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeSaturate(e)} defaultValue="100" />
+            <div className="Filter-Slider">
+
+            <input className="slider" type="range" min="0" max="100" onChange={ e => changeSaturate(e)} 
+            value={saturate} />
+            </div>
             
         </div>
 
         <div className="Filter-Row">
             <div className="Filter-Row-Text">
-                <div>
-                Hue Rotate: 
+                <div className="Filter-Name"
+                 onMouseEnter={ () => setShowHueRotate(true) }
+                 onMouseLeave={ () => setShowHueRotate(false)}
+                 onClick={ () => setHueRotate(0)}
+                 >
+                 { showHueRotate ? "Reset" : "Hue-Rotate"}
                 </div>
-                <div>
-                {hueRotate}
+                <div className="Filter-Number">
+                <input type="number" 
+                    className="Filter-Input"
+                    value={hueRotate} 
+                    onChange={ changeHueRotate }/>
                 </div>
             </div>
-            <input className="slider" type="range" min="0" max="360" onChange={ e => changeHueRotate(e)} defaultValue="0" />
+            <div className="Filter-Slider">
+
+            <input className="slider" type="range" min="0" max="360" onChange={ e => changeHueRotate(e)} 
+         
+            value={hueRotate} />
+            </div>
             
 
         </div>
 
         <div className="Filter-Row">
             <div className="Filter-Row-Text">
-                <div>
-                Invert
+                <div className="Filter-Name"
+                 onMouseEnter={ () => setShowInvert(true) }
+                 onMouseLeave={ () => setShowInvert(false)}
+                 onClick={ () => setInvert(0)}
+                 >
+                 { showInvert ? "Reset" : "Invert"}
+             
                 </div>
-                <div>
-                {invert}
+                <div className="Filter-Number">
+                    <input type="number" 
+                    className="Filter-Input"
+                    value={invert} 
+                    onChange={changeInvert}/>
+         
                 </div>
             </div>
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeInvert(e)} defaultValue="0" />
+            <div className="Filter-Slider">
+
+            <input className="slider"
+                type="range" min="0" 
+                max="100" 
+                onChange={ e => changeInvert(e)} 
+                value={invert} 
+            />
+            </div>
             
         </div>
 
-        <div>
-            <button onClick={reset}>
+        <div className="Filter-Reset-Container">
+            <button onClick={reset} className="Filter-Reset">
                 RESET
             </button>
         </div>

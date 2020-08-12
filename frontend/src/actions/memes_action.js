@@ -1,5 +1,5 @@
 import { saveMeme, getMemes, getMeme, getSingleMeme, deleteMeme, removeComment } from "../util/memes_util"
-import {closeModal} from '../actions/image_modal_actions'
+
 
 export const RECEIVE_NEW_MEMES = 'RECEIVE_NEW_MEMES'
 

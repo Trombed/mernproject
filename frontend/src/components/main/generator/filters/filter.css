@@ -14,7 +14,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 1vh 0px;
+    padding: 0.5vh 0px;
 }
 
 .Filter-Row-Text {
@@ -23,10 +23,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 1vh;
+    padding-bottom: 0.5vh;
 }
 
-.Filter-Slider {
+.Filter-Slider-Row {
     width: 100%;
 }
 
@@ -115,4 +115,95 @@ input::-webkit-inner-spin-button {
 
 .Filter-Reset:hover {
     background-color: #9400D3;
+   
 }
+
+
+
+.Filter-Slider::-webkit-slider-runnable-track {
+    background: #ddd; 
+}
+
+/*
+ * 1. Set to 0 width and remove border for a slider without a thumb
+ */
+input[type="range"].Filter-Slider { 
+    margin: auto;
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    height: 15px;
+    width: 50%;
+    cursor: pointer;
+    border-radius: 5px; /* iOS */
+    border: 5px solid white;
+    outline: none;
+    opacity: 0.7;
+}
+
+input[type="range"].Filter-Slider:hover { 
+    opacity: 1;
+}
+
+.Filter-Slider::-webkit-slider-runnable-track {
+    background: #ddd;
+}
+
+
+ .Filter-Slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px; /* 1 */
+    height: 15px;
+    background: #fff;
+    box-shadow: -100vw 0 0 100vw rgb(153, 29, 255);
+    border: 1px solid rgb(153, 29, 255); 
+    
+}
+
+.Filter-Slider::-moz-range-track {
+    height: 15px;
+    background: #ddd;
+}
+
+.Filter-Slider::-moz-range-thumb {
+    background: #fff;
+    height: 15px;
+    width: 20px;
+    border: 3px solid #999;
+    border-radius: 0 !important;
+    box-shadow: -100vw 0 0 100vw rgb(153, 29, 255);
+    box-sizing: border-box;
+}
+
+.Filter-Slider::-ms-fill-lower { 
+    background: rgb(153, 29, 255);
+}
+
+.Filter-Slider::-ms-thumb { 
+    background: #fff;
+    border: 2px solid white;
+    height: 15px;
+    width: 20px;
+    box-sizing: border-box;
+
+}
+
+.Filter-Slider::-ms-ticks-after { 
+    display: none; 
+}
+
+.Filter-Slider::-ms-ticks-before { 
+    display: none; 
+}
+
+.Filter-Slider::-ms-track { 
+    background: #ddd;
+    color: transparent;
+    height: 15px;
+    border: none;
+}
+
+.Filter-Slider::-ms-tooltip { 
+    display: none;
+}
+

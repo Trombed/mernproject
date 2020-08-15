@@ -7,12 +7,15 @@ import { ChromePicker } from 'react-color';
 import adjust from '../../../images/adjust.svg'
 import Filter from './filters/filter'
 import screenshot from 'image-screenshot'
+import Templates from './templates/templates'
 
 class Generator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             showFilter: true,
+            showTemplates: false,
+            
 
             text1: "",
             text2: "",
@@ -46,53 +49,37 @@ class Generator extends React.Component {
  
     }
 
+    hideTemplate() { 
+       
+        this.setState({showTemplates: false})
+    }
+
     uploadImage(files) {
         files.preventDefault();
         const file = files.target.files[0]; 
         const reader = new FileReader();
+     
         reader.readAsDataURL(file)
         const img = new Image();
         reader.onload = function(e) {
             img.src = e.target.result
         };
             reader.onloadend = (e) => { 
-  
-    
-                // if (img.width > 800 || img.height > 700) {
-                //         // document.getElementById("memeGenerator").style.width = "700px"
-                //         // document.getElementById("memeGenerator").style.height = "700px"
-                //         // document.getElementById("canvas2").style.width = `700px`
-                //         // document.getElementById("canvas2").style.height = `700px`
-                // }
-                // else {
-                    document.getElementById("memeGenerator").style.width = `${img.width}px`
-                    document.getElementById("memeGenerator").style.height = `${img.height}px`
-                    document.getElementById("canvas2").style.width = `${img.width}px`
-                    document.getElementById("canvas2").style.height = `${img.height}px`
-                // }
-                // document.getElementById('canvas2').style.backgroundImage = "url(" + reader.result + ")";
+                
+                document.getElementById("memeGenerator").style.width = `${img.width}px`
+                document.getElementById("memeGenerator").style.height = `${img.height}px`
+                document.getElementById("canvas2").style.width = `${img.width}px`
+                document.getElementById("canvas2").style.height = `${img.height}px`
                 document.getElementById('picture').src = img.src
             }
     }
 
-    urlUpload() {
+  
 
-        let address = document.getElementById("url-upload").value;
-        if (address === "") return;
-        let img = new Image();
-        img.src = address
-        if (img.width === 0 || img.height === 0) return;
-
-        document.getElementById("memeGenerator").style.width = `${img.width}px`
-        document.getElementById("memeGenerator").style.height = `${img.height}px`
-        document.getElementById("canvas2").style.width = `${img.width}px`
-        document.getElementById("canvas2").style.height = `${img.height}px`
-        document.getElementById('canvas2').style.backgroundImage = "url(" + address + ")";
-        document.getElementById("url-upload").value = ""
-     }
+  
 
      clearBG() {
-        document.getElementById('canvas2').style.backgroundImage = "url()";
+        document.getElementById('picture').src = "";
     }
 
   
@@ -108,47 +95,18 @@ class Generator extends React.Component {
         this.setState({lowertext: e.target.value});
     }
 
-    // async saveFile() {
-       
-    //     // if (document.getElementById('canvas2').style.backgroundImage === "") {
-    //     //     return;
-    //     // }
-    //     // this.props.openModal("saving")
-    //     var self = this;
-    //     const img = document.getElementById("picture")
-    //     screenshot(img).then( url => {
-    //         document.getElementById('canvas2').style.backgroundImage = "url(" + url + ")";
-    //         document.getElementById("picture").src = ""
-    //     })
-
-       
-    //     var screenshot2 = document.getElementsByClassName("memeGenerator");
-    //     html2canvas(screenshot2[0],{
-    //         imageTimeout: 30000,
-    //         backgroundColor: "null"})
-    //     .then( (canvas) => { 
-    //         const base64image = canvas.toDataURL("image/png");
-    //         let image = { image: base64image };
-    //         self.props.composeMemes(image);
-    //     })  
-    //     .then( this.props.closeModal)
-    //     .then( this.props.fetchMemes())
-    //     this.setState({uppertext: ""});
-    //     this.setState({lowertext: ""}, () => {
-    //         this.props.fetchMemes()
-    //     });
-        
-    // }
+   
 
     saveFile() {
-        let data;
-        
+
         const img = document.getElementById("picture")
+    
         screenshot(img)
         .then( url => {
             document.getElementById('canvas2').style.backgroundImage = "url(" + url + ")";
-            document.getElementById("picture").src = ""
+            document.getElementById("picture").remove()
             this.screenCapture();
+    
         })
     }
 
@@ -211,7 +169,7 @@ class Generator extends React.Component {
 
     handleShadowClick = (num) => {
         this.setState({ [`displayShadowPicker${num}`]:  !this.state[`displayShadowPicker${num}`] })
-        // if (num === 1) {
+
 
     };
 
@@ -377,32 +335,52 @@ class Generator extends React.Component {
                 <div className="generator-page-container">
                     <div className="generator-header">
                         <div className="generator-uploader">
-                            <label htmlFor="file-upload" className="profile-file-upload">
-                                Upload Image
-                            </label>
-                            <input  className="select-file" 
-                                    id="file-upload" 
-                                    type="file" 
-                              
-                                    accept="image/*" 
-                                    onChange={this.uploadImage} /> 
-                            <input type="text" placeholder="Image URL" id="url-upload" onKeyPress={ e => this.submitURL(e)} />
+                            <div className="Upload-Container">
+                                <img src="/upload.svg" alt="" className="Upload-Icon" />
+                                <label htmlFor="file-upload" className="profile-file-upload">
+                                    Upload Image
+                                </label>
+                                <input  className="select-file" 
+                                        id="file-upload" 
+                                        type="file" 
+                                
+                                        accept="image/*" 
+                                        onChange={this.uploadImage} />
+                            </div>
+
+
+                            {/* <input type="text" placeholder="Image URL" id="url-upload" onKeyPress={ e => this.submitURL(e)} />
                             <div className="generator-url-upload" onClick={this.urlUpload}>
                                 URL
+                            </div> */}
+                            <div className="Remove-Container">
+                                <img src="/trash.svg" alt="" className="Trash-Icon" />
+
+                                <div onClick={this.clearBG} className="Remove-Image">
+                                    Remove Image
+                                </div>
                             </div>
-                            <div onClick={this.clearBG} className="Remove-Image">
-                                Remove Image
-                            </div>
+
+                            <div>
                             <img    src={adjust} 
                                     className="adjust"
                                     alt=""
                                     onClick={this.filterToggle.bind(this)}
                                 />  
-                        </div>      
+                            </div>
+                           
+                            <div className="Generator-Template-Container"
+                                onClick={ () => this.setState({showTemplates: !this.state.showTemplates})}>
+                                Templates
+                                
+                            </div>
+                            </div>
+
                            
                             <button className="save-upload-button" onClick={this.saveFile}>Save Meme
                             </button>
                     </div>
+                    { this.state.showTemplates ?  <Templates close={this.hideTemplate.bind(this)}/> : null}
                     <div className="memeContainer">
                         
                         <div className="Generator-Text-Rows">

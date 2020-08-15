@@ -6,10 +6,19 @@ const db = require("./config/keys").mongoURI;
 const users = router.use(require('./routes/api/users'));
 const memes = router.use(require('./routes/api/memes'));
 
+
 // const User = require('./models/User');
 // const Meme = require('./models/Meme');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+
+
+
+
+
+
+
+
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
@@ -35,7 +44,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // app.use(bodyParser.json());
-app.use(bodyParser.json({limit: '50mb'}))
+app.use(bodyParser.json({limit: '100mb'}))
 
 app.get("/", (req, res) => {
 

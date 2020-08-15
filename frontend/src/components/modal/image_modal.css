@@ -31,8 +31,6 @@
   top: 10%;
   left: 10%;
   transform: translate(-50%, -50%);
-  
- 
 }
 
 @keyframes slide {
@@ -49,9 +47,17 @@
     font-weight: bold;
     transition: 0.3s;
     cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid black;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #Modal-Close:hover{
+  border: 2px solid red;
   color: red;
 }
 
@@ -64,6 +70,7 @@
 }
 
 .close:hover {
+
   /* fill: purple !important; */
   background-color: white !important;
 }
@@ -75,7 +82,7 @@
   right: 0;
   left: 0;
   height: 90vh;
-  background: black;
+  background: white;
   z-index: 1000;
   display: flex;
   justify-content: center;

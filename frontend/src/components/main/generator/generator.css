@@ -142,7 +142,7 @@
 }
 
 .slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
+-webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
   width: 50%; /* Full-width */
   height: 3px; /* Specified height */
@@ -252,19 +252,7 @@
     box-shadow: none;
 }
 
-.Remove-Image {
-    background-color: #5C25B5;
-    margin: 10px;
-    outline: 0;
 
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 5px 10px;
-    margin: 10px 10px 10px 10px;
- 
-    cursor: pointer;
-    color: white;
-}
 
 .Remove-Image:hover {
     background-color: #9400D3;
@@ -347,22 +335,7 @@
     left: 0px;
 }
 
-.profile-file-upload {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color:#5C25B5;
-    width: 200px;
-    height: 30px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.profile-file-upload:hover {
-    background-color: #9400D3;
-}
 
 input[type="file"] {
 display: none;
@@ -421,3 +394,92 @@ display: none;
 }
 
 
+.Generator-Template-Container {
+    display: flex;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#5C25B5;
+    width: 200px;
+    height: 30px;
+    color: white;
+    border-radius: 5px;
+    
+}
+
+.Generator-Template-Container:hover {
+    display: flex;
+    background-color: #9400D3;    
+    justify-content: center;
+    align-items: center;
+}
+
+.Upload-Container {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row;
+    height: 35px;
+    background-color:#5C25B5;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Upload-Container:hover {
+    background-color: #9400D3;
+    fill: #9400D3
+}
+
+.Upload-Icon {
+    height: 50%;
+    background-color: transparent;
+    padding-right: 3px;
+}
+
+
+.profile-file-upload {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.profile-file-upload:hover {
+    cursor: pointer;
+}
+
+.Remove-Container {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row;
+    height: 35px;
+    background-color:#5C25B5;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.Remove-Container:hover {
+    background-color: #9400D3;
+}
+
+.Remove-Image {
+er-radius: 5px;
+    font-size: 18px;
+
+    cursor: pointer;
+    color: white;
+}
+
+.Trash-Icon {
+    height: 50%;
+    background-color: transparent;
+    padding-right: 3px;
+    fill: white;
+}

@@ -3,7 +3,6 @@ import { closeModal } from '../../actions/image_modal_actions';
 import { connect } from 'react-redux';
 import './image_modal.css'
 
-
 function ImageModal({modal, closeModal}) {
 
   if (!modal) {

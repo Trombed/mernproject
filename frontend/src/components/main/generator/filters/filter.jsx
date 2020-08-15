@@ -23,8 +23,9 @@ const Filter = () => {
   
 
     useEffect( () => {
-       
-        document.getElementById('picture').style.filter = `brightness(${brightness}%) blur(${blur}px) contrast(${contrast}%) grayscale(${grayscale}%) sepia(${sepia}%) saturate(${saturate}%)  hue-rotate(${hueRotate}deg) invert(${invert}%)`
+        let picture = document.getElementById('picture')
+        if (picture === null) return;
+        picture.style.filter = `brightness(${brightness}%) blur(${blur}px) contrast(${contrast}%) grayscale(${grayscale}%) sepia(${sepia}%) saturate(${saturate}%)  hue-rotate(${hueRotate}deg) invert(${invert}%)`
     })
 
     const reset = () => {
@@ -36,7 +37,6 @@ const Filter = () => {
         setSaturate(100);
         setHueRotate(0)
         setInvert(0)
-
     }
 
 
@@ -99,8 +99,8 @@ const Filter = () => {
                     onChange={ changeBrightness }/>
                 </div>
             </div>
-            <div className="Filter-Slider">
-                <input className="slider" 
+            <div className="Filter-Slider-Row">
+                <input className="Filter-Slider" 
                 type="range" 
                 min="0" 
                 max="200" 
@@ -128,9 +128,9 @@ const Filter = () => {
                     onChange={ changeBlur }/>
                 </div>
             </div>
-            <div className="Filter-Slider">
+            <div className="Filter-Slider-Row">
 
-            <input className="slider" type="range" min="0" step="0.1" max="50" onChange={ e => changeBlur(e)} 
+            <input className="Filter-Slider" type="range" min="0" step="0.1" max="50" onChange={ e => changeBlur(e)} 
             value={blur} />
             </div>
        
@@ -153,9 +153,9 @@ const Filter = () => {
                     onChange={ changeContrast }/>
                 </div>
             </div>
-            <div className="Filter-Slider">
+            <div className="Filter-Slider-Row">
 
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeContrast(e)} 
+            <input className="Filter-Slider" type="range" min="0" max="100" onChange={ e => changeContrast(e)} 
             value={contrast} />
             </div>
           
@@ -177,9 +177,9 @@ const Filter = () => {
                     onChange={ changeGrayscale }/>
                 </div>
             </div>
-            <div className="Filter-Slider">
+            <div className="Filter-Slider-Row">
 
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeGrayscale(e)} 
+            <input className="Filter-Slider" type="range" min="0" max="100" onChange={ e => changeGrayscale(e)} 
             value={grayscale} />
             </div>
            
@@ -201,9 +201,9 @@ const Filter = () => {
                     onChange={ changeSepia }/>
                 </div>
             </div>
-            <div className="Filter-Slider">
+            <div className="Filter-Slider-Row">
 
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeSepia(e)} 
+            <input className="Filter-Slider" type="range" min="0" max="100" onChange={ e => changeSepia(e)} 
             value={sepia} />
             </div>
             
@@ -225,9 +225,9 @@ const Filter = () => {
                     onChange={ changeSaturate }/>
                 </div>
             </div>
-            <div className="Filter-Slider">
+            <div className="Filter-Slider-Row">
 
-            <input className="slider" type="range" min="0" max="100" onChange={ e => changeSaturate(e)} 
+            <input className="Filter-Slider" type="range" min="0" max="100" onChange={ e => changeSaturate(e)} 
             value={saturate} />
             </div>
             
@@ -249,9 +249,9 @@ const Filter = () => {
                     onChange={ changeHueRotate }/>
                 </div>
             </div>
-            <div className="Filter-Slider">
+            <div className="Filter-Slider-Row">
 
-            <input className="slider" type="range" min="0" max="360" onChange={ e => changeHueRotate(e)} 
+            <input className="Filter-Slider" type="range" min="0" max="360" onChange={ e => changeHueRotate(e)} 
          
             value={hueRotate} />
             </div>
@@ -277,9 +277,9 @@ const Filter = () => {
          
                 </div>
             </div>
-            <div className="Filter-Slider">
+            <div className="Filter-Slider-Row">
 
-            <input className="slider"
+            <input className="Filter-Slider"
                 type="range" min="0" 
                 max="100" 
                 onChange={ e => changeInvert(e)} 

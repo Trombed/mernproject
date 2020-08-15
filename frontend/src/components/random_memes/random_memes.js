@@ -71,12 +71,14 @@ class RandomMemes extends React.Component {
                 <div className="memes" style={{ overflow: "auto" }}> 
                 {
                 this.state.memes
-                            .map(meme => (
+                            .map((meme, idx) => {
+                                return (
                                 <RandomMeme 
                                 key={meme.id}
                                 title={meme.title}
                                 image={meme.images[0].link}/>
-                                ))
+                                )
+                            })
                 }
                 </div>
                 {this.state.loading ? <div className="loading"> Loading More Items...</div> : ""}

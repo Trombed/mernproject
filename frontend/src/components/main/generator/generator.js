@@ -353,32 +353,37 @@ class Generator extends React.Component {
                             <div className="generator-url-upload" onClick={this.urlUpload}>
                                 URL
                             </div> */}
-                            <div className="Remove-Container">
-                                <img src="/trash.svg" alt="" className="Trash-Icon" />
+                          
 
-                                <div onClick={this.clearBG} className="Remove-Image">
-                                    Remove Image
-                                </div>
-                            </div>
-
-                            <div>
-                            <img    src={adjust} 
-                                    className="adjust"
+                            <div className="Filter-Display" onClick={this.filterToggle.bind(this)}>
+                            <img    src="filter.svg" 
+                                    className="Filter-Icon"
                                     alt=""
-                                    onClick={this.filterToggle.bind(this)}
+                                    
                                 />  
+                                <div className="Filter-Display-Name">
+                                    Filters
+                                </div>
                             </div>
                            
                             <div className="Generator-Template-Container"
                                 onClick={ () => this.setState({showTemplates: !this.state.showTemplates})}>
+                                <img src="template.svg" alt="" className="Template-Icon" />
                                 Templates
                                 
                             </div>
                             </div>
 
-                           
-                            <button className="save-upload-button" onClick={this.saveFile}>Save Meme
+                            <div className="generator-right-side">
+                            <div className="Remove-Container"
+                                onClick={this.clearBG} >
+                                <i className="fas fa-trash-alt"></i>
+
+                             
+                            </div>
+                            <button className="save-upload-button" onClick={this.saveFile}>Save
                             </button>
+                            </div>
                     </div>
                     { this.state.showTemplates ?  <Templates close={this.hideTemplate.bind(this)}/> : null}
                     <div className="memeContainer">

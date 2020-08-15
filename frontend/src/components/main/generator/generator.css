@@ -13,6 +13,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: "Open Sans", sans-serif;
+    text-transform: uppercase;
 }
 
 .generator-uploader {
@@ -239,9 +241,11 @@
     font-size: 18px;
     padding: 5px 10px;
     margin: 10px 10px 10px 10px;
- 
+    text-transform: uppercase;
     cursor: pointer;
     color: white;
+    font-family: "Open-Sans" sans-sherif;
+    font-size: 14px;
 }
 
 .save-upload-button:hover {
@@ -395,23 +399,30 @@ display: none;
 
 
 .Generator-Template-Container {
+    padding: 0 10px;
     display: flex;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    height: 35px;
     background-color:#5C25B5;
-    width: 200px;
-    height: 30px;
-    color: white;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
-    
+    cursor: pointer;
+    color: white;
+    font-size: 10px;
+
 }
 
 .Generator-Template-Container:hover {
     display: flex;
     background-color: #9400D3;    
+    justify-content: center;
+    align-items: center;
+}
+
+.generator-right-side {
+    display: flex;
+    flex-direction: right;
     justify-content: center;
     align-items: center;
 }
@@ -426,6 +437,8 @@ display: none;
     align-items: center;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 10px;
+    margin-right: 20px;
 }
 
 .Upload-Container:hover {
@@ -434,7 +447,7 @@ display: none;
 }
 
 .Upload-Icon {
-    height: 50%;
+    height: 65%;
     background-color: transparent;
     padding-right: 3px;
 }
@@ -453,6 +466,38 @@ display: none;
 }
 
 .Remove-Container {
+    padding: 0 5px;
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    
+}
+.Remove-Container:hover {
+    opacity: 1;
+}
+
+
+.Trash-Icon {
+    height: 60%;
+    background-color: transparent;
+    padding-right: 3px;
+}
+
+
+
+.fa-trash-alt {
+    fill: black!important;
+}
+
+
+
+.Filter-Display {
     padding: 0 10px;
     display: flex;
     flex-direction: row;
@@ -462,23 +507,31 @@ display: none;
     align-items: center;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 10px;
+    margin-right: 20px;
+
 }
 
-
-.Remove-Container:hover {
+.Filter-Display:hover {
     background-color: #9400D3;
 }
 
-.Remove-Image {
-er-radius: 5px;
-    font-size: 18px;
-
-    cursor: pointer;
-    color: white;
+.Filter-Icon {
+    height: 65%;
+    background-color: transparent;
+    padding-right: 3px;
+    fill: white;
 }
 
-.Trash-Icon {
-    height: 50%;
+.Filter-Display-Name {
+    color: white;
+    text-transform: uppercase;
+}
+
+
+
+.Template-Icon {
+    height: 65%;
     background-color: transparent;
     padding-right: 3px;
     fill: white;

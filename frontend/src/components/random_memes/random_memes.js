@@ -6,6 +6,7 @@ class RandomMemes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchWord: "",
             memes: [],
             loading: false,
             newMemes: [],
@@ -22,8 +23,9 @@ class RandomMemes extends React.Component {
             let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
             let scrollHeight = event.srcElement.body.scrollHeight;
 
-            // console.log(scrollTop, window.outerHeight, scrollHeight, document.body.scrollTop, document.documentElement.scrollTop)
+
             if (scrollTop + window.outerHeight >= scrollHeight) {
+                console.log("LOAD MORE")
                 this.setState({ loading: true });
                 setTimeout(() => {
                     this.getMemes();
@@ -64,9 +66,24 @@ class RandomMemes extends React.Component {
         this.setState({memes: memes, newMemes: newMemes, page: page, loading: false})
 
     }
+
+    toTop() {
+        document.getElementsByClassName("Random-Meme-Page")[0].scrollTop = 0
+    }
+
+
+    searchMemes() {
+        this.setState({memes: []})
+    }
     render() {
         return (
-            
+            <div className="Random-Meme-Page">
+            <div className="Random-Search">
+                <input type="text" placeholder="SEARCH" onChange={ (e) => {
+                    this.setState({searchWord: e.currentTarget.value})
+                } }/>
+                <button onClick={ () => this.searchMemes() }>SEARCH</button>
+            </div>
             <div>
                 <div className="memes" style={{ overflow: "auto" }}> 
                 {
@@ -83,6 +100,12 @@ class RandomMemes extends React.Component {
                 </div>
                 {this.state.loading ? <div className="loading"> Loading More Items...</div> : ""}
             </div>
+
+            <button className="Go-Top"
+                onClick={ () => this.toTop()}
+            >Top</button>
+            </div>
+
         )
     }
 }

@@ -27,14 +27,17 @@ class Generator extends React.Component {
             displayShadowPicker1: false,
             shadowValue1: "#000000",
             fontSize1: 20,
-
+            shadowSize1: 5,
+            slider1: false,
 
 
             displayColorPicker2: false,
             colorValue2: "#FFFFFF",
             displayShadowPicker2: false,
             shadowValue2: "#000000",
+            shadowSize2: 5,
             fontSize2: 20,
+            slider2: false
         };
    
         this.upperInput = this.upperInput.bind(this);
@@ -48,6 +51,8 @@ class Generator extends React.Component {
     componentWillMount() {
  
     }
+
+
 
     hideTemplate() { 
        
@@ -139,7 +144,16 @@ class Generator extends React.Component {
         if (text === undefined) return;
         this.setState({[`fontSize${num}`]: e.currentTarget.value})
         text.style.fontSize = `${e.currentTarget.value}px`;
+    }
 
+    shadowSizeChange(e, num) {
+        var text = document.getElementsByClassName(`upper-text-${num}`)[0];
+        let size = e.currentTarget.value
+        if (text === undefined) return;
+        this.setState({[`shadowSize${num}`]: e.currentTarget.value}, () => {
+
+            text.style.textShadow = `${this.state[`shadowValue${num}`]} 0px 0px ${size}px`;
+        })
     }
 
     lowerSizeChange(e) {
@@ -401,7 +415,7 @@ class Generator extends React.Component {
 
                                 <textarea className='text-input' onChange={ e=> this.upperInput(e,1)} placeholder="
                                 Upper Text" />
-                                <div >
+                                <div className="Shadow-Color-Container">
                                     <div className="swatch" onClick={  () => {
                                         this.handleClick(1)
                                     
@@ -414,10 +428,10 @@ class Generator extends React.Component {
                                                     onChange={ color => this.handleColorChange(color, 1) } 
                                                     />
                                     </div> : null }
-
+                                    <span class="tooltiptext">Font Color</span>
                                 </div>
 
-                                <div>
+                                <div className="Shadow-Color-Container">
                                     <div className="swatch" onClick={  e => this.handleShadowClick(1) }>
                                         <div className="color" style={{backgroundColor: this.state.shadowValue1}} />
                                     </div>
@@ -430,21 +444,41 @@ class Generator extends React.Component {
                                             </div> 
                                         : null 
                                     }
-
+                                     <span class="tooltiptext">Shadow Color</span>
                                 </div>
+                            <div onClick={ () => this.setState({
+                                  slider1: !this.state.slider1
+                              })} className="Row-Settings">
+                              <i class="fas fa-sliders-h"></i>
+                              </div>
                             </div>
                          
 
+                            { this.state.slider1 ?   (  
+                            <div>      
                             <div className="Text-Size-Changer">
-                                <div className="Text-Size">
-                                Size:
-                                </div>
-                                <input className="slider" type="range" min="10" max="100" onChange={e => this.upperSizeChange(e, 1)} defaultValue="20" />
-                                <div className="Text-Size">
-                                    {this.state.fontSize1}
+                              <div className="Text-Size">
+                              Size:
+                              </div>
+                              <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, 1)} defaultValue="20" />
+                              <div className="Text-Size">
+                                  {this.state.fontSize1}
 
-                                </div>
-                            </div>
+                              </div>
+                          </div>
+
+                          <div className="Text-Size-Changer">
+                              <div className="Text-Size">
+                              Shadow:
+                              </div>
+                              <input className="slider" type="range" min="1" max="10" onChange={ e=> this.shadowSizeChange(e, 1)} value={this.state.shadowSize1} />
+                              <div className="Text-Size">
+                                  {this.state.shadowSize1}
+
+                              </div>
+                           </div>
+                           </div> ) : null
+                           }
                             
                             {/* END UPPER TEXT */}
                             
@@ -454,7 +488,7 @@ class Generator extends React.Component {
 
                               <textarea className='text-input' onChange={ e => this.upperInput(e, 2)} placeholder="
                               Lower Text" />
-                              <div>
+                              <div className="Shadow-Color-Container">
                                   <div className="swatch" onClick={  e => this.handleClick(2) }>
                                       <div className="color" style={{backgroundColor: this.state.colorValue2}} />
                                   </div>
@@ -463,10 +497,10 @@ class Generator extends React.Component {
                                   <ChromePicker   color={ this.state.colorValue2 } 
                                                   onChange={ color => this.handleColorChange(color, 2) } />
                                   </div> : null }
-
+                                  <span class="tooltiptext">Font Color</span>
                               </div>
 
-                              <div>
+                              <div className="Shadow-Color-Container">
                                   <div className="swatch" onClick={  e => this.handleShadowClick(2) }>
                                       <div className="color" style={{backgroundColor: this.state.shadowValue2}} />
                                   </div>
@@ -475,12 +509,19 @@ class Generator extends React.Component {
                                   <ChromePicker   color={ this.state.shadowValue2 } 
                                                   onChange={ color => this.handleShadowChange(color, 2) } />
                                   </div> : null }
-
+                                  <span class="tooltiptext">Shadow Color</span>
+                                  
+                              </div>
+                              <div onClick={ () => this.setState({
+                                  slider2: !this.state.slider2
+                              })}>
+                              <i class="fas fa-sliders-h"></i>
                               </div>
                           </div>
                        
-
-                          <div className="Text-Size-Changer">
+                           { this.state.slider2 ?   (  
+                            <div>      
+                            <div className="Text-Size-Changer">
                               <div className="Text-Size">
                               Size:
                               </div>
@@ -490,6 +531,19 @@ class Generator extends React.Component {
 
                               </div>
                           </div>
+
+                          <div className="Text-Size-Changer">
+                              <div className="Text-Size">
+                              Shadow:
+                              </div>
+                              <input className="slider" type="range" min="1" max="10" onChange={ e=> this.shadowSizeChange(e, 2)} value={this.state.shadowSize2} />
+                              <div className="Text-Size">
+                                  {this.state.shadowSize2}
+
+                              </div>
+                           </div>
+                           </div> ) : null
+                           }
 
                             {newRows}
                    

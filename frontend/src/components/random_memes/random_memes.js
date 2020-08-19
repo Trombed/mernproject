@@ -10,7 +10,8 @@ class RandomMemes extends React.Component {
             memes: [],
             loading: false,
             newMemes: [],
-            page: 0
+            page: 0,
+            default: true
         }
     }
 
@@ -45,7 +46,7 @@ class RandomMemes extends React.Component {
 
         page +=1;
         const response = await fetch(
-            `https://api.imgur.com/3/gallery/hot/viral/${page}`, {
+            `https://api.imgur.com/3/gallery/hot/viral/${page}?showMature=false`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -56,10 +57,12 @@ class RandomMemes extends React.Component {
         const result = await response.json();
 
         newMemes = result.data.filter(meme => meme.images_count > 0 && 
+                                       !meme.nsfw &&
                                       meme.images[0].type.startsWith('image/') && 
-                                      meme.images[0].height < 1.6 * meme.images[0].width);
+                                      meme.images[0].height < 1.6 * meme.images[0].width)
+                                      ;
         }
-
+        console.log(newMemes)
         memes = memes.concat(newMemes.slice(0,10));
         newMemes = newMemes.slice(10);
 
@@ -72,18 +75,69 @@ class RandomMemes extends React.Component {
     }
 
 
-    searchMemes() {
-        this.setState({memes: []})
+    async searchMemes() {
+        this.setState({memes: [], loading: true, default: false})
+        let memes = this.state.memes;
+        let newMemes = this.state.newMemes;
+        let page = this.state.page;
+        const response = await fetch(
+            `https://api.imgur.com/3/gallery/search?q=${this.state.searchWord}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Client-ID 681400f6e78cb77"
+                }
+            }
+        );
+        const result = await response.json();
+        newMemes = result.data.filter(meme => meme.images_count > 0 && 
+            meme.images[0].type.startsWith('image/') && 
+            meme.images[0].height < 1.6 * meme.images[0].width);
+
+        console.log("NEW SEARCH")
+        console.log(newMemes)
+        memes = memes.concat(newMemes.slice(0,10));
+        newMemes = newMemes.slice(10);
+
+
+this.setState({memes: memes, newMemes: newMemes, page: page, loading: false})
+        
+
+        
     }
-    render() {
+
+    renderMemes() {
+        if (this.state.default) {
+            return this.renderDefault()
+        } else {
+            return this.renderSearch()
+        }
+    }
+
+    renderDefault() {
         return (
-            <div className="Random-Meme-Page">
-            <div className="Random-Search">
-                <input type="text" placeholder="SEARCH" onChange={ (e) => {
-                    this.setState({searchWord: e.currentTarget.value})
-                } }/>
-                <button onClick={ () => this.searchMemes() }>SEARCH</button>
+        <div>
+            <div className="memes" style={{ overflow: "auto" }}> 
+            {
+            this.state.memes
+                        .map((meme, idx) => {
+                            return (
+                            <RandomMeme 
+                            key={meme.id}
+                            title={meme.title}
+                            image={meme.images[0].link}/>
+                            )
+                        })
+            }
             </div>
+            {this.state.loading ? <div className="loading"> Loading More Items...</div> : ""}
+        </div>
+        )
+    }
+
+
+    renderSearch() {
+        return (
             <div>
                 <div className="memes" style={{ overflow: "auto" }}> 
                 {
@@ -100,7 +154,20 @@ class RandomMemes extends React.Component {
                 </div>
                 {this.state.loading ? <div className="loading"> Loading More Items...</div> : ""}
             </div>
+            )
+    }
 
+    render() {
+        return (
+            <div className="Random-Meme-Page">
+            <div className="Random-Search">
+                <input type="text" placeholder="SEARCH" onChange={ (e) => {
+                    this.setState({searchWord: e.currentTarget.value})
+                } }/>
+                <button onClick={ () => this.searchMemes() }>SEARCH</button>
+            </div>
+            {this.renderMemes()}
+            
             <button className="Go-Top"
                 onClick={ () => this.toTop()}
             >Top</button>

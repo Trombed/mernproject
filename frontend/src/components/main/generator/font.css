@@ -1,0 +1,65 @@
+.Show-Font-Modal {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.Show-Font-Container {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    height: 30vh;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translate(-50%, -50%);
+   
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.Font-Times {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.Font-Arial {
+    font-family: Arial;
+}
+
+.Font-Impact {
+    font-family: "Impact"
+}
+
+.Font-Open {
+    font-family: 'Open Sans', sans-serif; 
+}
+
+.Font-Comic {
+   font-family: "Comic Sans MS", cursive, sans-serif;
+
+}
+
+.Font-Arial-Black {
+    font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.Font-Tahoma {
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.Font-Verdana {
+    font-familY: Verdana, Geneva, sans-serif;
+}
+
+.Font-Courier {
+    font-family: "Courier New", Courier, monospace;
+}

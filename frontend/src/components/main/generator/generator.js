@@ -4,10 +4,10 @@ import './generator.css';
 import html2canvas from 'html2canvas';
 import Draggable from 'react-draggable';
 import { ChromePicker } from 'react-color';
-import adjust from '../../../images/adjust.svg'
 import Filter from './filters/filter'
 import screenshot from 'image-screenshot'
 import Templates from './templates/templates'
+import './font.css'
 
 class Generator extends React.Component {
     constructor(props) {
@@ -29,6 +29,8 @@ class Generator extends React.Component {
             fontSize1: 20,
             shadowSize1: 5,
             slider1: false,
+            showFont1: false,
+            font1: "Impact",
 
 
             displayColorPicker2: false,
@@ -46,6 +48,7 @@ class Generator extends React.Component {
         this.saveFile = this.saveFile.bind(this);
         this.upperSizeChange = this.upperSizeChange.bind(this)
         this.handleClose = this.handleClose.bind(this)
+        this.changeFont = this.changeFont.bind(this)
     }
 
     componentWillMount() {
@@ -214,6 +217,99 @@ class Generator extends React.Component {
         }
     }
 
+    showFont(num) {
+        return (
+            <div className="Show-Font-Modal">
+            <div className="Show-Font-Container">
+                <div className="Show-Font-Top">
+
+                <div>
+                    Choose Font
+                </div>
+                
+                <div className="Font-Impact"
+                    onClick={ () => this.changeFont(num, 1)}
+                >Impact</div>
+                <div className="Font-Arial"
+                    onClick={ () => this.changeFont(num, 2)}
+                >Arial</div>
+                <div className="Font-Times"
+                    onClick={ () => this.changeFont(num, 3)}
+                >Times New Roman</div>
+                <div className="Font-Open"
+                    onClick={ () => this.changeFont(num, 4)}
+                >Open Sans</div>
+                 <div className="Font-Comic"
+                    onClick={ () => this.changeFont(num, 5)}
+                >Comic Sans</div>
+
+                 <div className="Font-Arial-Black"
+                    onClick={ () => this.changeFont(num, 6)}
+                >Arial Black</div>
+                <div className="Font-Tahoma"
+                    onClick={ () => this.changeFont(num, 7)}
+                >Tahoma</div>
+                 <div className="Font-Verdana"
+                    onClick={ () => this.changeFont(num, 8)}
+                >Verdana</div>
+                 <div className="Font-Courier"
+                    onClick={ () => this.changeFont(num, 9)}
+                >Courier</div>
+
+
+
+
+                </div>
+                
+
+
+                <div className="Show-Font-Bottom">
+                <button onClick={() => {this.setState({[`showFont${num}`]: false })}}>
+                    Done
+                </button>
+                </div>
+
+            </div>
+            </div>
+        )
+    }
+
+    changeFont(num, font) {
+        var text = document.getElementsByClassName(`upper-text-${num}`)[0]
+        switch (font) {
+            case 1:
+                text.style.fontFamily = "Impact"
+                break;
+            case 2:
+                text.style.fontFamily = "Arial"
+                break
+            case 3:
+                text.style.fontFamily = "'Times New Roman', Times, serif";
+                break;
+            case 4:
+                text.style.fontFamily = "'Open Sans', sans-serif"
+                break;
+            case 5:
+                text.style.fontFamily = '"Comic Sans MS", cursive, sans-serif';
+                break;
+            case 6:
+                text.style.fontFamily = '"Arial Black", Gadget, sans-serif'
+                break
+            case 7:
+                text.style.fontFamily = "Tahoma, Geneva, sans-serif";
+                break;
+            case 8:
+                text.style.fontFamily = "Verdana, Geneva, sans-serif";
+                break;
+            case 9:
+                text.style.fontFamily = '"Courier New", Courier, monospace';
+                break;
+            default:
+                break;
+        }
+        
+    }
+
     filterToggle() {
      
         let text = document.getElementsByClassName("Generator-Text-Rows")[0] 
@@ -363,10 +459,7 @@ class Generator extends React.Component {
                             </div>
 
 
-                            {/* <input type="text" placeholder="Image URL" id="url-upload" onKeyPress={ e => this.submitURL(e)} />
-                            <div className="generator-url-upload" onClick={this.urlUpload}>
-                                URL
-                            </div> */}
+                          
                           
 
                             <div className="Filter-Display" onClick={this.filterToggle.bind(this)}>
@@ -428,7 +521,7 @@ class Generator extends React.Component {
                                                     onChange={ color => this.handleColorChange(color, 1) } 
                                                     />
                                     </div> : null }
-                                    <span class="tooltiptext">Font Color</span>
+                                    <span className="tooltiptext">Font Color</span>
                                 </div>
 
                                 <div className="Shadow-Color-Container">
@@ -444,15 +537,22 @@ class Generator extends React.Component {
                                             </div> 
                                         : null 
                                     }
-                                     <span class="tooltiptext">Shadow Color</span>
+                                     <span className="tooltiptext">Shadow Color</span>
                                 </div>
                             <div onClick={ () => this.setState({
                                   slider1: !this.state.slider1
                               })} className="Row-Settings">
-                              <i class="fas fa-sliders-h"></i>
+                              <i className="fas fa-sliders-h"></i>
                               </div>
                             </div>
-                         
+
+                            <div onClick={ () => this.setState({
+                                  showFont1: !this.state.showFont1
+                              })} className="Row-Settings">
+                             <i className="fas fa-font"></i>
+                              </div>
+                            
+                            { this.state.showFont1 ? this.showFont(1) : null}
 
                             { this.state.slider1 ?   (  
                             <div>      
@@ -497,7 +597,7 @@ class Generator extends React.Component {
                                   <ChromePicker   color={ this.state.colorValue2 } 
                                                   onChange={ color => this.handleColorChange(color, 2) } />
                                   </div> : null }
-                                  <span class="tooltiptext">Font Color</span>
+                                  <span className="tooltiptext">Font Color</span>
                               </div>
 
                               <div className="Shadow-Color-Container">
@@ -509,13 +609,13 @@ class Generator extends React.Component {
                                   <ChromePicker   color={ this.state.shadowValue2 } 
                                                   onChange={ color => this.handleShadowChange(color, 2) } />
                                   </div> : null }
-                                  <span class="tooltiptext">Shadow Color</span>
+                                  <span className="tooltiptext">Shadow Color</span>
                                   
                               </div>
                               <div onClick={ () => this.setState({
                                   slider2: !this.state.slider2
                               })}>
-                              <i class="fas fa-sliders-h"></i>
+                              <i className="fas fa-sliders-h"></i>
                               </div>
                           </div>
                        

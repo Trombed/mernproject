@@ -317,7 +317,9 @@
 }
 
 .swatch {
-    border: 1px solid black;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 1px 1px 0px;
     padding: 5px;
     background: lightgrey;
     border-radius: 0px;
@@ -574,12 +576,22 @@ display: none;
   }
 
 .Row-Settings {
-    border: 1px solid black;
+    width: 36px;
+    height: 36px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 1px 1px 0px;
     padding: 5px;
     background: lightgrey;
     border-radius: 0px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
     cursor: pointer;
+    font-size: 20px;
+}
 
-    cursor: pointer;
+.fa-sliders-h {
+    /* color: red; */
 }

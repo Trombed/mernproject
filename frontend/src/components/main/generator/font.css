@@ -16,7 +16,7 @@
     position: absolute;
     top: 50%;
     right: 50%;
-    height: 30vh;
+   
     display: flex;
     background-color: white;
     flex-direction: column;
@@ -24,8 +24,25 @@
     transform: translate(-50%, -50%);
    
     border: 1px solid black;
-    padding: 20px;
+    padding: 10px;
+    border-radius: 5px;
 }
+
+.Show-Font-Header {
+    padding-bottom: 2px;
+    border-bottom: 1px solid black;
+}
+
+.Show-Font-Container [class*="Font-"] {
+    padding: 3px 0px; 
+    cursor: pointer;
+
+}
+
+.Show-Font-Container [class*="Font-"]:hover {
+    color: purple;
+}
+
 
 .Font-Times {
     font-family: 'Times New Roman', Times, serif;
@@ -33,33 +50,65 @@
 
 .Font-Arial {
     font-family: Arial;
+
 }
 
 .Font-Impact {
-    font-family: "Impact"
+    font-family: "Impact";  
+
 }
 
 .Font-Open {
     font-family: 'Open Sans', sans-serif; 
+
 }
 
 .Font-Comic {
    font-family: "Comic Sans MS", cursive, sans-serif;
 
+
 }
 
 .Font-Arial-Black {
     font-family: "Arial Black", Gadget, sans-serif;
+
 }
 
 .Font-Tahoma {
     font-family: Tahoma, Geneva, sans-serif;
+
 }
 
 .Font-Verdana {
     font-familY: Verdana, Geneva, sans-serif;
+
 }
 
 .Font-Courier {
     font-family: "Courier New", Courier, monospace;
+
+}
+
+.Show-Font-Bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Font-Submit-Button {
+    outline: none;
+    color: white;
+    font-family: 'Open Sans', sans-serif; 
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color:#5C25B5;
+}
+
+.Font-Submit-Button:hover {
+    background-color: #9400D3;
+}
+
+#Font-Submit-Button {  
+    padding: 10px;
+
 }

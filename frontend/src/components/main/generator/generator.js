@@ -17,11 +17,10 @@ class Generator extends React.Component {
             showTemplates: false,
             
 
-            text1: "",
-            text2: "",
             save: false,
             rows: [],
 
+            text1: "",
             displayColorPicker1: false,
             colorValue1: "#FFFFFF",
             displayShadowPicker1: false,
@@ -33,6 +32,7 @@ class Generator extends React.Component {
             font1: "Impact",
 
 
+            text2: "",
             displayColorPicker2: false,
             colorValue2: "#FFFFFF",
             displayShadowPicker2: false,
@@ -223,8 +223,8 @@ class Generator extends React.Component {
             <div className="Show-Font-Container">
                 <div className="Show-Font-Top">
 
-                <div>
-                    Choose Font
+                <div className="Show-Font-Header">
+                    Available Fonts
                 </div>
                 
                 <div className="Font-Impact"
@@ -264,9 +264,10 @@ class Generator extends React.Component {
 
 
                 <div className="Show-Font-Bottom">
-                <button onClick={() => {this.setState({[`showFont${num}`]: false })}}>
+                <div className="Font-Submit-Button" id="Font-Submit-Button"
+                onClick={() => {this.setState({[`showFont${num}`]: false })}}>
                     Done
-                </button>
+                </div>
                 </div>
 
             </div>
@@ -336,7 +337,12 @@ class Generator extends React.Component {
                 [`colorValue${rowNum}`]: "#FFFFFF",
                 [`displayShadowPicker${rowNum}`]: false,
                 [`shadowValue${rowNum}`]: "#000000",
-                [`fontSize${rowNum}`]: 20
+                [`fontSize${rowNum}`]: 20,
+                [`shadowSize${rowNum}`]: 5,
+                [`slider${rowNum}`]: false,
+                [`showFont${rowNum}`]: false,
+                [`font${rowNum}`]: "Impact"
+
             })
             
         })
@@ -395,8 +401,53 @@ class Generator extends React.Component {
                     </div> : null }
 
                 </div>
-            </div>      
+
+                <div onClick={ () => this.setState({
+                                  [`slider${idx+3}`]: !this.state[`slider${idx+3}`]
+                              })} 
+                    className="Row-Settings">
+                              <i className="fas fa-sliders-h"></i>
+                               <span className="tooltiptext">Sizes And Settings</span>
+                </div>
+                <div onClick={ () => this.setState({
+                                  [`showFont${idx+3}`]: !this.state[`showFont${idx+3}`]
+                              })} className="Row-Settings">
+                             <i className="fas fa-font"></i>
+                               <span className="tooltiptext">Fonts</span>
+
+                </div>
+            </div> 
+            { this.state[`showFont${idx+3}`] ? this.showFont(idx+3) : null}
+
+            { this.state[`slider${idx+3}`] ?   (  
+            <div>      
             <div className="Text-Size-Changer">
+                <div className="Text-Size">
+                Size:
+                </div>
+                <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, idx+3)} defaultValue="20" />
+                <div className="Text-Size">
+                    {this.state[`fontSize${idx+3}`]}
+
+                </div>
+            </div>
+
+            <div className="Text-Size-Changer">
+                <div className="Text-Size">
+                Shadow:
+                </div>
+                <input className="slider" type="range" min="1" max="10" onChange={ e=> this.shadowSizeChange(e, idx+3)} value={this.state[`shadowSize${idx+3}`]} />
+                <div className="Text-Size">
+                    {this.state.[`shadowSize${idx+3}`]}
+
+                </div>
+            </div>
+            </div> ) : null
+            }
+
+
+
+            {/* <div className="Text-Size-Changer">
                     <div className="Text-Size">
                     Size:
                     </div>
@@ -405,7 +456,7 @@ class Generator extends React.Component {
                         { this.state[`fontSize${idx+3}`] }
 
                     </div>
-                </div>
+                </div> */}
             </div>       
 
         ))
@@ -503,7 +554,7 @@ class Generator extends React.Component {
 
                             
                             {/* UPPER TEXT */}
-                            <div className="Generator-Input-Div">
+                            {/* <div className="Generator-Input-Div">
                               
 
                                 <textarea className='text-input' onChange={ e=> this.upperInput(e,1)} placeholder="
@@ -543,14 +594,18 @@ class Generator extends React.Component {
                                   slider1: !this.state.slider1
                               })} className="Row-Settings">
                               <i className="fas fa-sliders-h"></i>
-                              </div>
+                               <span className="tooltiptext">Sizes And Settings</span>
                             </div>
-
-                            <div onClick={ () => this.setState({
+                                <div onClick={ () => this.setState({
                                   showFont1: !this.state.showFont1
                               })} className="Row-Settings">
                              <i className="fas fa-font"></i>
-                              </div>
+                               <span className="tooltiptext">Fonts</span>
+
+                            </div>
+                            </div>
+
+                          
                             
                             { this.state.showFont1 ? this.showFont(1) : null}
 
@@ -578,12 +633,12 @@ class Generator extends React.Component {
                               </div>
                            </div>
                            </div> ) : null
-                           }
-                            
+                           } */}
+               
                             {/* END UPPER TEXT */}
-                            
+                       
                             {/* LOWER TEXT */}
-                            <div className="Generator-Input-Div">
+                            {/* <div className="Generator-Input-Div">
                               
 
                               <textarea className='text-input' onChange={ e => this.upperInput(e, 2)} placeholder="
@@ -646,8 +701,8 @@ class Generator extends React.Component {
                            }
 
                             {newRows}
-                   
-                            {/* END LOWER TEXT */}
+                    */}
+                  
                             <div className="Row-Manipulation">
                             <button className="Add-Row" onClick={this.addRow.bind(this)}>
                                 Add Row

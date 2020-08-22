@@ -549,6 +549,10 @@ display: none;
     visibility: visible
 }
 
+.Row-Settings:hover .tooltiptext {
+    visibility: visible
+}
+
 .tooltiptext {
     visibility: hidden;
     position: absolute;

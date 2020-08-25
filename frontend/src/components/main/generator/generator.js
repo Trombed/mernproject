@@ -8,6 +8,7 @@ import Filter from './filters/filter'
 import screenshot from 'image-screenshot'
 import Templates from './templates/templates'
 import './font.css'
+import Trash from './clear/clear'
 
 class Generator extends React.Component {
     constructor(props) {
@@ -15,31 +16,10 @@ class Generator extends React.Component {
         this.state = {
             showFilter: true,
             showTemplates: false,
-            
+            showTrash: false,
 
             save: false,
             rows: [],
-
-            text1: "",
-            displayColorPicker1: false,
-            colorValue1: "#FFFFFF",
-            displayShadowPicker1: false,
-            shadowValue1: "#000000",
-            fontSize1: 20,
-            shadowSize1: 5,
-            slider1: false,
-            showFont1: false,
-            font1: "Impact",
-
-
-            text2: "",
-            displayColorPicker2: false,
-            colorValue2: "#FFFFFF",
-            displayShadowPicker2: false,
-            shadowValue2: "#000000",
-            shadowSize2: 5,
-            fontSize2: 20,
-            slider2: false
         };
    
         this.upperInput = this.upperInput.bind(this);
@@ -49,12 +29,20 @@ class Generator extends React.Component {
         this.upperSizeChange = this.upperSizeChange.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.changeFont = this.changeFont.bind(this)
+        this.clearBG = this.clearBG.bind(this)
+        this.resetAll = this.resetAll.bind(this)
     }
+
 
     componentWillMount() {
- 
+        this.initializeRows();
+  
     }
 
+    async initializeRows() {
+        await this.addRow()
+        this.addRow()
+    }
 
 
     hideTemplate() { 
@@ -66,14 +54,13 @@ class Generator extends React.Component {
         files.preventDefault();
         const file = files.target.files[0]; 
         const reader = new FileReader();
-     
         reader.readAsDataURL(file)
         const img = new Image();
         reader.onload = function(e) {
             img.src = e.target.result
         };
             reader.onloadend = (e) => { 
-                
+
                 document.getElementById("memeGenerator").style.width = `${img.width}px`
                 document.getElementById("memeGenerator").style.height = `${img.height}px`
                 document.getElementById("canvas2").style.width = `${img.width}px`
@@ -86,10 +73,15 @@ class Generator extends React.Component {
 
   
 
-     clearBG() {
-        document.getElementById('picture').src = "";
+    clearBG() {
+         this.setState({showTrash: !this.state.showTrash})
     }
 
+    resetAll() {
+           this.setState({
+            rows: []
+        }, () => { this.initializeRows() })
+    }
   
 
    
@@ -218,6 +210,16 @@ class Generator extends React.Component {
     }
 
     showFont(num) {
+        let self = this
+        document.addEventListener("keydown", function handler(event) {
+        const key = event.key; 
+            if (key === "Escape") {
+                self.setState({[`showFont${num}`]: false}, () => {
+
+               this.removeEventListener('keydown', handler);
+                })
+            }
+        });
         return (
             <div className="Show-Font-Modal">
             <div className="Show-Font-Container">
@@ -255,10 +257,6 @@ class Generator extends React.Component {
                  <div className="Font-Courier"
                     onClick={ () => this.changeFont(num, 9)}
                 >Courier</div>
-
-
-
-
                 </div>
                 
 
@@ -330,18 +328,18 @@ class Generator extends React.Component {
 
     addRow() {
         this.setState({rows: [...this.state.rows, ""]}, () => {
-            let rowNum = this.state.rows.length + 2
+            let rowNum = this.state.rows.length -1;
             this.setState({
                 [`text${rowNum}`]: rowNum,
                 [`displayColorPicker${rowNum}`]: false,
-                [`colorValue${rowNum}`]: "#FFFFFF",
                 [`displayShadowPicker${rowNum}`]: false,
                 [`shadowValue${rowNum}`]: "#000000",
                 [`fontSize${rowNum}`]: 20,
                 [`shadowSize${rowNum}`]: 5,
                 [`slider${rowNum}`]: false,
                 [`showFont${rowNum}`]: false,
-                [`font${rowNum}`]: "Impact"
+                [`font${rowNum}`]: "Impact",
+                 [`colorValue${rowNum}`]: "#FFFFFF"
 
             })
             
@@ -350,84 +348,87 @@ class Generator extends React.Component {
     }
 
     deleteRow() {
-        if (this.state.rows.length <= 0 ) return;
+        if (this.state.rows.length <= 2 ) return;
         this.setState({
             rows: [...this.state.rows.slice(0,this.state.rows.length-1)]
         })
     }
 
     addInput(e, num) {
-         this.setState( { [`text${num+3}`]: e.target.value }, 
+         this.setState( { [`text${num}`]: e.target.value }, 
                             () =>  {    
                                     let rows = this.state.rows
-                                     rows[num] = this.state[`text${num+3}`]
+                                     rows[num] = this.state[`text${num}`]
                                      this.setState({ rows }) }
                     )
     }
 
     render() {
-
+  
         //Generate new row inputs
-        const newRows = this.state.rows.map( (row, idx) => (
+        const newRows = this.state.rows.map( (row, idx) => {
+            return (
             <div className="Generator-Text-New-Rows" key={idx}>
                 <div className="Generator-Input-Div">
-                    <textarea className='text-input' onChange={ e => this.addInput(e, idx)} placeholder={`Row# ${idx+3}`}/>
-                <div>
-                <div className="swatch" onClick={  e => this.handleClick(idx+3) }>
-                    <div className="color" style={{backgroundColor: this.state[`colorValue${idx+3}`] }} />
+                    <textarea className='text-input' onChange={ e => this.addInput(e, idx)} placeholder={`Row# ${idx+1}`}/>
+                <div className="Shadow-Color-Container">
+                <div className="swatch" onClick={  e => this.handleClick(idx) }>
+                    <div className="color" style={{backgroundColor: this.state[`colorValue${idx}`] }} />
                     </div>
-                    { this.state[`displayColorPicker${idx+3}`] ? <div className="popover">
+                    { this.state[`displayColorPicker${idx}`] ? <div className="popover">
                     <div className="cover" onClick={ e => {
-                        this.handleClose(idx+3) 
+                        this.handleClose(idx) 
                        
                     }
                     }/>
-                    <ChromePicker   color={ this.state[`colorValue${idx+3}`] } 
-                                    onChange={ color => this.handleColorChange(color, idx+3) } />
+                    <ChromePicker   color={ this.state[`colorValue${idx}`] } 
+                                    onChange={ color => this.handleColorChange(color, idx) } />
                     </div> : null }
+                    <span className="tooltiptext">Border Color</span>
 
                 </div>
 
-                <div>
-                    <div className="swatch" onClick={  e => this.handleShadowClick(idx+3) }>
-                        <div className="color" style={{ backgroundColor: this.state[`shadowValue${idx+3}`] }} />
+                <div className="Shadow-Color-Container">                
+                    <div className="swatch" onClick={  e => this.handleShadowClick(idx) }>
+                        <div className="color" style={{ backgroundColor: this.state[`shadowValue${idx}`] }} />
                     </div>
-                    { this.state[`displayShadowPicker${idx+3}`] ? <div className="popover">
-                    <div className="cover" onClick={ e => this.handleShadowClose(idx+3) }/>
-                    <ChromePicker   color={ this.state[`shadowValue${idx+3}`] } 
-                                    onChange={ color => this.handleShadowChange(color, idx+3) } 
+                    { this.state[`displayShadowPicker${idx}`] ? <div className="popover">
+                    <div className="cover" onClick={ e => this.handleShadowClose(idx) }/>
+                    <ChromePicker   color={ this.state[`shadowValue${idx}`] } 
+                                    onChange={ color => this.handleShadowChange(color, idx) } 
                                    
                                     />
                     </div> : null }
+                    <span className="tooltiptext">Font Color</span>
 
                 </div>
 
                 <div onClick={ () => this.setState({
-                                  [`slider${idx+3}`]: !this.state[`slider${idx+3}`]
+                                  [`slider${idx}`]: !this.state[`slider${idx}`]
                               })} 
                     className="Row-Settings">
                               <i className="fas fa-sliders-h"></i>
-                               <span className="tooltiptext">Sizes And Settings</span>
+                               <span className="tooltiptext2">Sizes And Settings</span>
                 </div>
                 <div onClick={ () => this.setState({
-                                  [`showFont${idx+3}`]: !this.state[`showFont${idx+3}`]
+                                  [`showFont${idx}`]: !this.state[`showFont${idx}`]
                               })} className="Row-Settings">
                              <i className="fas fa-font"></i>
-                               <span className="tooltiptext">Fonts</span>
+                               <span className="tooltiptext2">Fonts</span>
 
                 </div>
             </div> 
-            { this.state[`showFont${idx+3}`] ? this.showFont(idx+3) : null}
+            { this.state[`showFont${idx}`] ? this.showFont(idx) : null}
 
-            { this.state[`slider${idx+3}`] ?   (  
+            { this.state[`slider${idx}`] ?   (  
             <div>      
             <div className="Text-Size-Changer">
                 <div className="Text-Size">
                 Size:
                 </div>
-                <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, idx+3)} defaultValue="20" />
+                <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, idx)} value={this.state[`fontSize${idx}`]} />
                 <div className="Text-Size">
-                    {this.state[`fontSize${idx+3}`]}
+                    {this.state[`fontSize${idx}`]}
 
                 </div>
             </div>
@@ -436,9 +437,9 @@ class Generator extends React.Component {
                 <div className="Text-Size">
                 Shadow:
                 </div>
-                <input className="slider" type="range" min="1" max="10" onChange={ e=> this.shadowSizeChange(e, idx+3)} value={this.state[`shadowSize${idx+3}`]} />
+                <input className="slider" type="range" min="1" max="10" onChange={ e=> this.shadowSizeChange(e, idx)} value={this.state[`shadowSize${idx}`]} />
                 <div className="Text-Size">
-                    {this.state.[`shadowSize${idx+3}`]}
+                    {this.state.[`shadowSize${idx}`]}
 
                 </div>
             </div>
@@ -447,19 +448,9 @@ class Generator extends React.Component {
 
 
 
-            {/* <div className="Text-Size-Changer">
-                    <div className="Text-Size">
-                    Size:
-                    </div>
-                    <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, idx+3)} defaultValue="20" />
-                    <div className="Text-Size">
-                        { this.state[`fontSize${idx+3}`] }
-
-                    </div>
-                </div> */}
             </div>       
-
-        ))
+            )}
+        )
         // END Generating New rows
 
         //Render new rows on image
@@ -469,7 +460,7 @@ class Generator extends React.Component {
             ))
             return (
                 <Draggable key={idx}>
-                    <div  className={`upper-text-${idx+3}`}>
+                    <div  className={`upper-text-${idx}`}>
                         { breakLine}
                     </div>
                 </Draggable>
@@ -479,16 +470,7 @@ class Generator extends React.Component {
      
                                 
 
-        //End render new rows on image
-
-
-        const upperTextOutput = this.state.text1.split("\n").map( (line, index) => (
-            <p key={index}>{line}</p>
-        ));
-
-         const lowerTextOutput = this.state.text2.split("\n").map( (line, index) => (
-            <p key={index}>{line}</p>
-        ));
+   
 
         return (
 
@@ -536,7 +518,10 @@ class Generator extends React.Component {
                             <div className="Remove-Container"
                                 onClick={this.clearBG} >
                                 <i className="fas fa-trash-alt"></i>
-
+                                { this.state.showTrash ? 
+                                <Trash toggle={this.clearBG}
+                                reset={this.resetAll}
+                                /> : null }
                              
                             </div>
                             <button className="save-upload-button" onClick={this.saveFile}>Save
@@ -549,159 +534,8 @@ class Generator extends React.Component {
                         <div className="Generator-Text-Rows">
                     
                             
-                          
-
-
-                            
-                            {/* UPPER TEXT */}
-                            {/* <div className="Generator-Input-Div">
-                              
-
-                                <textarea className='text-input' onChange={ e=> this.upperInput(e,1)} placeholder="
-                                Upper Text" />
-                                <div className="Shadow-Color-Container">
-                                    <div className="swatch" onClick={  () => {
-                                        this.handleClick(1)
-                                    
-                                     } }>
-                                        <div className="color" style={{backgroundColor: this.state.colorValue1}} />
-                                    </div>
-                                    { this.state.displayColorPicker1 ? <div className="popover"  >
-                                    <div className="cover" onClick={ (e) => this.handleClose(1)}/>
-                                    <ChromePicker   color={ this.state.colorValue1 } 
-                                                    onChange={ color => this.handleColorChange(color, 1) } 
-                                                    />
-                                    </div> : null }
-                                    <span className="tooltiptext">Font Color</span>
-                                </div>
-
-                                <div className="Shadow-Color-Container">
-                                    <div className="swatch" onClick={  e => this.handleShadowClick(1) }>
-                                        <div className="color" style={{backgroundColor: this.state.shadowValue1}} />
-                                    </div>
-                                    { 
-                                        this.state.displayShadowPicker1 ? 
-                                            <div className="popover">
-                                                <div className="cover" onClick={ e => this.handleShadowClose(1) }/>
-                                                 <ChromePicker   color={ this.state.shadowValue1 } 
-                                                    onChange={ color => this.handleShadowChange(color, 1) } />
-                                            </div> 
-                                        : null 
-                                    }
-                                     <span className="tooltiptext">Shadow Color</span>
-                                </div>
-                            <div onClick={ () => this.setState({
-                                  slider1: !this.state.slider1
-                              })} className="Row-Settings">
-                              <i className="fas fa-sliders-h"></i>
-                               <span className="tooltiptext">Sizes And Settings</span>
-                            </div>
-                                <div onClick={ () => this.setState({
-                                  showFont1: !this.state.showFont1
-                              })} className="Row-Settings">
-                             <i className="fas fa-font"></i>
-                               <span className="tooltiptext">Fonts</span>
-
-                            </div>
-                            </div>
-
-                          
-                            
-                            { this.state.showFont1 ? this.showFont(1) : null}
-
-                            { this.state.slider1 ?   (  
-                            <div>      
-                            <div className="Text-Size-Changer">
-                              <div className="Text-Size">
-                              Size:
-                              </div>
-                              <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, 1)} defaultValue="20" />
-                              <div className="Text-Size">
-                                  {this.state.fontSize1}
-
-                              </div>
-                          </div>
-
-                          <div className="Text-Size-Changer">
-                              <div className="Text-Size">
-                              Shadow:
-                              </div>
-                              <input className="slider" type="range" min="1" max="10" onChange={ e=> this.shadowSizeChange(e, 1)} value={this.state.shadowSize1} />
-                              <div className="Text-Size">
-                                  {this.state.shadowSize1}
-
-                              </div>
-                           </div>
-                           </div> ) : null
-                           } */}
-               
-                            {/* END UPPER TEXT */}
-                       
-                            {/* LOWER TEXT */}
-                            {/* <div className="Generator-Input-Div">
-                              
-
-                              <textarea className='text-input' onChange={ e => this.upperInput(e, 2)} placeholder="
-                              Lower Text" />
-                              <div className="Shadow-Color-Container">
-                                  <div className="swatch" onClick={  e => this.handleClick(2) }>
-                                      <div className="color" style={{backgroundColor: this.state.colorValue2}} />
-                                  </div>
-                                  { this.state.displayColorPicker2 ? <div className="popover">
-                                  <div className="cover" onClick={ e => this.handleClose(2) }/>
-                                  <ChromePicker   color={ this.state.colorValue2 } 
-                                                  onChange={ color => this.handleColorChange(color, 2) } />
-                                  </div> : null }
-                                  <span className="tooltiptext">Font Color</span>
-                              </div>
-
-                              <div className="Shadow-Color-Container">
-                                  <div className="swatch" onClick={  e => this.handleShadowClick(2) }>
-                                      <div className="color" style={{backgroundColor: this.state.shadowValue2}} />
-                                  </div>
-                                  { this.state.displayShadowPicker2 ? <div className="popover">
-                                  <div className="cover" onClick={ e => this.handleShadowClose(2) }/>
-                                  <ChromePicker   color={ this.state.shadowValue2 } 
-                                                  onChange={ color => this.handleShadowChange(color, 2) } />
-                                  </div> : null }
-                                  <span className="tooltiptext">Shadow Color</span>
-                                  
-                              </div>
-                              <div onClick={ () => this.setState({
-                                  slider2: !this.state.slider2
-                              })}>
-                              <i className="fas fa-sliders-h"></i>
-                              </div>
-                          </div>
-                       
-                           { this.state.slider2 ?   (  
-                            <div>      
-                            <div className="Text-Size-Changer">
-                              <div className="Text-Size">
-                              Size:
-                              </div>
-                              <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, 2)} defaultValue="20" />
-                              <div className="Text-Size">
-                                  {this.state.fontSize2}
-
-                              </div>
-                          </div>
-
-                          <div className="Text-Size-Changer">
-                              <div className="Text-Size">
-                              Shadow:
-                              </div>
-                              <input className="slider" type="range" min="1" max="10" onChange={ e=> this.shadowSizeChange(e, 2)} value={this.state.shadowSize2} />
-                              <div className="Text-Size">
-                                  {this.state.shadowSize2}
-
-                              </div>
-                           </div>
-                           </div> ) : null
-                           }
 
                             {newRows}
-                    */}
                   
                             <div className="Row-Manipulation">
                             <button className="Add-Row" onClick={this.addRow.bind(this)}>
@@ -720,22 +554,14 @@ class Generator extends React.Component {
                         </div>
                         <Filter />
                         <div className="Generator-Meme-Container">
-
+                          
                             <div className="memeGenerator" id="memeGenerator">
 
                                 <div id='canvas2'>
-                                <img id='picture' src="" />
+                                <img id='picture' src=""  alt="" />
                                 
                                 </div>
-                                <Draggable>
-                                    <span className='upper-text-1 box'>{upperTextOutput}
-                                    </span>
-                                </Draggable>
-                                <br />
-                                <Draggable>
-                                    <div  className='upper-text-2 '>    {lowerTextOutput}
-                                    </div>
-                                </Draggable>
+                    
                                 {newSentence}
                             </div>
 

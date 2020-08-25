@@ -34,7 +34,7 @@ const Templates = (props) => {
         return (
             <div key={"image"+idx} className="Individual-Template"
             onClick={ () => chooseTemplate(image, idx)}>
-                <img src={`./templates/${image}${idx}.png`} className="Template-Image" />
+                <img src={`./templates/${image}${idx}.png`} className="Template-Image" alt="" />
             </div>
         )
     })

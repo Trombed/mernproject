@@ -10,6 +10,7 @@ import Templates from './templates/templates'
 import './font.css'
 import Trash from './clear/clear'
 
+
 class Generator extends React.Component {
     constructor(props) {
         super(props);
@@ -151,6 +152,16 @@ class Generator extends React.Component {
         })
     }
 
+    rotationChange(e, num) {
+        var text = document.getElementsByClassName(`rotate-${num}`)[0];
+        let size = e.currentTarget.value
+        if (text === undefined) return;
+        this.setState({[`rotate${num}`]: e.currentTarget.value}, () => {
+
+            text.style.transform = `rotate(${this.state[`rotate${num}`]}deg)`;
+        })
+    }
+
     lowerSizeChange(e) {
         var text = document.getElementsByClassName("lower-text");
         text[0].style.fontSize = `${e.currentTarget.value}px`;    
@@ -229,32 +240,32 @@ class Generator extends React.Component {
                     Available Fonts
                 </div>
                 
-                <div className="Font-Impact"
+                <div className="Style-Font-Impact"
                     onClick={ () => this.changeFont(num, 1)}
                 >Impact</div>
-                <div className="Font-Arial"
+                <div className="Style-Font-Arial"
                     onClick={ () => this.changeFont(num, 2)}
                 >Arial</div>
-                <div className="Font-Times"
+                <div className="Style-Font-Times"
                     onClick={ () => this.changeFont(num, 3)}
                 >Times New Roman</div>
-                <div className="Font-Open"
+                <div className="Style-Font-Open"
                     onClick={ () => this.changeFont(num, 4)}
                 >Open Sans</div>
-                 <div className="Font-Comic"
+                 <div className="Style-Font-Comic"
                     onClick={ () => this.changeFont(num, 5)}
                 >Comic Sans</div>
 
-                 <div className="Font-Arial-Black"
+                 <div className="Style-Font-Arial-Black"
                     onClick={ () => this.changeFont(num, 6)}
                 >Arial Black</div>
-                <div className="Font-Tahoma"
+                <div className="Style-Font-Tahoma"
                     onClick={ () => this.changeFont(num, 7)}
                 >Tahoma</div>
-                 <div className="Font-Verdana"
+                 <div className="Style-Font-Verdana"
                     onClick={ () => this.changeFont(num, 8)}
                 >Verdana</div>
-                 <div className="Font-Courier"
+                 <div className="Style-Font-Courier"
                     onClick={ () => this.changeFont(num, 9)}
                 >Courier</div>
                 </div>
@@ -339,7 +350,8 @@ class Generator extends React.Component {
                 [`slider${rowNum}`]: false,
                 [`showFont${rowNum}`]: false,
                 [`font${rowNum}`]: "Impact",
-                 [`colorValue${rowNum}`]: "#FFFFFF"
+                 [`colorValue${rowNum}`]: "#FFFFFF",
+                 [`rotate${rowNum}`]: 0
 
             })
             
@@ -384,7 +396,7 @@ class Generator extends React.Component {
                     <ChromePicker   color={ this.state[`colorValue${idx}`] } 
                                     onChange={ color => this.handleColorChange(color, idx) } />
                     </div> : null }
-                    <span className="tooltiptext">Border Color</span>
+                    <span className="tooltiptext">Font Color</span>
 
                 </div>
 
@@ -399,7 +411,7 @@ class Generator extends React.Component {
                                    
                                     />
                     </div> : null }
-                    <span className="tooltiptext">Font Color</span>
+                    <span className="tooltiptext">Shadow Color</span>
 
                 </div>
 
@@ -423,26 +435,49 @@ class Generator extends React.Component {
             { this.state[`slider${idx}`] ?   (  
             <div>      
             <div className="Text-Size-Changer">
-                <div className="Text-Size">
-                Size:
+                <div className="Text-Size-Header">
+                    <div className="Text-Size">
+                    Size
+                    </div>
+                    
+                    <div className="Text-Size">
+                        {this.state[`fontSize${idx}`]}
+                    </div>
                 </div>
-                <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, idx)} value={this.state[`fontSize${idx}`]} />
-                <div className="Text-Size">
-                    {this.state[`fontSize${idx}`]}
 
-                </div>
+
+                <input className="slider" type="range" min="10" max="100" onChange={ e=> this.upperSizeChange(e, idx)} value={this.state[`fontSize${idx}`]} />
             </div>
 
             <div className="Text-Size-Changer">
-                <div className="Text-Size">
-                Shadow:
+                <div className="Text-Size-Header">
+                    <div className="Text-Size">
+                        Shadow 
+                    </div>
+                    <div className="Text-Size">
+                        {this.state.[`shadowSize${idx}`]}
+                    </div>
                 </div>
+         
                 <input className="slider" type="range" min="1" max="10" onChange={ e=> this.shadowSizeChange(e, idx)} value={this.state[`shadowSize${idx}`]} />
-                <div className="Text-Size">
-                    {this.state.[`shadowSize${idx}`]}
-
-                </div>
+               
             </div>
+
+
+            <div className="Text-Size-Changer">
+                <div className="Text-Size-Header">
+                    <div className="Text-Size">
+                        Rotation
+                    </div>
+                    <div className="Text-Size">
+                        {this.state.[`rotate${idx}`]}
+                    </div>
+                </div>
+
+                <input className="slider" type="range" min="0" max="360" onChange={ e=> this.rotationChange(e, idx)} value={this.state[`rotate${idx}`]} />
+
+            </div>
+
             </div> ) : null
             }
 
@@ -459,10 +494,20 @@ class Generator extends React.Component {
                 <p key={index}>{line}</p>
             ))
             return (
+                    
+
                 <Draggable key={idx}>
+                <div>
+                    <div  className={`rotate-${idx}`}>
+
                     <div  className={`upper-text-${idx}`}>
                         { breakLine}
                     </div>
+                    </div>
+                    </div>
+
+                  
+                  
                 </Draggable>
             )
           
@@ -478,19 +523,20 @@ class Generator extends React.Component {
                 <div className="generator-page-container">
                     <div className="generator-header">
                         <div className="generator-uploader">
+                        <label htmlFor="file-upload" className="profile-file-upload">
+                             
                             <div className="Upload-Container">
                                 <img src="/upload.svg" alt="" className="Upload-Icon" />
-                                <label htmlFor="file-upload" className="profile-file-upload">
-                                    Upload Image
-                                </label>
+                                Upload Image
+                             
                                 <input  className="select-file" 
                                         id="file-upload" 
                                         type="file" 
                                 
                                         accept="image/*" 
-                                        onChange={this.uploadImage} />
+                                onChange={this.uploadImage} />
                             </div>
-
+                        </label>
 
                           
                           

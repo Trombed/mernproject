@@ -61,11 +61,10 @@ class NavBar extends React.Component {
                 <div className="navbar-title">
                     <Link to='/'><img src={logo} alt=""  className="logo" /></Link>
                 </div>
-                <div className="navbar-links">
-                    <Link to={`/randommemes`}>Explore Memes</Link>
+                <div className="navbar-rightside">
+                    <div>{this.memeStatus()}</div>
+                    <div>{this.sessionStatus()}</div>
                 </div>
-                <div>{this.memeStatus()}</div>
-                <div>{this.sessionStatus()}</div>
             </div>
         );
     }

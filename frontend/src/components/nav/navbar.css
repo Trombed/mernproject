@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     position: fixed;
-    justify-content: space-evenly;
+    justify-content: space-between;
     border: none;
     align-items: center;
     z-index: 1000;
@@ -206,3 +206,9 @@
     transform: translateY(5px);
     
 }
+
+.navbar-rightside {
+    display: flex;
+    flex-direction: row;
+}
+

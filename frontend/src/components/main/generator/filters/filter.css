@@ -1,6 +1,6 @@
 .Filter-Container {
-    padding-top: 10px;
-    padding: 20px;
+  
+    padding: 3px 20px;
     display: none;
     flex-direction: column;
     width: 25vw;
@@ -14,7 +14,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0.5vh 0px;
+    padding: 0.2vh 0px;
 }
 
 .Filter-Row-Text {
@@ -31,7 +31,7 @@
 }
 
 .Filter-Header {
-    font-size: 2em;
+    font-size: 1em;
     padding-bottom: 1vh;
 }
 
@@ -39,7 +39,7 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
     text-transform: uppercase;
-    font-size: 0.8em;
+    font-size: 0.6em;
     cursor: pointer;
     justify-content: center;
     align-items: center;
@@ -95,19 +95,20 @@ input::-webkit-inner-spin-button {
 }
 
 .Filter-Reset-Container {
-    padding-top: 2vh;
+    padding-top: 0.5vh;
 }
 
 .Filter-Reset {
-
-    width: 8vw;
-    padding: 10px;
+    font-family: "Open-sans", sans-serif;
+    font-size: 0.8em;
+    width: 20%;
+    padding: 5px;
     color: white;
     background-color: #5C25B5;
     cursor: pointer;
     outline: none;
     border: none;
-    border-radius: 10px;
+    border-radius: 2px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -37,7 +37,15 @@ class Generator extends React.Component {
 
     componentWillMount() {
         this.initializeRows();
+         window.onscroll = function () { window.scrollTo(0, 0); };
+        document.body.style.overflow = 'hidden';
   
+    }
+
+    componentWillUnmount() {
+         window.onscroll = function () {};
+        document.body.style.overflow = 'visible';
+        return null;
     }
 
     async initializeRows() {

@@ -18,6 +18,7 @@ class Generator extends React.Component {
             showFilter: true,
             showTemplates: false,
             showTrash: false,
+            showBlank: true,
 
             save: false,
             rows: [],
@@ -32,6 +33,7 @@ class Generator extends React.Component {
         this.changeFont = this.changeFont.bind(this)
         this.clearBG = this.clearBG.bind(this)
         this.resetAll = this.resetAll.bind(this)
+        this.loadBlank = this.loadBlank.bind(this)
     }
 
 
@@ -39,7 +41,9 @@ class Generator extends React.Component {
         this.initializeRows();
          window.onscroll = function () { window.scrollTo(0, 0); };
         document.body.style.overflow = 'hidden';
-  
+        window.onload = () => {
+            this.loadBlank();
+        }
     }
 
     componentWillUnmount() {
@@ -47,6 +51,37 @@ class Generator extends React.Component {
         document.body.style.overflow = 'visible';
         return null;
     }
+
+// Load Blank Template
+    async loadBlank() {
+        let img = await this.initializeBlank();
+
+        const convert = (img) => {
+            var canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0);
+            var dataURL = canvas.toDataURL("image/png");
+            document.getElementById('picture').src  =dataURL
+        }
+
+       
+    }
+
+    initializeBlank() {
+        const img = new Image();
+        img.src = `./templates/blank.png`
+        document.getElementById("memeGenerator").style.width = `${img.width}px`
+        document.getElementById("memeGenerator").style.height = `${img.height}px`
+        document.getElementById("canvas2").style.width = `${img.width}px`
+        document.getElementById("canvas2").style.height = `${img.height}px`
+        document.getElementById('picture').src = img.src;
+        return document.getElementById('picture')
+    }
+// End Load Blank Template
+
+
 
     async initializeRows() {
         await this.addRow()
@@ -89,7 +124,9 @@ class Generator extends React.Component {
     resetAll() {
            this.setState({
             rows: []
-        }, () => { this.initializeRows() })
+        }, () => { this.initializeRows();
+                    this.loadBlank();
+         })
     }
   
 
@@ -384,6 +421,7 @@ class Generator extends React.Component {
     }
 
     render() {
+   
   
         //Generate new row inputs
         const newRows = this.state.rows.map( (row, idx) => {
@@ -576,7 +614,7 @@ class Generator extends React.Component {
                                 <Trash toggle={this.clearBG}
                                 reset={this.resetAll}
                                 /> : null }
-                             
+                                <span className="tooltip3">RESET</span>
                             </div>
                             <button className="save-upload-button" onClick={this.saveFile}>Save
                             </button>
@@ -612,7 +650,9 @@ class Generator extends React.Component {
                             <div className="memeGenerator" id="memeGenerator">
 
                                 <div id='canvas2'>
-                                <img id='picture' src=""  alt="" />
+                                <img id='picture' 
+                                    src="" 
+                                    alt="" />
                                 
                                 </div>
                     

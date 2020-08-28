@@ -39,7 +39,7 @@ class NavBar extends React.Component {
             // debugger
             return (
                 <div className="navbar-links"> 
-                    <div className="navbar-userprofile">{`${this.props.user.username}!`}</div>
+                    
                     <button onClick={() => this.props.logout()} className="logout-button">Logout</button>
                 </div>
             );

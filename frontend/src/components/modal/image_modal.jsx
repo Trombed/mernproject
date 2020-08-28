@@ -1,7 +1,7 @@
 import React from 'react';
 import { closeModal } from '../../actions/image_modal_actions';
 import { connect } from 'react-redux';
-import './image_modal.css'
+import './image_modal.css';
 
 function ImageModal({modal, closeModal}) {
 
@@ -29,7 +29,7 @@ function ImageModal({modal, closeModal}) {
         <div className="loader-text">Saving</div>
       </div>
     )
-  } else {
+  }  else {
     window.onscroll = function () { window.scrollTo(0, 0); };
         document.body.style.overflow = 'hidden';
     return (

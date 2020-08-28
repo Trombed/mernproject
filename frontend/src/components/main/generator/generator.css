@@ -576,6 +576,36 @@ display: none;
     color: #9400D3;
 }
 
+.tooltip3 {
+    visibility: hidden;
+    position: absolute;
+ 
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 6px;
+    z-index: 20000000;
+    font-size: 10px;
+     /* margin-left:  -75px; */
+     margin-top: -40px;
+}
+
+.tooltip3::after {
+    content: " ";
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+
+.Remove-Container:hover .tooltip3 {
+    visibility: visible;
+}
+
 .tooltiptext {
     visibility: hidden;
     position: absolute;

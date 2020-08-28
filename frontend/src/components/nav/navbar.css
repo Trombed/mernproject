@@ -90,20 +90,17 @@
     justify-content: center;
     align-items: center;
     font-size: 16px;
-
-    width: 138px;
-    margin: 5px;
-    text-decoration: none; 
+    width: 80%;
     cursor: pointer;
     border: none;
     text-align: center;
-    display: inline-block;
     padding: 8px;
     text-transform: none;
     border-radius: 5px;
-    font-weight: 700;
+    font-weight: 500;
     background-color: #5C25B5;
     color: #fff;
+    font-size: 0.8rem;
 }
 
 .create-meme-button:hover {
@@ -181,34 +178,31 @@
     font-size: 16px;
     height: 30px;
     width: 100px;
-    margin: 5px;
-    text-decoration: none; 
+
+   
     cursor: pointer;
     border: none;
     text-align: center;
-    display: inline-block;
     padding: 8px;
-    text-transform: none;
-    user-select: none;
+    text-transform: uppercase;
     border-radius: 5px;
-    font-weight: 700;
+    font-weight: 500;
     background-color: #5C25B5;
     color: #fff;
     outline: none;
-    
-    box-shadow: 0 9px #999;
+    font-size: 0.8rem;
 }
 
 .logout-button:hover {
-
     background-color: #9400D3;
-    box-shadow: 0 5px #666;
-    transform: translateY(5px);
-    
 }
 
 .navbar-rightside {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+    margin-right: 10px;
 }
 

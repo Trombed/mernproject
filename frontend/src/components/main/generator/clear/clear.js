@@ -3,12 +3,6 @@ import './trash.css'
 
 
 
-const hideTrash = () => {
-    document.getElementById("Trash-Container").style.display = "none"
-
-}
-
-
 
 const Trash = (props) => {
 
@@ -19,19 +13,22 @@ const Trash = (props) => {
         props.reset()
     }     
     return (
-        <div className="Trash-Container" id="Trash-Container"> 
+        <div className="Trash-Container" id="Trash-Container" onClick={ e => e.stopPropagation()}> 
             <div className="Trash-Modal">
                 <div>
-                Are you sure to delete?
+                reset all?
                 </div>
 
                 <div className="Trash-Modal-Decision">
-                    <div onClick={clearBG} className="Trash-Button">
+                    <div onClick={ (e) => {
+                        e.stopPropagation();
+                        clearBG() }
+                    } className="Trash-Button-Yes">
                     YES
                     </div>
 
 
-                    <div onClick={props.toggle} className="Trash-Button">
+                    <div onClick={props.toggle} className="Trash-Button-No">
                     NO
                     </div>
                 </div>

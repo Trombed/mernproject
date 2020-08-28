@@ -48,7 +48,7 @@ class ShowPage extends React.Component {
 
 
     render() {
-      
+        console.log(this.props.allMemes)
 
         let content = this.props.allMemes.map( meme => {        
         const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id);
@@ -74,7 +74,8 @@ class ShowPage extends React.Component {
             }
 
         let showLike = this.props.loggedIn ?    likedMeme : this.noLike()
-
+        
+        debugger
             return (
             <div key={meme._id} className="Individual-Meme-Container">
           
@@ -83,7 +84,7 @@ class ShowPage extends React.Component {
             </div>
             <div className='Individual-Name'>
                 <Link to={`/users/${meme.user._id}`}>
-                {meme.user.username + " POSTED"} </Link> 
+                {meme.user.username + " Posted"} </Link> 
             </div>
             {/* {likedMeme} */}
             {showLike}

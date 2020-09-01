@@ -7,7 +7,8 @@ import { fetchMemes } from '../../../actions/memes_action';
 
 
 const mapStateToProps = state => ({
-   currentUser: state.session.user 
+   currentUser: state.session.user,
+   blank: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPH06nAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAANQTFRF////p8QbyAAAAD1JREFUeJztwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4M8Al+AAAfQ5dkcAAAAASUVORK5CYII="
 });
 
 

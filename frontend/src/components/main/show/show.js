@@ -75,7 +75,11 @@ class ShowPage extends React.Component {
 
         let showLike = this.props.loggedIn ?    likedMeme : this.noLike()
         
-        debugger
+        let date = new Date(meme.date)
+        let minutes = date.getMinutes();
+        minutes = minutes >  9 ? minutes : "0" + minutes; 
+        let hours = date.getHours();
+        hours = hours > 9 ? hours : "0" + hours;
             return (
             <div key={meme._id} className="Individual-Meme-Container">
           
@@ -84,7 +88,14 @@ class ShowPage extends React.Component {
             </div>
             <div className='Individual-Name'>
                 <Link to={`/users/${meme.user._id}`}>
-                {meme.user.username + " Posted"} </Link> 
+                {meme.user.username + " posted on "
+                + (date.getMonth() + 1) + "/" 
+                + date.getDate() + "/"
+                + date.getFullYear() + " "
+                + hours + ":"
+                + minutes
+                } 
+                </Link> 
             </div>
             {/* {likedMeme} */}
             {showLike}

@@ -18,12 +18,25 @@ class Comments extends React.Component {
       ) : (
         null
       )
+      let date = new Date(comment.date)
+     
+      let minutes = date.getMinutes();
+      minutes = minutes >  9 ? minutes : "0" + minutes; 
+      let hours = date.getHours();
+      hours = hours > 9 ? hours : "0" + hours;
+      let month = date.getMonth() + 1
+      let day = date.getDate();
+      let year = date.getFullYear();
       return (
       <div className={`Comment-Individual-Container ${this.props.id}`} key={comment._id}>
         <div className="Comment-Name">
-       <Link to={`/users/${comment.user._id}`}>
-        {comment.user.username}:
+        <Link to={`/users/${comment.user._id}`}>
+        {comment.user.username}
         </Link>
+        <span className="Comment-Date">
+        commented on: {month}/{day}/{year} {hours}:{minutes}
+
+        </span>
         </div>
 
         <div className="Comment-Body">{comment.body}</div>

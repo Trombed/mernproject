@@ -56,7 +56,6 @@ class IndividualShow extends React.Component {
 
 
     render() {
-          console.log(this.props.loggedIn)
         let content = this.props.singleMeme.map( meme => {
             const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id)  
             const likedMeme = (( this.likes[meme._id] || userLiked) ? 
@@ -81,6 +80,14 @@ class IndividualShow extends React.Component {
                 viewComments = `View all comments `
             }
             let showLike = this.props.loggedIn ?    likedMeme : this.noLike()
+            let date = new Date(meme.date)
+            let minutes = date.getMinutes();
+            minutes = minutes >  9 ? minutes : "0" + minutes; 
+            let hours = date.getHours();
+            hours = hours > 9 ? hours : "0" + hours;
+            let day = date.getDate()
+            let year = date.getFullYear();
+            let month = date.getMonth() +1
             return (
             
             <div key={meme._id} className="Individual-Meme-Container">
@@ -88,7 +95,7 @@ class IndividualShow extends React.Component {
                 <Link to={`/users/${meme.user._id}`}>
                     {meme.user.username}
                 </Link>
-                     
+                       posted on {month}/{day}{year} {hours}:{minutes}
                 </div>
                 <div className='Individual-Meme-Pic'>
                 <img onClick={this.imageEnlarge} src={`${meme.image}`} alt="" />

@@ -33,52 +33,27 @@ class Generator extends React.Component {
         this.changeFont = this.changeFont.bind(this)
         this.clearBG = this.clearBG.bind(this)
         this.resetAll = this.resetAll.bind(this)
-        this.loadBlank = this.loadBlank.bind(this)
     }
 
 
     componentWillMount() {
         this.initializeRows();
-         window.onscroll = function () { window.scrollTo(0, 0); };
-        document.body.style.overflow = 'hidden';
-        window.onload = () => {
-            this.loadBlank();
-        }
+        //  window.onscroll = function () { window.scrollTo(0, 0); };
+        // document.body.style.overflow = 'hidden';
+
+
     }
 
     componentWillUnmount() {
-         window.onscroll = function () {};
-        document.body.style.overflow = 'visible';
-        return null;
+        //  window.onscroll = function () {};
+        // document.body.style.overflow = 'visible';
+        // return null;
     }
 
 // Load Blank Template
-    async loadBlank() {
-        let img = await this.initializeBlank();
 
-        const convert = (img) => {
-            var canvas = document.createElement("canvas");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
-            var dataURL = canvas.toDataURL("image/png");
-            document.getElementById('picture').src  =dataURL
-        }
+   
 
-       
-    }
-
-    initializeBlank() {
-        const img = new Image();
-        img.src = `./templates/blank.png`
-        document.getElementById("memeGenerator").style.width = `${img.width}px`
-        document.getElementById("memeGenerator").style.height = `${img.height}px`
-        document.getElementById("canvas2").style.width = `${img.width}px`
-        document.getElementById("canvas2").style.height = `${img.height}px`
-        document.getElementById('picture').src = img.src;
-        return document.getElementById('picture')
-    }
 // End Load Blank Template
 
 
@@ -95,6 +70,7 @@ class Generator extends React.Component {
     }
 
     uploadImage(files) {
+       
         files.preventDefault();
         const file = files.target.files[0]; 
         const reader = new FileReader();
@@ -103,14 +79,15 @@ class Generator extends React.Component {
         reader.onload = function(e) {
             img.src = e.target.result
         };
-            reader.onloadend = (e) => { 
+        reader.onloadend = (e) => { 
 
-                document.getElementById("memeGenerator").style.width = `${img.width}px`
-                document.getElementById("memeGenerator").style.height = `${img.height}px`
-                document.getElementById("canvas2").style.width = `${img.width}px`
-                document.getElementById("canvas2").style.height = `${img.height}px`
-                document.getElementById('picture').src = img.src
-            }
+            document.getElementById("memeGenerator").style.width = `${img.width}px`
+            document.getElementById("memeGenerator").style.height = `${img.height}px`
+            document.getElementById("canvas2").style.width = `${img.width}px`
+            document.getElementById("canvas2").style.height = `${img.height}px`
+            document.getElementById('picture').src = img.src
+        }
+        this.resetPic();
     }
 
   
@@ -123,13 +100,26 @@ class Generator extends React.Component {
 
     resetAll() {
            this.setState({
-            rows: []
+            rows: [],
+            showBlank: true
         }, () => { this.initializeRows();
-                    this.loadBlank();
+                    this.loadBlank2();
          })
     }
-  
 
+    resetPic() {
+        this.setState({
+            rows: [] }, () => this.initializeRows() )
+    }
+  
+    loadBlank2() {
+        
+        document.getElementById("memeGenerator").style.width = `640px`
+        document.getElementById("memeGenerator").style.height = `480px`
+        document.getElementById("canvas2").style.width = `640px`
+        document.getElementById("canvas2").style.height = `480px`
+        document.getElementById("picture").src = this.props.blank;
+    }
    
     upperInput(e, num) {
         this.setState( { [`text${num}`]: e.target.value } )
@@ -199,7 +189,6 @@ class Generator extends React.Component {
 
     rotationChange(e, num) {
         var text = document.getElementsByClassName(`rotate-${num}`)[0];
-        let size = e.currentTarget.value
         if (text === undefined) return;
         this.setState({[`rotate${num}`]: e.currentTarget.value}, () => {
 
@@ -427,8 +416,18 @@ class Generator extends React.Component {
         const newRows = this.state.rows.map( (row, idx) => {
             return (
             <div className="Generator-Text-New-Rows" key={idx}>
-                <div className="Generator-Input-Div">
+                <div>
+    
+                    <div className="Generator-Input-Div">
                     <textarea className='text-input' onChange={ e => this.addInput(e, idx)} placeholder={`Row# ${idx+1}`}/>
+                    </div>
+                
+                </div>
+
+                <div className="Generator-Utility-Row"> 
+
+
+                
                 <div className="Shadow-Color-Container">
                 <div className="swatch" onClick={  e => this.handleClick(idx) }>
                     <div className="color" style={{backgroundColor: this.state[`colorValue${idx}`] }} />
@@ -474,6 +473,7 @@ class Generator extends React.Component {
                              <i className="fas fa-font"></i>
                                <span className="tooltiptext2">Fonts</span>
 
+                
                 </div>
             </div> 
             { this.state[`showFont${idx}`] ? this.showFont(idx) : null}
@@ -620,7 +620,9 @@ class Generator extends React.Component {
                             </button>
                             </div>
                     </div>
-                    { this.state.showTemplates ?  <Templates close={this.hideTemplate.bind(this)}/> : null}
+                    { this.state.showTemplates ?  <Templates close={this.hideTemplate.bind(this)}
+                    reset={this.resetPic.bind(this)}
+                    /> : null}
                     <div className="memeContainer">
                         
                         <div className="Generator-Text-Rows">
@@ -647,11 +649,14 @@ class Generator extends React.Component {
                         <Filter />
                         <div className="Generator-Meme-Container">
                           
-                            <div className="memeGenerator" id="memeGenerator">
+                            <div className="memeGenerator" id="memeGenerator" style={
+                                {width: "640px", height: "480px"}}>
 
-                                <div id='canvas2'>
+                                <div id='canvas2' style={
+                                {width: "640px", height: "480px"}}>
+                                
                                 <img id='picture' 
-                                    src="" 
+                                    src={this.props.blank}
                                     alt="" />
                                 
                                 </div>

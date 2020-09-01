@@ -90,17 +90,17 @@
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    width: 80%;
+
     cursor: pointer;
     border: none;
     text-align: center;
     padding: 8px;
     text-transform: none;
     border-radius: 5px;
-    font-weight: 500;
     background-color: #5C25B5;
     color: #fff;
     font-size: 0.8rem;
+    margin-right: 10px;
 }
 
 .create-meme-button:hover {
@@ -160,7 +160,6 @@
     text-transform: none;
     user-select: none;
     border-radius: 5px;
-    font-weight: 700;
     background-color: #5C25B5;
     color: #fff;
     outline: none;
@@ -178,15 +177,12 @@
     font-size: 16px;
     height: 30px;
     width: 100px;
-
-   
     cursor: pointer;
     border: none;
     text-align: center;
     padding: 8px;
     text-transform: uppercase;
     border-radius: 5px;
-    font-weight: 500;
     background-color: #5C25B5;
     color: #fff;
     outline: none;
@@ -200,9 +196,9 @@
 .navbar-rightside {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    
     align-items: center;
-    width: 50%;
+        
     margin-right: 10px;
 }
 

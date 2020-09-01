@@ -80,9 +80,14 @@ class SingleShow extends React.Component {
         if (Object.values(this.props.oneMeme).length <= 0) {
             content = null 
         } else {
-            const meme = this.props.oneMeme
-            const commentsLength = meme.comments.length
-
+            const meme = this.props.oneMeme;
+            const commentsLength = meme.comments.length;
+            let date = new Date(meme.date)
+            let minutes = date.getMinutes();
+            minutes = minutes >  9 ? minutes : "0" + minutes; 
+            let hours = date.getHours();
+            hours = hours > 9 ? hours : "0" + hours;
+           
             let viewComments;
 
             if (commentsLength === 0) {
@@ -111,7 +116,7 @@ class SingleShow extends React.Component {
                  <div className="Individual-Comment">
                                 <textarea className="Individual-Comment-Box" id={meme._id} placeholder="Add a comment..." />
                                 <button className="flame" onClick={(e) => this.replyMeme(e, meme._id)} >
-                                    Comment: 
+                                    Reply: 
                                 </button>                
                 </div>
         )
@@ -120,7 +125,7 @@ class SingleShow extends React.Component {
                 <div key={meme._id} className="Individual-Meme-Container">
                 <div className='Individual-Name'>
                 <Link to={`/users/${meme.user._id}`}>
-                    {meme.user.username}
+                    {meme.user.username} posted on {date.getMonth() +1}/{date.getDate()}/{date.getFullYear()} {hours}:{minutes}
                 </Link>
                      
                 </div>

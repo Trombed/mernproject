@@ -59,7 +59,7 @@
     display: flex;
     flex-direction: row;
     background-color: white;
-
+    position: absolute;
 
 
 }
@@ -76,7 +76,7 @@
     
    
     /* top: 20vh; */
-    overflow: hidden;
+   
 
     height: 94%;
     /* padding: 24px; */
@@ -118,9 +118,9 @@
 
 .text-input {
     resize: none;
-    height: 91%;
+    width: 100%;
     padding: 0px;
-    margin: 0px;
+
     border-radius: 0px;
 }
 
@@ -318,20 +318,20 @@
 .Generator-Input-Div {
     display: flex;
     /* height: 70px; */
-    float: left;
+
   
 }
 
 .color {
-    width: 36px;
-    height: 36px;
+    width: 20px;
+    height: 20px;
     border-radius: 2px;
 }
 
 .swatch {
     border-style: solid;
     border-color: black;
-    border-width: 1px 1px 1px 0px;
+    border-width: 0px 1px 1px 1px;
     padding: 5px;
     background: lightgrey;
     border-radius: 0px;
@@ -606,6 +606,10 @@ display: none;
     visibility: visible;
 }
 
+#p {
+    object-fit: contain;
+}
+
 .tooltiptext {
     visibility: hidden;
     position: absolute;
@@ -617,7 +621,7 @@ display: none;
     border-radius: 6px;
     z-index: 100;
     font-size: 10px;
-     margin-left:  -75px;
+     margin-left:  -65px;
      margin-top: -20px;
 }
 
@@ -633,11 +637,11 @@ display: none;
   }
 
 .Row-Settings {
-    width: 36px;
-    height: 36px;
+    width: 20px;
+    height: 20px;
     border-style: solid;
     border-color: black;
-    border-width: 1px 1px 1px 0px;
+    border-width: 0px 1px 1px 1px;
     padding: 5px;
     background: lightgrey;
     border-radius: 0px;
@@ -660,7 +664,7 @@ display: none;
     border-radius: 6px;
     z-index: 100;
     font-size: 10px;
-    margin-top: -68px;
+    margin-top: -50px;
     
 }
 
@@ -680,4 +684,13 @@ display: none;
 
 .fa-sliders-h {
     /* color: red; */
+}
+
+.Generator-Utility-Row {
+   
+    display: flex;
+    flex-direction: row;
+    width: min-content;
+ 
+    flex-shrink: 1;
 }

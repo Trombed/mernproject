@@ -15,6 +15,7 @@ const Templates = (props) => {
         document.getElementById("canvas2").style.height = `${img.height}px`
         document.getElementById('picture').src = img.src;
         props.close();
+        props.reset();
         convert(document.getElementById('picture'))
     }
 

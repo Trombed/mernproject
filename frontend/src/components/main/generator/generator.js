@@ -19,7 +19,7 @@ class Generator extends React.Component {
             showTemplates: false,
             showTrash: false,
             showBlank: true,
-
+            urlImage: "",
             save: false,
             rows: [],
         };
@@ -33,6 +33,9 @@ class Generator extends React.Component {
         this.changeFont = this.changeFont.bind(this)
         this.clearBG = this.clearBG.bind(this)
         this.resetAll = this.resetAll.bind(this)
+        this.uploadURL = this.uploadURL.bind(this)
+        this.uploadURLConvert = this.uploadURLConvert.bind(this)
+
     }
 
 
@@ -90,7 +93,38 @@ class Generator extends React.Component {
         this.resetPic();
     }
 
-  
+    uploadURL(e) {
+        var img = new Image();
+        var canvas = document.createElement("canvas"),
+        canvasContext = canvas.getContext("2d");
+        let src;
+        img.src = "https://cors-anywhere.herokuapp.com/" + e
+        img.crossOrigin = 'Ann';
+        img.onload = ( () => {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            canvasContext.drawImage(img, 0, 0, img.width, img.height);
+            src = canvas.toDataURL() 
+        
+            this.uploadURLConvert(img.width, img.height, src)
+        })
+    }
+
+    uploadURLConvert(width, height, src) {
+        document.getElementById("memeGenerator").style.width = `${width}px`
+        document.getElementById("memeGenerator").style.height = `${height}px`
+        document.getElementById("canvas2").style.width = `${width}px`
+        document.getElementById("canvas2").style.height = `${height}px`
+        document.getElementById('picture').src = src;
+    }
+
+    uploadURLPress(e) {
+       if (e.keyCode === 13) {
+           this.uploadURL(this.state.urlImage)
+       }
+    
+    }
+
 
   
 
@@ -584,7 +618,17 @@ class Generator extends React.Component {
                             </div>
                         </label>
 
-                          
+                        <div className="URL-Display">
+                                    <input type="text" onChange={
+                                        (e) => this.setState({urlImage: e.currentTarget.value})
+                                    }
+                                    className="URL-Display-Input"
+                                    placeholder="Image URL" onKeyDown={ (e) => this.uploadURLPress(e)}
+                                    />
+                                    <button onClick={() => this.uploadURL(this.state.urlImage)} >
+                                    URL
+                                    </button>
+                        </div>
                           
 
                             <div className="Filter-Display" onClick={this.filterToggle.bind(this)}>
@@ -598,12 +642,16 @@ class Generator extends React.Component {
                                 </div>
                             </div>
                            
-                            <div className="Generator-Template-Container"
-                                onClick={ () => this.setState({showTemplates: !this.state.showTemplates})}>
-                                <img src="template.svg" alt="" className="Template-Icon" />
-                                Templates
-                                
-                            </div>
+                                <div className="Generator-Template-Container"
+                                    onClick={ () => this.setState({showTemplates: !this.state.showTemplates})}>
+                                    <img src="template.svg" alt="" className="Template-Icon" />
+                                    Templates
+                                    
+                                </div>
+
+                           
+
+
                             </div>
 
                             <div className="generator-right-side">

@@ -55,12 +55,11 @@
 
 
 .memeContainer {
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     flex-direction: row;
     background-color: white;
-    position: absolute;
-
+  
 
 }
 
@@ -294,14 +293,14 @@
 
 
 .Generator-Text-Rows {
-   
+    padding: 5px 5px;
     display: flex;
     /* justify-content: center; */
-    padding: 20px;
+    /* padding: 20px; */
     flex-direction: column;
     width: 25vw;
-    max-height: 70vh;
-    overflow-y: scroll;
+ 
+    /* overflow-y: scroll; */
     background-color: transparent;
 
     min-height: 78vh;
@@ -361,13 +360,14 @@ display: none;
 
 .Generator-Meme-Container {
     width: 75%;
-
+    /* height: 83vh; */
     background-image: url(../../../images/transparentBG.png);
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     background-size: 5%;
+    flex-grow: 1;
 }
 
 .adjust {

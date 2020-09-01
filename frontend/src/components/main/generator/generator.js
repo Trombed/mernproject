@@ -134,7 +134,7 @@ class Generator extends React.Component {
    
 
     saveFile() {
-
+        this.props.openModal('saving')
         const img = document.getElementById("picture")
     
         screenshot(img)

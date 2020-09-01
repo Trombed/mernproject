@@ -19,6 +19,7 @@ class SingleShow extends React.Component {
 
         this.props.fetchSingleMeme(this.props.match.params.id)
         closeModal()
+        this.props.closeModal();
     }
 
     componentDidUpdate(prevProps) {

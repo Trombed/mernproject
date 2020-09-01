@@ -48,7 +48,7 @@ class ShowPage extends React.Component {
 
 
     render() {
-        console.log(this.props.allMemes)
+       
 
         let content = this.props.allMemes.map( meme => {        
         const userLiked = meme.likes.some( user => user._id === this.props.currentUser.id);

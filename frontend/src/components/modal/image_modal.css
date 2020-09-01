@@ -93,12 +93,15 @@
 
 .image-modal-child-meme {
   /* object-fit: cover; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 90vh;
 
 }
 
 .Individual-Modal-Image {
-  object-fit: cover;
+  object-fit: scale-down;
   height: 100%;
 }
 

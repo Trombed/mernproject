@@ -544,6 +544,17 @@ display: none;
     outline: none;
 }
 
+.URL-Display-Button {
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+    border: none;
+}
+
+.URL-Display-Button:hover {
+    opacity: 0.5
+}
+
 .URL-Display:focus-within {
     background-color: #9400D3;
 

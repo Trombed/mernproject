@@ -18,7 +18,6 @@ class SignLogForm extends React.Component {
         this.clearedErrors = false;
         this.renderErrors = this.renderErrors.bind(this);
         this.handleDemo = this.handleDemo.bind(this);
-        this.checkField = this.checkField.bind(this)
     }
 
     componentDidMount() {
@@ -84,8 +83,7 @@ class SignLogForm extends React.Component {
                 return 
             }
         }
-        debugger
-        this.handleDemo(e)
+        this.handleDemo()
     }
 
     renderErrors() {
@@ -174,7 +172,7 @@ class SignLogForm extends React.Component {
 
                         <div className="form-button-container">
                             <input className="form-button-submit" type="submit" value={buttonText} />
-                            <div className="form-demo-user" type="submit" onClick={(e) => this.handleDemo(e)}>
+                            <div className="form-demo-user" type="submit" onClick={this.checkField}>
                                 Sign in as demo user.
                             </div>
                         </div>

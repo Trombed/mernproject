@@ -535,7 +535,7 @@ class Generator extends React.Component {
                         Shadow 
                     </div>
                     <div className="Text-Size">
-                        {this.state[`shadowSize${idx}`]}
+                        {this.state.[`shadowSize${idx}`]}
                     </div>
                 </div>
          
@@ -550,7 +550,7 @@ class Generator extends React.Component {
                         Rotation
                     </div>
                     <div className="Text-Size">
-                        {this.state[`rotate${idx}`]}
+                        {this.state.[`rotate${idx}`]}
                     </div>
                 </div>
 
@@ -625,7 +625,7 @@ class Generator extends React.Component {
                                     className="URL-Display-Input"
                                     placeholder="Image URL" onKeyDown={ (e) => this.uploadURLPress(e)}
                                     />
-                                    <button onClick={() => this.uploadURL(this.state.urlImage)}className="URL-Display-Button" >
+                                    <button onClick={() => this.uploadURL(this.state.urlImage)} >
                                     URL
                                     </button>
                         </div>
